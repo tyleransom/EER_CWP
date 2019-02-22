@@ -1,0 +1,2472 @@
+-------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /home/data/ransom/NLSYvCPS/Data/NLSY/y97/create_master.log
+  log type:  text
+ opened on:  11 Feb 2019, 11:55:25
+
+. 
+. **************************************************
+. * Create all permanent variables and save all data
+. **************************************************
+. local EY = int(10000*uniform()) // NO seed; needs to be random
+
+. !gunzip -fc raw.dta.gz > tmp`EY'.dta
+
+
+. use tmp`EY'.dta, clear
+
+. !rm tmp`EY'.dta
+
+
+. 
+. * survey rounds by year
+. generat svyRound = .
+(332,408 missing values generated)
+
+. replace svyRound =  1 if year==1997
+(8,984 real changes made)
+
+. replace svyRound =  2 if year==1998
+(8,984 real changes made)
+
+. replace svyRound =  3 if year==1999
+(8,984 real changes made)
+
+. replace svyRound =  4 if year==2000
+(8,984 real changes made)
+
+. replace svyRound =  5 if year==2001
+(8,984 real changes made)
+
+. replace svyRound =  6 if year==2002
+(8,984 real changes made)
+
+. replace svyRound =  7 if year==2003
+(8,984 real changes made)
+
+. replace svyRound =  8 if year==2004
+(8,984 real changes made)
+
+. replace svyRound =  9 if year==2005
+(8,984 real changes made)
+
+. replace svyRound = 10 if year==2006
+(8,984 real changes made)
+
+. replace svyRound = 11 if year==2007
+(8,984 real changes made)
+
+. replace svyRound = 12 if year==2008
+(8,984 real changes made)
+
+. replace svyRound = 13 if year==2009
+(8,984 real changes made)
+
+. replace svyRound = 14 if year==2010
+(8,984 real changes made)
+
+. replace svyRound = 15 if year==2011
+(8,984 real changes made)
+
+. replace svyRound = 16 if year==2012
+(8,984 real changes made)
+
+. replace svyRound = 16 if year==2013
+(8,984 real changes made)
+
+. replace svyRound = 17 if year==2014
+(8,984 real changes made)
+
+. replace svyRound = 17 if year==2015
+(8,984 real changes made)
+
+. replace svyRound = 17 if year==2016
+(8,984 real changes made)
+
+. 
+. xtset id year
+       panel variable:  id (strongly balanced)
+        time variable:  year, 1980 to 2016
+                delta:  1 unit
+
+. 
+. * Bring in data on CPI and minimum wage
+. run cpi_min_wage.do
+
+. 
+. * Create various demographic variables
+. do create_demog.do
+
+. ***************************************************
+. * Generate various demographic variables
+. ***************************************************
+. 
+. 
+. * age
+. genera now_1997 = (1997-1960)*12
+
+. genera DOB = (birth_year-1960)*12+birth_month-1
+
+. format now_1997 %tm
+
+. format DOB %tm
+
+. genera age_cts = (now_1997-DOB)/12
+
+. genera age     = year-birth_year-1
+
+. genera birthq  = 1*inrange(birth_month,1,3)+2*inrange(birth_month,4,6)+3*inra
+> nge(birth_month,7,9)+4*inrange(birth_month,10,12)
+
+. genera birthmo = birth_month
+
+. genera birthyr = birth_year
+
+. 
+. * parental education
+. recode  Bio_father_highest_educ (95 = .)
+(Bio_father_highest_educ: 296 changes made)
+
+. recode  Bio_mother_highest_educ (95 = .)
+(Bio_mother_highest_educ: 222 changes made)
+
+. rename  Bio_mother_highest_educ hgcMoth
+
+. generat m_hgcMoth = mi(hgcMoth)
+
+. replace hgcMoth = 0 if mi(hgcMoth)
+(25,678 real changes made)
+
+. rename  Bio_father_highest_educ hgcFath
+
+. generat m_hgcFath = mi(hgcFath)
+
+. replace hgcFath = 0 if mi(hgcFath)
+(68,968 real changes made)
+
+. label var m_hgcMoth "MISSING MOTHER'S HGC"
+
+. label var m_hgcFath "MISSING FATHER'S HGC"
+
+. 
+. * Fix AFQT variables
+. generat m_afqt = mi(afqt)
+
+. replace afqt   = 0 if mi(afqt)
+(73,334 real changes made)
+
+. foreach var in AR CS MK NO PC WK {
+  2.     generat m_asvab`var' = mi(asvab`var')
+  3.     replace asvab`var' = 0 if mi(asvab`var')
+  4. }
+(69,227 real changes made)
+(73,260 real changes made)
+(69,967 real changes made)
+(73,334 real changes made)
+(69,597 real changes made)
+(69,338 real changes made)
+
+. 
+. * Check all missings accounted for
+. foreach V in hgcMoth hgcFath afqt asvabAR asvabCS asvabMK asvabNO asvabPC asv
+> abWK {
+  2.     assert !missing( `V')
+  3.     count if m_`V'
+  4.     assert r(N)~=0
+  5. }
+  25,678
+  68,968
+  73,334
+  69,227
+  73,260
+  69,967
+  73,334
+  69,597
+  69,338
+
+. 
+. * foreignBorn
+. bys id: egen born_here = mean(Born_in_US)
+(9250 missing values generated)
+
+. replace born_here=1 if born_here>0 & born_here<1
+(444 real changes made)
+
+. generat foreignBorn = 1-born_here
+(9,250 missing values generated)
+
+. drop    born_here
+
+. 
+. * race
+. gen black    = race_ethnicity==1
+
+. gen hispanic = race_ethnicity==2
+
+. gen mixed    = race_ethnicity==3
+
+. gen white    = race_ethnicity==4 & race==1
+
+. gen asian    = race_ethnicity==4 & race!=1
+
+. capture drop race
+
+. gen race     = 1 if white
+(169,127 missing values generated)
+
+. replace race = 2 if black
+(86,395 real changes made)
+
+. replace race = 3 if hispanic
+(70,337 real changes made)
+
+. replace race = 4 if asian
+(9,324 real changes made)
+
+. replace race = 5 if mixed
+(3,071 real changes made)
+
+. assert race != 0
+
+. lab var white "WHITE"
+
+. lab var black "BLACK"
+
+. lab var hispanic "HISPANIC"
+
+. lab var mixed "MIXED"
+
+. lab var asian "ASIAN"
+
+. lab var race "RACE"
+
+. lab def vlracefinal 1 "White" 2 "Black" 3 "Hispanic" 4 "Asian" 5 "Mixed"
+
+. lab val race vlracefinal
+
+. 
+. * female
+. gen female = sex==2
+
+. label var female "FEMALE"
+
+. 
+. * birth cohorts
+. gen     born1980 = birthyr==1980
+
+. gen     born1981 = birthyr==1981
+
+. gen     born1982 = birthyr==1982
+
+. gen     born1983 = birthyr==1983
+
+. gen     born1984 = birthyr==1984
+
+. lab var born1980 "BIRTH COHORT DUMMY 1980"
+
+. lab var born1981 "BIRTH COHORT DUMMY 1981"
+
+. lab var born1982 "BIRTH COHORT DUMMY 1982"
+
+. lab var born1983 "BIRTH COHORT DUMMY 1983"
+
+. lab var born1984 "BIRTH COHORT DUMMY 1984"
+
+. 
+. * live with mom at 14
+. generat      true_rel_HH_headA = Relationship_HH_head if year==1997
+(323,455 missing values generated)
+
+. replace      true_rel_HH_headA = min(Relationship_to_Par_age12_, Relationship
+> _HH_head) if (mi(Relationship_HH_head) | mi(Relationship_to_Par_age12_)) & ye
+> ar==1997 & Relationship_HH_head~=Relationship_to_Par_age12_
+(31 real changes made, 10 to missing)
+
+. bys id: egen true_rel_HH_head  = mean(true_rel_HH_headA)
+(370 missing values generated)
+
+. drop         true_rel_HH_headA
+
+. lab val      true_rel_HH_head vl_relPar
+
+. generat liveWithMom14 = inlist(true_rel_HH_head,1,2,4)
+
+. label var liveWithMom14  "LIVE WITH MOTHER AT AGE 14"
+
+. generat femaleHeadHH14 = true_rel_HH_head==4
+
+. label var femaleHeadHH14 "FEMALE HEADED HOUSEHOLD AT AGE 14"
+
+. 
+. 
+. * deflate family income
+. 
+. * Grab family income from parent supplement (for round 2, since it's missing 
+> at high rates in rounds 3-5)
+. egen    Family_income_alt = rowtotal(parIncome parSpIncome parSpOthIncome), m
+> i
+(312376 missing values generated)
+
+. replace Family_income_alt = .n if Family_income==.n
+(21,527 real changes made, 21,527 to missing)
+
+. replace Family_income_alt = .d if Family_income==.d
+(1,334 real changes made, 1,334 to missing)
+
+. replace Family_income_alt = .i if Family_income==.i
+(16,969 real changes made, 16,969 to missing)
+
+. replace Family_income_alt = .r if Family_income==.r
+(72 real changes made, 72 to missing)
+
+. replace Family_income_alt = .v if Family_income==.v
+(18,746 real changes made, 18,746 to missing)
+
+. 
+. * Family income in survey round 1
+. generat FincTest96 = Family_income if year==1996
+(325,820 missing values generated)
+
+. replace FincTest96 = FincTest96/cpi 
+(8,884 real changes made, 2,396 to missing)
+
+. bys id: egen famIncTest96 = mean(FincTest96)
+(88652 missing values generated)
+
+. 
+. * Parent supplement reported income in survey round 2
+. generat FincAltTest97 = Family_income_alt if year==1997
+(331,609 missing values generated)
+
+. replace FincAltTest97 = FincAltTest97/cpi 
+(8,716 real changes made, 7,935 to missing)
+
+. bys id: egen famIncAltTest97 = mean(FincAltTest97)
+(302845 missing values generated)
+
+. 
+. * Parent supplement reported income in survey round 3
+. generat FincAltTest98 = Family_income_alt if year==1998
+(331,294 missing values generated)
+
+. replace FincAltTest98 = FincAltTest98/cpi 
+(7,622 real changes made, 6,527 to missing)
+
+. bys id: egen famIncAltTest98 = mean(FincAltTest98)
+(291190 missing values generated)
+
+. 
+. * Parent supplement reported income in survey round 4
+. generat FincAltTest99 = Family_income_alt if year==1999
+(330,721 missing values generated)
+
+. replace FincAltTest99 = FincAltTest99/cpi 
+(7,142 real changes made, 5,483 to missing)
+
+. bys id: egen famIncAltTest99 = mean(FincAltTest99)
+(269989 missing values generated)
+
+. 
+. * Parent supplement reported income in survey round 4
+. generat FincAltTest00 = Family_income_alt if year==2000
+(330,462 missing values generated)
+
+. replace FincAltTest00 = FincAltTest00/cpi 
+(6,032 real changes made, 4,140 to missing)
+
+. bys id: egen famIncAltTest00 = mean(FincAltTest00)
+(260406 missing values generated)
+
+. 
+. * Pre-college family income = survey round 1 income OR round 2 parent supplem
+> ent reported income if missing round 1 data
+. generat famIncAsTeen = famIncTest96
+(88,652 missing values generated)
+
+. replace famIncAsTeen = famIncAltTest97 if mi(famIncAsTeen)
+(6,512 real changes made)
+
+. replace famIncAsTeen = famIncAltTest98 if mi(famIncAsTeen)
+(8,769 real changes made)
+
+. replace famIncAsTeen = famIncAltTest99 if mi(famIncAsTeen)
+(10,175 real changes made)
+
+. replace famIncAsTeen = famIncAltTest00 if mi(famIncAsTeen)
+(9,435 real changes made)
+
+. 
+. * Express in logs and 1000s of dollars
+. replace famIncAsTeen = 1 if famIncAsTeen<=0
+(4,958 real changes made)
+
+. generat lnfamIncAsTeen = ln(famIncAsTeen)
+(53,761 missing values generated)
+
+. replace famIncAsTeen = famIncAsTeen/1000
+(278,647 real changes made)
+
+. 
+. generat m_famIncAsTeen=(famIncAsTeen>=.)
+
+. replace famIncAsTeen = 0 if m_famIncAsTeen==1
+(53,761 real changes made)
+
+. lab var famIncAsTeen   "FAMILY INCOME IN 1978, 1000's of 1982-4 $"
+
+. lab var lnfamIncAsTeen "LOG FAMILY INCOME IN 1978, 1982-4 $"
+
+. lab var m_famIncAsTeen "MISSING FAMILY INCOME IN 1978"
+
+. 
+. * weights
+. replace weight_panel = . if year~=1997
+(143,744 real changes made, 143,744 to missing)
+
+. bys id: egen svywgt  = mean(weight_panel)
+
+. drop weight_panel
+
+. 
+. *============================================================================
+. * missed interviews
+. * variables that flag if the year is missing, how long the missing has 
+. *  gone on, how long the missing lasts, and if it's the last missing spell
+. *  Also, variables that list whether the element is the first after a spell
+. *  and the last year of data before the spell.
+. *============================================================================
+. generat Interview_date = Int_month+239 // add 239 to convert from NLSY base m
+> onth (Dec 1979) to Stata base month (Jan 1960)
+(201,207 missing values generated)
+
+. format  Interview_date %tm
+
+. replace Interview_date = .n if Int_month==.n
+(21,527 real changes made, 21,527 to missing)
+
+. 
+. foreach x of numlist 1/17 {
+  2.     if (`x'<=15) {
+  3.         local temp=`x'+17
+  4.     }
+  5.     else if (`x'==16) {
+  6.         local temp=`x'+18
+  7.     }
+  8.     else if (`x'==17) {
+  9.         local temp=`x'+19
+ 10.     }
+ 11.     bys id: gen R`x'interviewDate  = Interview_date[`temp']
+ 12.     bys id: gen R`x'interviewDay   = mdy(InterviewM[`temp'],InterviewD[`te
+> mp'],InterviewY[`temp'])
+ 13.     bys id: gen R`x'interviewWeek  = wofd(mdy(InterviewM[`temp'],Interview
+> D[`temp'],InterviewY[`temp']))
+ 14.     format R`x'interviewDate %tm
+ 15.     format R`x'interviewDay  %td
+ 16.     format R`x'interviewWeek %tw
+ 17. }
+(22,126 missing values generated)
+(22,126 missing values generated)
+(22,126 missing values generated)
+(28,712 missing values generated)
+(28,712 missing values generated)
+(28,712 missing values generated)
+(33,448 missing values generated)
+(33,448 missing values generated)
+(33,448 missing values generated)
+(40,774 missing values generated)
+(40,774 missing values generated)
+(40,774 missing values generated)
+(40,256 missing values generated)
+(40,256 missing values generated)
+(40,256 missing values generated)
+(45,510 missing values generated)
+(45,510 missing values generated)
+(45,510 missing values generated)
+(54,834 missing values generated)
+(54,834 missing values generated)
+(54,834 missing values generated)
+(60,902 missing values generated)
+(60,902 missing values generated)
+(60,902 missing values generated)
+(52,725 missing values generated)
+(52,725 missing values generated)
+(52,725 missing values generated)
+(57,942 missing values generated)
+(57,942 missing values generated)
+(57,942 missing values generated)
+(55,278 missing values generated)
+(55,278 missing values generated)
+(55,278 missing values generated)
+(52,725 missing values generated)
+(52,725 missing values generated)
+(52,725 missing values generated)
+(55,685 missing values generated)
+(55,685 missing values generated)
+(55,685 missing values generated)
+(57,757 missing values generated)
+(57,757 missing values generated)
+(57,757 missing values generated)
+(68,228 missing values generated)
+(68,228 missing values generated)
+(68,228 missing values generated)
+(69,597 missing values generated)
+(69,597 missing values generated)
+(69,597 missing values generated)
+
+. gen flag1 = yofd(dofm(R1interviewDate)) ==1998 // create flag for imputing sc
+> hooling before first interview
+
+. gen flag2 = yofd(dofm(R17interviewDate))==2016 // create flag for dropping ob
+> servations after last interview
+
+. 
+. gen Interview_day                           = mdy(InterviewM,InterviewD,Inter
+> viewY)
+(201,207 missing values generated)
+
+. gen Interview_month                         = month(dofm(Interview_date))
+(201,207 missing values generated)
+
+. replace Interview_month                     = .n if Interview_date==.n
+(21,527 real changes made, 21,527 to missing)
+
+. replace Interview_month                     = .  if Interview_date==.
+(0 real changes made)
+
+. 
+. gen miss_interview                          = (Interview_date==.n)
+
+. clonevar missInt = miss_interview
+
+. bys id: egen miss_interview_dumB            = mean(miss_interview)
+
+. gen ever_miss_interview                     = (miss_interview_dumB > 0)
+
+. drop miss_interview_dumB
+
+. 
+. gen age_at_miss_int                         = age*miss_interview
+
+. gen year_miss_int                           = year*miss_interview
+
+. 
+. bys id (year): egen yrFirstMissInt = min(year_miss_int) if year_miss_int>0
+(310881 missing values generated)
+
+. bys id (year): egen yrFirstMissIntFull = mean(yrFirstMissInt)
+(177933 missing values generated)
+
+. gen         missIntEverBefore = year>=yrFirstMissIntFull
+
+. 
+. gen miss_interview_cum                      = 0
+
+. by id: replace miss_interview_cum           = miss_interview_cum[_n-1] + 1 if
+>  miss_interview[_n]==1 & year[_n]<=2011
+(17,802 real changes made)
+
+. by id: replace miss_interview_cum           = miss_interview_cum[_n-2] + 1 if
+>  miss_interview[_n]==1 & inlist(year[_n],2013,2015)
+(3,725 real changes made)
+
+. clonevar missIntCum = miss_interview_cum
+
+. 
+. gsort +id -year
+
+. gen miss_interview_length                   = miss_interview_cum
+
+. by id: replace miss_interview_length        = miss_interview_length[_n-1] if 
+> miss_interview_cum[_n]!=0 & miss_interview_cum[_n-1]!=0 & year~=2014
+(11,737 real changes made)
+
+. 
+. sort id year
+
+. * create flag for long missed interview spell
+. generate year_first_long_spellA             = year*(miss_interview_length>2)
+
+. replace  year_first_long_spellA             = . if year_first_long_spellA==0
+(317,570 real changes made, 317,570 to missing)
+
+. bys id (year): egen year_first_long_spell   = min(year_first_long_spellA)
+(259185 missing values generated)
+
+. drop year_first_long_spellA
+
+. gen long_miss_flag                          = year>=year_first_long_spell
+
+. 
+. * create flag for any missed interview spell
+. generate year_first_short_spellA             = year*(miss_interview_length>0)
+
+. replace  year_first_short_spellA             = . if year_first_short_spellA==
+> 0
+(310,881 real changes made, 310,881 to missing)
+
+. bys id (year): egen year_first_short_spell   = min(year_first_short_spellA)
+(177933 missing values generated)
+
+. drop year_first_short_spellA
+
+. gen short_miss_flag                          = year>=year_first_short_spell
+
+. 
+. gsort +id -year
+
+. gen miss_interview_last_spell               = 0
+
+. by id: replace miss_interview_last_spell    = 1 if miss_interview_cum[_n]!=0 
+> & ( (year==2015 & ~flag2) | miss_interview_last_spell[_n-1]==1)
+(1,881 real changes made)
+
+. sort id year
+
+. label var miss_interview            "Missed Interview In Current Year"
+
+. label var miss_interview_cum        "Running Tally Of Current Missed Intervie
+> w Spell"
+
+. label var miss_interview_length     "Length Of Current Missed Interview Spell
+> "
+
+. label var miss_interview_last_spell "Element Of Last Missed Interview Spell"
+
+. 
+. * identify right-censored interview spells -- no one in 2016 should enter the
+>  data (since they are all interviewed before October)
+. generat not_missing_interview               = 1-miss_interview if year<2016
+(8,984 missing values generated)
+
+. replace not_missing_interview               = 0 if year==2016 & R17interviewD
+> ate>=ym(2016,1 ) // don't use 2016 data for anyone interviewed in 2016, since
+>  no one in R16 was interviewed after Jul 2016
+(3,897 real changes made)
+
+. * replace not_missing_interview               = 0 if year==2015 & R15intervie
+> wDate< ym(2015,10) // we don't have data on those interviewed in R16 before O
+> ct 2015 for latest round
+. generat nonmissing_int_year                 = year*not_missing_interview
+(5,087 missing values generated)
+
+. bys id (year): egen max_nonmissing_int_year = max(nonmissing_int_year)
+
+. generat missIntLastSpell                    = (year>max_nonmissing_int_year)
+
+. 
+. * interview month of last survey year (either the last year before a 3+ misse
+> d spell, the last year before a right-censored spell, or 2015)
+. generat last_survey_yearA                   = year_first_long_spell-1 if year
+> ==year_first_long_spell
+(330,429 missing values generated)
+
+. replace last_survey_yearA                   = max_nonmissing_int_year if year
+> ==2015
+(8,904 real changes made)
+
+. 
+. generat last_survey_year_hastyA             = year_first_short_spell-1 if yea
+> r==year_first_short_spell
+(328,233 missing values generated)
+
+. replace last_survey_year_hastyA             = max_nonmissing_int_year if year
+> ==2015
+(8,827 real changes made)
+
+. 
+. bys id (year): egen last_survey_year        = min(last_survey_yearA)
+
+. bys id (year): egen last_survey_year_hasty  = min(last_survey_year_hastyA)
+
+. 
+. by id: gen     lastValidInt           = last_survey_year
+
+. 
+. gen            temp_date              = mdy(InterviewM,InterviewD,InterviewY)
+>  if year==lastValidInt
+(324,161 missing values generated)
+
+. by id: egen    lastValidIntDate       = max(temp_date)
+(27269 missing values generated)
+
+. format         lastValidIntDate %td
+
+. drop           temp_date
+
+. 
+. 
+. gen last_int_dayA                           = Interview_day if year==last_sur
+> vey_year
+(324,161 missing values generated)
+
+. bys id (year): egen last_int_day            = mean(last_int_dayA)
+(27269 missing values generated)
+
+. format last_int_day %td
+
+. 
+. 
+. 
+. *----------------------------------------------------------------------------
+> ----
+. * Some summary stats on people's missing interview behavior throughout the su
+> rvey
+. *----------------------------------------------------------------------------
+> ----
+. * get proportion of people who ever missed any number of consecutive intervie
+> ws
+. foreach x of numlist 1/14 {
+  2.     by id: gen miss_`x'_intA  = (miss_interview_length==`x')
+  3. }
+
+. foreach x of numlist 1/14 {
+  2.     by id: egen miss_`x'_intB  = mean(miss_`x'_intA )
+  3. }
+
+. foreach x of numlist 1/14 {
+  2.     by id: gen ever_miss_`x'_int  = (miss_`x'_intB >0)
+  3. }
+
+. drop miss_*intA miss_*intB
+
+. 
+. gen ever_miss_3plus_int = ((ever_miss_3_int)|(ever_miss_4_int)|(ever_miss_5_i
+> nt)|(ever_miss_6_int)|(ever_miss_7_int)|(ever_miss_8_int)|(ever_miss_9_int)|(
+> ever_miss_10_int)|(ever_miss_11_int)|(ever_miss_12_int))
+
+. 
+. * get proportion of people who return after missing any number of consecutive
+>  interviews
+. foreach x of numlist 1/14 {
+  2.     by id: gen return_after_`x'_miss_intA  = (miss_interview_length[_n-1]=
+> =`x'  & miss_interview_length[_n]==0)
+  3. }
+
+. foreach x of numlist 1/14 {
+  2.     by id: egen return_after_`x'_miss_intB  = mean(return_after_`x'_miss_i
+> ntA )
+  3. }
+
+. foreach x of numlist 1/14 {
+  2.     by id: gen ever_return_after_`x'_miss_int  = (return_after_`x'_miss_in
+> tB >0)
+  3. }
+
+. drop return_after*A return_after*B
+
+. 
+. gen ever_return_after_3plus_miss_int = ((ever_return_after_3_miss_int)|(ever_
+> return_after_4_miss_int)|(ever_return_after_5_miss_int)|(ever_return_after_6_
+> miss_int)|(ever_return_after_7_miss_int)|(ever_return_after_8_miss_int)|(ever
+> _return_after_9_miss_int)|(ever_return_after_10_miss_int)|(ever_return_after_
+> 11_miss_int)|(ever_return_after_12_miss_int)|(ever_return_after_13_miss_int))
+
+. 
+. * Count number of people who have multiple missing interview spells lasting d
+> ifferent lengths
+. foreach x of numlist 1/14 {
+  2.     count if ever_return_after_1_miss_int ==1 & ever_return_after_`x'_miss
+> _int==1 & year==1997
+  3. }
+  2,848
+  922
+  442
+  245
+  141
+  102
+  105
+  98
+  83
+  66
+  48
+  31
+  17
+  8
+
+. foreach x of numlist 2/14 {
+  2.     count if ever_return_after_2_miss_int ==1 & ever_return_after_`x'_miss
+> _int==1 & year==1997
+  3. }
+  1,330
+  384
+  228
+  80
+  57
+  59
+  43
+  28
+  22
+  20
+  11
+  7
+  0
+
+. foreach x of numlist 3/14 {
+  2.     count if ever_return_after_3_miss_int ==1 & ever_return_after_`x'_miss
+> _int==1 & year==1997
+  3. }
+  729
+  251
+  120
+  37
+  37
+  31
+  23
+  11
+  7
+  4
+  0
+  0
+
+. foreach x of numlist 4/14 {
+  2.     count if ever_return_after_4_miss_int ==1 & ever_return_after_`x'_miss
+> _int==1 & year==1997
+  3. }
+  514
+  175
+  85
+  27
+  18
+  10
+  3
+  2
+  0
+  0
+  0
+
+. foreach x of numlist 5/14 {
+  2.     count if ever_return_after_5_miss_int ==1 & ever_return_after_`x'_miss
+> _int==1 & year==1997
+  3. }
+  355
+  154
+  96
+  10
+  5
+  2
+  0
+  0
+  0
+  0
+
+. foreach x of numlist 6/14 {
+  2.     count if ever_return_after_6_miss_int ==1 & ever_return_after_`x'_miss
+> _int==1 & year==1997
+  3. }
+  311
+  165
+  72
+  2
+  0
+  0
+  0
+  0
+  0
+
+. foreach x of numlist 7/14 {
+  2.     count if ever_return_after_7_miss_int ==1 & ever_return_after_`x'_miss
+> _int==1 & year==1997
+  3. }
+  309
+  159
+  81
+  0
+  0
+  0
+  0
+  0
+
+. foreach x of numlist 8/14 {
+  2.     count if ever_return_after_8_miss_int ==1 & ever_return_after_`x'_miss
+> _int==1 & year==1997
+  3. }
+  300
+  166
+  80
+  0
+  0
+  0
+  0
+
+. foreach x of numlist 9/14 {
+  2.     count if ever_return_after_9_miss_int ==1 & ever_return_after_`x'_miss
+> _int==1 & year==1997
+  3. }
+  278
+  164
+  80
+  0
+  0
+  0
+
+. foreach x of numlist 10/14 {
+  2.     count if ever_return_after_10_miss_int ==1 & ever_return_after_`x'_mis
+> s_int==1 & year==1997
+  3. }
+  246
+  148
+  64
+  0
+  0
+
+. foreach x of numlist 11/14 {
+  2.     count if ever_return_after_11_miss_int ==1 & ever_return_after_`x'_mis
+> s_int==1 & year==1997
+  3. }
+  222
+  123
+  50
+  0
+
+. foreach x of numlist 12/14 {
+  2.     count if ever_return_after_12_miss_int ==1 & ever_return_after_`x'_mis
+> s_int==1 & year==1997
+  3. }
+  182
+  101
+  49
+
+. foreach x of numlist 13/14 {
+  2.     count if ever_return_after_13_miss_int ==1 & ever_return_after_`x'_mis
+> s_int==1 & year==1997
+  3. }
+  153
+  93
+
+. 
+. foreach x of numlist 1/14 {
+  2.     sum ever_return_after_`x'_miss_int if ever_miss_`x'_int==1 & year==199
+> 7
+  3. }
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+~_1_miss_int |      2,848           1           0          1          1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+~_2_miss_int |      1,330           1           0          1          1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+~_3_miss_int |        729           1           0          1          1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+~_4_miss_int |        514           1           0          1          1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+e~5_miss_int |        355           1           0          1          1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+e~6_miss_int |        311           1           0          1          1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+e~7_miss_int |        309           1           0          1          1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+e~8_miss_int |        300           1           0          1          1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+e~9_miss_int |        278           1           0          1          1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+e~0_miss_int |        246           1           0          1          1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+~11_miss_int |        222           1           0          1          1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+~12_miss_int |        182           1           0          1          1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+~13_miss_int |        153           1           0          1          1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+~14_miss_int |        204           1           0          1          1
+
+. 
+. sum ever_return_after_3plus_miss_int if ever_miss_3plus_int==1 & year==1997
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+e~s_miss_int |      1,816           1           0          1          1
+
+. 
+. tab age_at_miss_int            if age_at_miss_int>0, mi
+
+age_at_miss |
+       _int |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         13 |         78        0.36        0.36
+         14 |        205        0.95        1.31
+         15 |        346        1.61        2.92
+         16 |        554        2.57        5.50
+         17 |        831        3.86        9.36
+         18 |      1,034        4.80       14.16
+         19 |      1,198        5.57       19.72
+         20 |      1,348        6.26       25.99
+         21 |      1,381        6.42       32.40
+         22 |      1,480        6.88       39.28
+         23 |      1,585        7.36       46.64
+         24 |      1,525        7.08       53.72
+         25 |      1,534        7.13       60.85
+         26 |      1,519        7.06       67.91
+         27 |      1,230        5.71       73.62
+         28 |      1,287        5.98       79.60
+         29 |      1,007        4.68       84.28
+         30 |      1,084        5.04       89.31
+         31 |        735        3.41       92.73
+         32 |        751        3.49       96.21
+         33 |        415        1.93       98.14
+         34 |        400        1.86      100.00
+------------+-----------------------------------
+      Total |     21,527      100.00
+
+. tab age_at_miss_int birth_year if age_at_miss_int>0, mi col nofreq
+
+age_at_mis |                       BIRTH YEAR
+     s_int |      1980       1981       1982       1983       1984 |     Total
+-----------+-------------------------------------------------------+----------
+        13 |      0.00       0.00       0.00       0.00       2.23 |      0.36 
+        14 |      0.00       0.00       0.00       3.00       2.60 |      0.95 
+        15 |      0.00       0.00       2.69       3.27       3.11 |      1.61 
+        16 |      0.00       2.83       3.49       3.35       3.86 |      2.57 
+        17 |      3.02       4.04       4.16       4.43       3.80 |      3.86 
+        18 |      4.22       4.71       5.32       4.61       5.34 |      4.80 
+        19 |      5.14       5.70       5.23       5.16       6.80 |      5.57 
+        20 |      5.77       5.55       5.77       7.01       7.77 |      6.26 
+        21 |      5.63       5.94       6.46       7.64       6.83 |      6.42 
+        22 |      6.12       7.19       7.18       6.56       7.46 |      6.88 
+        23 |      6.89       8.24       6.54       7.46       7.63 |      7.36 
+        24 |      7.34       6.56       7.34       7.06       7.20 |      7.08 
+        25 |      6.65       7.32       6.94       7.17       7.69 |      7.13 
+        26 |      6.89       6.84       6.54       7.24       8.03 |      7.06 
+        27 |      6.47       6.58       6.94       7.48       0.00 |      5.71 
+        28 |      5.89       6.60       7.41       0.00       9.94 |      5.98 
+        29 |      6.75       6.45       0.00       9.11       0.00 |      4.68 
+        30 |      7.22       0.00       9.27       0.00       9.71 |      5.04 
+        31 |      0.00       7.34       0.00       9.46       0.00 |      3.41 
+        32 |      7.83       0.00       8.72       0.00       0.00 |      3.49 
+        33 |      0.00       8.11       0.00       0.00       0.00 |      1.93 
+        34 |      8.16       0.00       0.00       0.00       0.00 |      1.86 
+-----------+-------------------------------------------------------+----------
+     Total |    100.00     100.00     100.00     100.00     100.00 |    100.00 
+
+
+. tab year_miss_int              if year_miss_int>0, mi // show momentary inter
+> view missers
+
+year_miss_i |
+         nt |      Freq.     Percent        Cum.
+------------+-----------------------------------
+       1998 |        598        2.78        2.78
+       1999 |        776        3.60        6.38
+       2000 |        904        4.20       10.58
+       2001 |      1,102        5.12       15.70
+       2002 |      1,088        5.05       20.76
+       2003 |      1,230        5.71       26.47
+       2004 |      1,482        6.88       33.35
+       2005 |      1,646        7.65       41.00
+       2006 |      1,425        6.62       47.62
+       2007 |      1,566        7.27       54.89
+       2008 |      1,494        6.94       61.83
+       2009 |      1,425        6.62       68.45
+       2010 |      1,505        6.99       75.44
+       2011 |      1,561        7.25       82.70
+       2013 |      1,844        8.57       91.26
+       2015 |      1,881        8.74      100.00
+------------+-----------------------------------
+      Total |     21,527      100.00
+
+. tab last_survey_year           if  year==2015 // show cumulative attrition in
+>  our sample (either because of permanent attrition from NLSY or having missed
+>  3+ interviews)
+
+last_survey |
+      _year |      Freq.     Percent        Cum.
+------------+-----------------------------------
+       1997 |        256        2.85        2.85
+       1998 |        156        1.74        4.59
+       1999 |        161        1.79        6.38
+       2000 |        166        1.85        8.23
+       2001 |        152        1.69        9.92
+       2002 |        177        1.97       11.89
+       2003 |        175        1.95       13.84
+       2004 |        166        1.85       15.68
+       2005 |         96        1.07       16.75
+       2006 |        120        1.34       18.09
+       2007 |         83        0.92       19.01
+       2008 |         90        1.00       20.01
+       2012 |        101        1.12       21.14
+       2014 |        636        7.08       28.22
+       2015 |      6,449       71.78      100.00
+------------+-----------------------------------
+      Total |      8,984      100.00
+
+. tab last_survey_year_hasty     if  year==2015 // show cumulative attrition in
+>  our sample if we never made use of backfilled observations
+
+last_survey |
+_year_hasty |      Freq.     Percent        Cum.
+------------+-----------------------------------
+       1997 |        598        6.66        6.66
+       1998 |        428        4.76       11.42
+       1999 |        370        4.12       15.54
+       2000 |        385        4.29       19.82
+       2001 |        256        2.85       22.67
+       2002 |        269        2.99       25.67
+       2003 |        350        3.90       29.56
+       2004 |        344        3.83       33.39
+       2005 |        174        1.94       35.33
+       2006 |        187        2.08       37.41
+       2007 |        136        1.51       38.92
+       2008 |        104        1.16       40.08
+       2009 |         94        1.05       41.13
+       2010 |        105        1.17       42.30
+       2012 |        218        2.43       44.72
+       2014 |        157        1.75       46.47
+       2015 |      4,809       53.53      100.00
+------------+-----------------------------------
+      Total |      8,984      100.00
+
+. tab max_nonmissing_int_year    if year==2015 // show cumulative attrition in 
+> our sample if we always used backfilled obs (i.e. if we kept super-long misse
+> d spells)
+
+max_nonmiss |
+ing_int_yea |
+          r |      Freq.     Percent        Cum.
+------------+-----------------------------------
+       2014 |      1,881       20.94       20.94
+       2015 |      7,103       79.06      100.00
+------------+-----------------------------------
+      Total |      8,984      100.00
+
+. 
+. lab var birthq  "Quarter of birth"
+
+. lab var birthmo "Month of birth"
+
+. lab var birthyr "Year of birth"
+
+. 
+. ** Variables to keep:
+. global keeperdemog id year svyRound age birthq birthmo birthyr hgcMoth m_hgcM
+> oth m_hgcFath hgcFath asvab* m_asvab* afqt m_afqt famIncAsTeen lnfamIncAsTeen
+>  m_famIncAsTeen svywgt *iss* lastValid* foreignBorn black hispanic white asia
+> n mixed race female born* liveWithMom14 femaleHeadHH14
+
+. 
+end of do-file
+
+. 
+. * Create enrollment status and hgc
+. do create_school.do
+
+. * Highest grade completed
+. gen hgc = Highest_Grade_Completed
+(211,370 missing values generated)
+
+. recode hgc (95 = .)
+(hgc: 114 changes made)
+
+. 
+. generat grad4yr  = hgc>=16 & ~mi(hgc)
+
+. replace grad4yr  = . if mi(hgc)
+(211,484 real changes made, 211,484 to missing)
+
+. 
+. gen ged = Months_to_GED<.
+
+. 
+. generat gradHS   = (hgc>=12 & ~mi(hgc)) | ged
+
+. replace gradHS   = . if mi(hgc)
+(211,484 real changes made, 211,484 to missing)
+
+. 
+. generat gradGrad = inlist(Highest_degree_ever,5,6,7)
+
+. replace gradGrad = . if mi(Highest_degree_ever)
+(210,529 real changes made, 210,529 to missing)
+
+. 
+. replace gradHS   = .n if Interview_date==.n
+(21,527 real changes made, 21,527 to missing)
+
+. replace gradHS   = .  if Interview_date==. 
+(0 real changes made)
+
+. replace grad4yr  = .n if Interview_date==.n
+(21,527 real changes made, 21,527 to missing)
+
+. replace grad4yr  = .  if Interview_date==. 
+(0 real changes made)
+
+. replace gradGrad = .n if Interview_date==.n
+(21,527 real changes made, 21,527 to missing)
+
+. replace gradGrad = .  if Interview_date==. 
+(0 real changes made)
+
+. 
+. lab var hgc            "Highest Grade Completed (years)"
+
+. lab var ged            "Holds a GED"
+
+. lab var gradHS         "Absorbing indicator for HS graduation (or GED)"
+
+. lab var grad4yr        "Absorbing indicator for 4-year college graduation"
+
+. lab var gradGrad       "Absorbing indicator for earning graduate degree"
+
+. 
+. * Enrollment status at time of interview
+. generat enrolled =  0
+
+. replace enrolled =  1 if month(dofm(Interview_date))==1  & (School_Enrollment
+> _Status_Jan==2 | inrange(College_enrollment_Jan,2,4))
+(9,655 real changes made)
+
+. replace enrolled =  1 if month(dofm(Interview_date))==2  & (School_Enrollment
+> _Status_Feb==2 | inrange(College_enrollment_Feb,2,4))
+(5,267 real changes made)
+
+. replace enrolled =  1 if month(dofm(Interview_date))==3  & (School_Enrollment
+> _Status_Mar==2 | inrange(College_enrollment_Mar,2,4))
+(3,912 real changes made)
+
+. replace enrolled =  1 if month(dofm(Interview_date))==4  & (School_Enrollment
+> _Status_Apr==2 | inrange(College_enrollment_Apr,2,4))
+(2,999 real changes made)
+
+. replace enrolled =  1 if month(dofm(Interview_date))==5  & (School_Enrollment
+> _Status_May==2 | inrange(College_enrollment_May,2,4))
+(2,032 real changes made)
+
+. replace enrolled =  1 if month(dofm(Interview_date))==6  & (School_Enrollment
+> _Status_Jun==2 | inrange(College_enrollment_Jun,2,4))
+(1,164 real changes made)
+
+. replace enrolled =  1 if month(dofm(Interview_date))==7  & (School_Enrollment
+> _Status_Jul==2 | inrange(College_enrollment_Jul,2,4))
+(487 real changes made)
+
+. replace enrolled =  1 if month(dofm(Interview_date))==8  & (School_Enrollment
+> _Status_Aug==2 | inrange(College_enrollment_Aug,2,4))
+(325 real changes made)
+
+. replace enrolled =  1 if month(dofm(Interview_date))==9  & (School_Enrollment
+> _Status_Sep==2 | inrange(College_enrollment_Sep,2,4))
+(543 real changes made)
+
+. replace enrolled =  1 if month(dofm(Interview_date))==10 & (School_Enrollment
+> _Status_Oct==2 | inrange(College_enrollment_Oct,2,4))
+(2,613 real changes made)
+
+. replace enrolled =  1 if month(dofm(Interview_date))==11 & (School_Enrollment
+> _Status_Nov==2 | inrange(College_enrollment_Nov,2,4))
+(12,116 real changes made)
+
+. replace enrolled =  1 if month(dofm(Interview_date))==12 & (School_Enrollment
+> _Status_Dec==2 | inrange(College_enrollment_Dec,2,4))
+(12,477 real changes made)
+
+. replace enrolled = .n if !mi(reason_noninterview)
+(135,358 real changes made, 135,358 to missing)
+
+. 
+. ** Variables to keep:
+. global keeperschool hgc ged gradHS grad4yr gradGrad enrolled
+
+. 
+end of do-file
+
+. 
+. * Create work status vars, wages, and job characteristics
+. do create_work.do
+
+. gen wage    = .
+(332,408 missing values generated)
+
+. gen hours   = .
+(332,408 missing values generated)
+
+. gen occ     = .
+(332,408 missing values generated)
+
+. gen ind     = .
+(332,408 missing values generated)
+
+. gen selfemp = .
+(332,408 missing values generated)
+
+. forvalues x=1/13 {
+  2.     qui replace wage    = Hrly_comp_Job`x'_    if Main_job==`x'
+  3.     qui replace wage    = Hrly_wage_Job`x'_    if Main_job==`x' & mi(Hrly_
+> comp_Job`x'_)
+  4.     qui replace hours   = Hrs_per_week_Job`x'_ if Main_job==`x'
+  5.     qui replace occ     = Job`x'_Occupation    if Main_job==`x'
+  6.     qui replace ind     = Job`x'_Industry      if Main_job==`x'
+  7.     qui replace selfemp = Job`x'_self_employed if Main_job==`x'
+  8. }
+
+. 
+. qui replace wage    = .n if Interview_date==.n
+
+. qui replace hours   = .n if Interview_date==.n
+
+. qui replace occ     = .n if Interview_date==.n
+
+. qui replace ind     = .n if Interview_date==.n
+
+. qui replace selfemp = .n if Interview_date==.n
+
+. qui replace wage    = .  if mi(hours)
+
+. qui replace occ     = .  if mi(hours)
+
+. qui replace ind     = .  if mi(hours)
+
+. qui replace selfemp = .  if mi(hours)
+
+. 
+. * Deflate wages
+. qui generat wagereal = wage/(100*cpi)
+
+. 
+. * top- and bottom-code wages at $2 and $100
+. local top_limit 100
+
+. local bot_limit 2
+
+. sum wagereal, d
+
+                          wagereal
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%     .4981993              0
+ 5%      2.89377              0
+10%     3.159509              0       Obs             100,214
+25%     3.793478              0       Sum of Wgt.     100,214
+
+50%     5.102041                      Mean           9.796073
+                        Largest       Std. Dev.      204.7795
+75%     7.504169       14880.95
+90%     11.33393       20839.24       Variance       41934.66
+95%     15.18876       28335.35       Skewness       140.0663
+99%     39.43676        41950.8       Kurtosis       23465.13
+
+. qui replace wagereal = `top_limit' if wagereal>=`top_limit' & ~mi(wagereal)
+
+. qui replace wagereal = `bot_limit' if wagereal<=`bot_limit' & ~mi(wagereal)
+
+. sum wagereal, d
+
+                          wagereal
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            2              2
+ 5%      2.89377              2
+10%     3.159509              2       Obs             100,214
+25%     3.793478              2       Sum of Wgt.     100,214
+
+50%     5.102041                      Mean           7.035523
+                        Largest       Std. Dev.      8.422853
+75%     7.504169            100
+90%     11.33393            100       Variance       70.94444
+95%     15.18876            100       Skewness       7.654653
+99%     39.43676            100       Kurtosis       76.61706
+
+. 
+. * create log wage
+. qui generat lnwage = ln(wagereal)
+
+. qui replace lnwage = occ if lnwage>=. & occ>=.
+
+. 
+. * Work experience
+. ren Tot_Weeks_Worked_all wksWorkLastYr
+
+. generat empFT = inrange(wksWorkLastYr,40.01,.) & inrange(hours,34.01,.)
+
+. generat empPT = (inrange(wksWorkLastYr,0,40) & inrange(hours,0,.)) | (inrange
+> (hours,0,34) & inrange(wksWorkLastYr,0,.))
+
+. replace empFT = . if mi(hours)
+(230,216 real changes made, 230,216 to missing)
+
+. replace empPT = . if mi(hours)
+(230,216 real changes made, 230,216 to missing)
+
+. bys id (year): generat exper = sum(L.empFT)+.5*sum(L.empPT)
+
+. l id year wksWorkLastYr hours empFT empPT exper in 1/100, sepby(id)
+
+     +------------------------------------------------------+
+     | id   year   wksWor~r   hours   empFT   empPT   exper |
+     |------------------------------------------------------|
+  1. |  1   1980          0       .       .       .       0 |
+  2. |  1   1981          0       .       .       .       0 |
+  3. |  1   1982          0       .       .       .       0 |
+  4. |  1   1983          0       .       .       .       0 |
+  5. |  1   1984          0       .       .       .       0 |
+  6. |  1   1985          0       .       .       .       0 |
+  7. |  1   1986          0       .       .       .       0 |
+  8. |  1   1987          0       .       .       .       0 |
+  9. |  1   1988          0       .       .       .       0 |
+ 10. |  1   1989          0       .       .       .       0 |
+ 11. |  1   1990          0       .       .       .       0 |
+ 12. |  1   1991          0       .       .       .       0 |
+ 13. |  1   1992          0       .       .       .       0 |
+ 14. |  1   1993          0       .       .       .       0 |
+ 15. |  1   1994          0       .       .       .       0 |
+ 16. |  1   1995          0       .       .       .       0 |
+ 17. |  1   1996          0       .       .       .       0 |
+ 18. |  1   1997         26      28       0       1       0 |
+ 19. |  1   1998         52      20       0       1      .5 |
+ 20. |  1   1999         52       8       0       1       1 |
+ 21. |  1   2000         53      20       0       1     1.5 |
+ 22. |  1   2001         52      30       0       1       2 |
+ 23. |  1   2002         .i      12       0       0     2.5 |
+ 24. |  1   2003         42      20       0       1     2.5 |
+ 25. |  1   2004         52      50       1       0       3 |
+ 26. |  1   2005         53      70       1       0       4 |
+ 27. |  1   2006         52      70       1       0       5 |
+ 28. |  1   2007         52      35       1       0       6 |
+ 29. |  1   2008         52      35       1       0       7 |
+ 30. |  1   2009         52      35       1       0       8 |
+ 31. |  1   2010         52      40       1       0       9 |
+ 32. |  1   2011         53      35       1       0      10 |
+ 33. |  1   2012         52       .       .       .      11 |
+ 34. |  1   2013         52      40       1       0      11 |
+ 35. |  1   2014         52       .       .       .      12 |
+ 36. |  1   2015         52      40       1       0      12 |
+ 37. |  1   2016          2       .       .       .      13 |
+     |------------------------------------------------------|
+ 38. |  2   1980          0       .       .       .       0 |
+ 39. |  2   1981          0       .       .       .       0 |
+ 40. |  2   1982          0       .       .       .       0 |
+ 41. |  2   1983          0       .       .       .       0 |
+ 42. |  2   1984          0       .       .       .       0 |
+ 43. |  2   1985          0       .       .       .       0 |
+ 44. |  2   1986          0       .       .       .       0 |
+ 45. |  2   1987          0       .       .       .       0 |
+ 46. |  2   1988          0       .       .       .       0 |
+ 47. |  2   1989          0       .       .       .       0 |
+ 48. |  2   1990          0       .       .       .       0 |
+ 49. |  2   1991          0       .       .       .       0 |
+ 50. |  2   1992          0       .       .       .       0 |
+ 51. |  2   1993          0       .       .       .       0 |
+ 52. |  2   1994          0       .       .       .       0 |
+ 53. |  2   1995          0       .       .       .       0 |
+ 54. |  2   1996          0       .       .       .       0 |
+ 55. |  2   1997          0       .       .       .       0 |
+ 56. |  2   1998          0       .       .       .       0 |
+ 57. |  2   1999          0       .       .       .       0 |
+ 58. |  2   2000         51       0       0       1       0 |
+ 59. |  2   2001         52      40       1       0      .5 |
+ 60. |  2   2002         44      24       0       1     1.5 |
+ 61. |  2   2003         45      40       1       0       2 |
+ 62. |  2   2004         52      35       1       0       3 |
+ 63. |  2   2005         53      40       1       0       4 |
+ 64. |  2   2006         52      .n       .       .       5 |
+ 65. |  2   2007         25      .n       .       .       5 |
+ 66. |  2   2008         52      40       1       0       5 |
+ 67. |  2   2009         52      40       1       0       6 |
+ 68. |  2   2010         52      40       1       0       7 |
+ 69. |  2   2011         53      40       1       0       8 |
+ 70. |  2   2012         52       .       .       .       9 |
+ 71. |  2   2013         52      40       1       0       9 |
+ 72. |  2   2014         52       .       .       .      10 |
+ 73. |  2   2015         52      56       1       0      10 |
+ 74. |  2   2016          1       .       .       .      11 |
+     |------------------------------------------------------|
+ 75. |  3   1980          0       .       .       .       0 |
+ 76. |  3   1981          0       .       .       .       0 |
+ 77. |  3   1982          0       .       .       .       0 |
+ 78. |  3   1983          0       .       .       .       0 |
+ 79. |  3   1984          0       .       .       .       0 |
+ 80. |  3   1985          0       .       .       .       0 |
+ 81. |  3   1986          0       .       .       .       0 |
+ 82. |  3   1987          0       .       .       .       0 |
+ 83. |  3   1988          0       .       .       .       0 |
+ 84. |  3   1989          0       .       .       .       0 |
+ 85. |  3   1990          0       .       .       .       0 |
+ 86. |  3   1991          0       .       .       .       0 |
+ 87. |  3   1992          0       .       .       .       0 |
+ 88. |  3   1993          0       .       .       .       0 |
+ 89. |  3   1994          0       .       .       .       0 |
+ 90. |  3   1995          0       .       .       .       0 |
+ 91. |  3   1996          0       .       .       .       0 |
+ 92. |  3   1997          0       .       .       .       0 |
+ 93. |  3   1998          0       .       .       .       0 |
+ 94. |  3   1999          0      24       0       1       0 |
+ 95. |  3   2000         37      24       0       1      .5 |
+ 96. |  3   2001         52      40       1       0       1 |
+ 97. |  3   2002         52      40       1       0       2 |
+ 98. |  3   2003         52      40       1       0       3 |
+ 99. |  3   2004         48      40       1       0       4 |
+100. |  3   2005         35      .n       .       .       5 |
+     +------------------------------------------------------+
+
+. 
+. lab var lnwage   "Log hourly wage, in 1982-84 $"
+
+. lab var exper    "Work experience (cum. # years 40+ weeks worked)"
+
+. lab var hours    "Usual hours per week at main job"
+
+. lab var occ      "Occupation of main job"
+
+. lab var ind      "Industry of main job"
+
+. lab var selfemp  "Dummy for whether main job is self-employed"
+
+. 
+. ** Variables to keep:
+. global keeperwork lnwage exper hours empPT empFT occ ind hours* occ* wage* se
+> lfemp wksWorkLastYr
+
+. 
+end of do-file
+
+. 
+. * Variables to keep:
+. keep ${keeperdemog} ${keeperschool} ${keeperwork}
+
+. 
+. * Save attrition rates to external data set
+. preserve
+
+.     collapse missInt if year>=1997 & !inlist(year,2012,2014,2016), by(year)
+
+.     gen round = _n
+
+.     l
+
+     +-------------------------+
+     | year    missInt   round |
+     |-------------------------|
+  1. | 1997          0       1 |
+  2. | 1998   .0665628       2 |
+  3. | 1999   .0863758       3 |
+  4. | 2000   .1006233       4 |
+  5. | 2001   .1226625       5 |
+     |-------------------------|
+  6. | 2002   .1211042       6 |
+  7. | 2003   .1369101       7 |
+  8. | 2004   .1649599       8 |
+  9. | 2005   .1832146       9 |
+ 10. | 2006   .1586153      10 |
+     |-------------------------|
+ 11. | 2007   .1743099      11 |
+ 12. | 2008   .1662956      12 |
+ 13. | 2009   .1586153      13 |
+ 14. | 2010     .16752      14 |
+ 15. | 2011   .1737533      15 |
+     |-------------------------|
+ 16. | 2013   .2052538      16 |
+ 17. | 2015   .2093722      17 |
+     +-------------------------+
+
+.     save y97attritionByCalYr, replace
+file y97attritionByCalYr.dta saved
+
+. restore
+
+. 
+. preserve
+
+.     collapse missIntEverBefore if year>=1997 & !inlist(year,2012,2014,2016), 
+> by(year)
+
+.     gen round = _n
+
+.     l
+
+     +-------------------------+
+     | year   missIn~e   round |
+     |-------------------------|
+  1. | 1997          0       1 |
+  2. | 1998   .0665628       2 |
+  3. | 1999    .114203       3 |
+  4. | 2000   .1553874       4 |
+  5. | 2001   .1982413       5 |
+     |-------------------------|
+  6. | 2002   .2267364       6 |
+  7. | 2003   .2566786       7 |
+  8. | 2004   .2956367       8 |
+  9. | 2005    .333927       9 |
+ 10. | 2006   .3532948      10 |
+     |-------------------------|
+ 11. | 2007   .3741095      11 |
+ 12. | 2008   .3892475      12 |
+ 13. | 2009   .4008237      13 |
+ 14. | 2010   .4112867      14 |
+ 15. | 2011   .4229742      15 |
+     |-------------------------|
+ 16. | 2013   .4472395      16 |
+ 17. | 2015   .4647151      17 |
+     +-------------------------+
+
+.     save y97cumAttritionByCalYr, replace
+file y97cumAttritionByCalYr.dta saved
+
+. restore
+
+. 
+. preserve
+
+.     collapse missInt if year>=1997 & inlist(age,29,30) & !inlist(year,2012,20
+> 14,2016), by(birthyr)
+
+.     gen round = _n
+
+.     l
+
+     +----------------------------+
+     | birthyr    missInt   round |
+     |----------------------------|
+  1. |    1980   .2025429       1 |
+  2. |    1981   .1760939       2 |
+  3. |    1982   .2118414       3 |
+  4. |    1983   .1914776       4 |
+  5. |    1984   .1919819       5 |
+     +----------------------------+
+
+.     save y97attritionAge2930ByBirthYr, replace
+file y97attritionAge2930ByBirthYr.dta saved
+
+. restore
+
+. 
+. preserve
+
+.     collapse missIntEverBefore if year>=1997 & inlist(age,29,30) & !inlist(ye
+> ar,2012,2014,2016), by(birthyr)
+
+.     gen round = _n
+
+.     l
+
+     +----------------------------+
+     | birthyr   missIn~e   round |
+     |----------------------------|
+  1. |    1980   .4784151       1 |
+  2. |    1981    .459445       2 |
+  3. |    1982   .4410646       3 |
+  4. |    1983   .4205866       4 |
+  5. |    1984   .4150198       5 |
+     +----------------------------+
+
+.     save y97cumAttritionAge2930ByBirthYr, replace
+file y97cumAttritionAge2930ByBirthYr.dta saved
+
+. restore
+
+. 
+. l id year missInt year_miss_int yrFirstMissInt yrFirstMissIntFull missIntEver
+> Before if id<=10, sepby(id)
+
+        +-----------------------------------------------------------------+
+        | id   year   missInt   year_m~t   yrFirs~t   yrFirs~l   missIn~e |
+        |-----------------------------------------------------------------|
+     1. |  1   1980         0          0          .          .          0 |
+     2. |  1   1981         0          0          .          .          0 |
+     3. |  1   1982         0          0          .          .          0 |
+     4. |  1   1983         0          0          .          .          0 |
+     5. |  1   1984         0          0          .          .          0 |
+     6. |  1   1985         0          0          .          .          0 |
+     7. |  1   1986         0          0          .          .          0 |
+     8. |  1   1987         0          0          .          .          0 |
+     9. |  1   1988         0          0          .          .          0 |
+    10. |  1   1989         0          0          .          .          0 |
+    11. |  1   1990         0          0          .          .          0 |
+    12. |  1   1991         0          0          .          .          0 |
+    13. |  1   1992         0          0          .          .          0 |
+    14. |  1   1993         0          0          .          .          0 |
+    15. |  1   1994         0          0          .          .          0 |
+    16. |  1   1995         0          0          .          .          0 |
+    17. |  1   1996         0          0          .          .          0 |
+    18. |  1   1997         0          0          .          .          0 |
+    19. |  1   1998         0          0          .          .          0 |
+    20. |  1   1999         0          0          .          .          0 |
+    21. |  1   2000         0          0          .          .          0 |
+    22. |  1   2001         0          0          .          .          0 |
+    23. |  1   2002         0          0          .          .          0 |
+    24. |  1   2003         0          0          .          .          0 |
+    25. |  1   2004         0          0          .          .          0 |
+    26. |  1   2005         0          0          .          .          0 |
+    27. |  1   2006         0          0          .          .          0 |
+    28. |  1   2007         0          0          .          .          0 |
+    29. |  1   2008         0          0          .          .          0 |
+    30. |  1   2009         0          0          .          .          0 |
+    31. |  1   2010         0          0          .          .          0 |
+    32. |  1   2011         0          0          .          .          0 |
+    33. |  1   2012         0          0          .          .          0 |
+    34. |  1   2013         0          0          .          .          0 |
+    35. |  1   2014         0          0          .          .          0 |
+    36. |  1   2015         0          0          .          .          0 |
+    37. |  1   2016         0          0          .          .          0 |
+        |-----------------------------------------------------------------|
+    38. |  2   1980         0          0          .       2006          0 |
+    39. |  2   1981         0          0          .       2006          0 |
+    40. |  2   1982         0          0          .       2006          0 |
+    41. |  2   1983         0          0          .       2006          0 |
+    42. |  2   1984         0          0          .       2006          0 |
+    43. |  2   1985         0          0          .       2006          0 |
+    44. |  2   1986         0          0          .       2006          0 |
+    45. |  2   1987         0          0          .       2006          0 |
+    46. |  2   1988         0          0          .       2006          0 |
+    47. |  2   1989         0          0          .       2006          0 |
+    48. |  2   1990         0          0          .       2006          0 |
+    49. |  2   1991         0          0          .       2006          0 |
+    50. |  2   1992         0          0          .       2006          0 |
+    51. |  2   1993         0          0          .       2006          0 |
+    52. |  2   1994         0          0          .       2006          0 |
+    53. |  2   1995         0          0          .       2006          0 |
+    54. |  2   1996         0          0          .       2006          0 |
+    55. |  2   1997         0          0          .       2006          0 |
+    56. |  2   1998         0          0          .       2006          0 |
+    57. |  2   1999         0          0          .       2006          0 |
+    58. |  2   2000         0          0          .       2006          0 |
+    59. |  2   2001         0          0          .       2006          0 |
+    60. |  2   2002         0          0          .       2006          0 |
+    61. |  2   2003         0          0          .       2006          0 |
+    62. |  2   2004         0          0          .       2006          0 |
+    63. |  2   2005         0          0          .       2006          0 |
+    64. |  2   2006         1       2006       2006       2006          1 |
+    65. |  2   2007         1       2007       2006       2006          1 |
+    66. |  2   2008         0          0          .       2006          1 |
+    67. |  2   2009         0          0          .       2006          1 |
+    68. |  2   2010         0          0          .       2006          1 |
+    69. |  2   2011         0          0          .       2006          1 |
+    70. |  2   2012         0          0          .       2006          1 |
+    71. |  2   2013         0          0          .       2006          1 |
+    72. |  2   2014         0          0          .       2006          1 |
+    73. |  2   2015         0          0          .       2006          1 |
+    74. |  2   2016         0          0          .       2006          1 |
+        |-----------------------------------------------------------------|
+    75. |  3   1980         0          0          .       2005          0 |
+    76. |  3   1981         0          0          .       2005          0 |
+    77. |  3   1982         0          0          .       2005          0 |
+    78. |  3   1983         0          0          .       2005          0 |
+    79. |  3   1984         0          0          .       2005          0 |
+    80. |  3   1985         0          0          .       2005          0 |
+    81. |  3   1986         0          0          .       2005          0 |
+    82. |  3   1987         0          0          .       2005          0 |
+    83. |  3   1988         0          0          .       2005          0 |
+    84. |  3   1989         0          0          .       2005          0 |
+    85. |  3   1990         0          0          .       2005          0 |
+    86. |  3   1991         0          0          .       2005          0 |
+    87. |  3   1992         0          0          .       2005          0 |
+    88. |  3   1993         0          0          .       2005          0 |
+    89. |  3   1994         0          0          .       2005          0 |
+    90. |  3   1995         0          0          .       2005          0 |
+    91. |  3   1996         0          0          .       2005          0 |
+    92. |  3   1997         0          0          .       2005          0 |
+    93. |  3   1998         0          0          .       2005          0 |
+    94. |  3   1999         0          0          .       2005          0 |
+    95. |  3   2000         0          0          .       2005          0 |
+    96. |  3   2001         0          0          .       2005          0 |
+    97. |  3   2002         0          0          .       2005          0 |
+    98. |  3   2003         0          0          .       2005          0 |
+    99. |  3   2004         0          0          .       2005          0 |
+   100. |  3   2005         1       2005       2005       2005          1 |
+   101. |  3   2006         1       2006       2005       2005          1 |
+   102. |  3   2007         1       2007       2005       2005          1 |
+   103. |  3   2008         1       2008       2005       2005          1 |
+   104. |  3   2009         0          0          .       2005          1 |
+   105. |  3   2010         1       2010       2005       2005          1 |
+   106. |  3   2011         0          0          .       2005          1 |
+   107. |  3   2012         0          0          .       2005          1 |
+   108. |  3   2013         0          0          .       2005          1 |
+   109. |  3   2014         0          0          .       2005          1 |
+   110. |  3   2015         1       2015       2005       2005          1 |
+   111. |  3   2016         0          0          .       2005          1 |
+        |-----------------------------------------------------------------|
+   112. |  4   1980         0          0          .          .          0 |
+   113. |  4   1981         0          0          .          .          0 |
+   114. |  4   1982         0          0          .          .          0 |
+   115. |  4   1983         0          0          .          .          0 |
+   116. |  4   1984         0          0          .          .          0 |
+   117. |  4   1985         0          0          .          .          0 |
+   118. |  4   1986         0          0          .          .          0 |
+   119. |  4   1987         0          0          .          .          0 |
+   120. |  4   1988         0          0          .          .          0 |
+   121. |  4   1989         0          0          .          .          0 |
+   122. |  4   1990         0          0          .          .          0 |
+   123. |  4   1991         0          0          .          .          0 |
+   124. |  4   1992         0          0          .          .          0 |
+   125. |  4   1993         0          0          .          .          0 |
+   126. |  4   1994         0          0          .          .          0 |
+   127. |  4   1995         0          0          .          .          0 |
+   128. |  4   1996         0          0          .          .          0 |
+   129. |  4   1997         0          0          .          .          0 |
+   130. |  4   1998         0          0          .          .          0 |
+   131. |  4   1999         0          0          .          .          0 |
+   132. |  4   2000         0          0          .          .          0 |
+   133. |  4   2001         0          0          .          .          0 |
+   134. |  4   2002         0          0          .          .          0 |
+   135. |  4   2003         0          0          .          .          0 |
+   136. |  4   2004         0          0          .          .          0 |
+   137. |  4   2005         0          0          .          .          0 |
+   138. |  4   2006         0          0          .          .          0 |
+   139. |  4   2007         0          0          .          .          0 |
+   140. |  4   2008         0          0          .          .          0 |
+   141. |  4   2009         0          0          .          .          0 |
+   142. |  4   2010         0          0          .          .          0 |
+   143. |  4   2011         0          0          .          .          0 |
+   144. |  4   2012         0          0          .          .          0 |
+   145. |  4   2013         0          0          .          .          0 |
+   146. |  4   2014         0          0          .          .          0 |
+   147. |  4   2015         0          0          .          .          0 |
+   148. |  4   2016         0          0          .          .          0 |
+        |-----------------------------------------------------------------|
+   149. |  5   1980         0          0          .          .          0 |
+   150. |  5   1981         0          0          .          .          0 |
+   151. |  5   1982         0          0          .          .          0 |
+   152. |  5   1983         0          0          .          .          0 |
+   153. |  5   1984         0          0          .          .          0 |
+   154. |  5   1985         0          0          .          .          0 |
+   155. |  5   1986         0          0          .          .          0 |
+   156. |  5   1987         0          0          .          .          0 |
+   157. |  5   1988         0          0          .          .          0 |
+   158. |  5   1989         0          0          .          .          0 |
+   159. |  5   1990         0          0          .          .          0 |
+   160. |  5   1991         0          0          .          .          0 |
+   161. |  5   1992         0          0          .          .          0 |
+   162. |  5   1993         0          0          .          .          0 |
+   163. |  5   1994         0          0          .          .          0 |
+   164. |  5   1995         0          0          .          .          0 |
+   165. |  5   1996         0          0          .          .          0 |
+   166. |  5   1997         0          0          .          .          0 |
+   167. |  5   1998         0          0          .          .          0 |
+   168. |  5   1999         0          0          .          .          0 |
+   169. |  5   2000         0          0          .          .          0 |
+   170. |  5   2001         0          0          .          .          0 |
+   171. |  5   2002         0          0          .          .          0 |
+   172. |  5   2003         0          0          .          .          0 |
+   173. |  5   2004         0          0          .          .          0 |
+   174. |  5   2005         0          0          .          .          0 |
+   175. |  5   2006         0          0          .          .          0 |
+   176. |  5   2007         0          0          .          .          0 |
+   177. |  5   2008         0          0          .          .          0 |
+   178. |  5   2009         0          0          .          .          0 |
+   179. |  5   2010         0          0          .          .          0 |
+   180. |  5   2011         0          0          .          .          0 |
+   181. |  5   2012         0          0          .          .          0 |
+   182. |  5   2013         0          0          .          .          0 |
+   183. |  5   2014         0          0          .          .          0 |
+   184. |  5   2015         0          0          .          .          0 |
+   185. |  5   2016         0          0          .          .          0 |
+        |-----------------------------------------------------------------|
+   186. |  6   1980         0          0          .          .          0 |
+   187. |  6   1981         0          0          .          .          0 |
+   188. |  6   1982         0          0          .          .          0 |
+   189. |  6   1983         0          0          .          .          0 |
+   190. |  6   1984         0          0          .          .          0 |
+   191. |  6   1985         0          0          .          .          0 |
+   192. |  6   1986         0          0          .          .          0 |
+   193. |  6   1987         0          0          .          .          0 |
+   194. |  6   1988         0          0          .          .          0 |
+   195. |  6   1989         0          0          .          .          0 |
+   196. |  6   1990         0          0          .          .          0 |
+   197. |  6   1991         0          0          .          .          0 |
+   198. |  6   1992         0          0          .          .          0 |
+   199. |  6   1993         0          0          .          .          0 |
+   200. |  6   1994         0          0          .          .          0 |
+   201. |  6   1995         0          0          .          .          0 |
+   202. |  6   1996         0          0          .          .          0 |
+   203. |  6   1997         0          0          .          .          0 |
+   204. |  6   1998         0          0          .          .          0 |
+   205. |  6   1999         0          0          .          .          0 |
+   206. |  6   2000         0          0          .          .          0 |
+   207. |  6   2001         0          0          .          .          0 |
+   208. |  6   2002         0          0          .          .          0 |
+   209. |  6   2003         0          0          .          .          0 |
+   210. |  6   2004         0          0          .          .          0 |
+   211. |  6   2005         0          0          .          .          0 |
+   212. |  6   2006         0          0          .          .          0 |
+   213. |  6   2007         0          0          .          .          0 |
+   214. |  6   2008         0          0          .          .          0 |
+   215. |  6   2009         0          0          .          .          0 |
+   216. |  6   2010         0          0          .          .          0 |
+   217. |  6   2011         0          0          .          .          0 |
+   218. |  6   2012         0          0          .          .          0 |
+   219. |  6   2013         0          0          .          .          0 |
+   220. |  6   2014         0          0          .          .          0 |
+   221. |  6   2015         0          0          .          .          0 |
+   222. |  6   2016         0          0          .          .          0 |
+        |-----------------------------------------------------------------|
+   223. |  7   1980         0          0          .       2003          0 |
+   224. |  7   1981         0          0          .       2003          0 |
+   225. |  7   1982         0          0          .       2003          0 |
+   226. |  7   1983         0          0          .       2003          0 |
+   227. |  7   1984         0          0          .       2003          0 |
+   228. |  7   1985         0          0          .       2003          0 |
+   229. |  7   1986         0          0          .       2003          0 |
+   230. |  7   1987         0          0          .       2003          0 |
+   231. |  7   1988         0          0          .       2003          0 |
+   232. |  7   1989         0          0          .       2003          0 |
+   233. |  7   1990         0          0          .       2003          0 |
+   234. |  7   1991         0          0          .       2003          0 |
+   235. |  7   1992         0          0          .       2003          0 |
+   236. |  7   1993         0          0          .       2003          0 |
+   237. |  7   1994         0          0          .       2003          0 |
+   238. |  7   1995         0          0          .       2003          0 |
+   239. |  7   1996         0          0          .       2003          0 |
+   240. |  7   1997         0          0          .       2003          0 |
+   241. |  7   1998         0          0          .       2003          0 |
+   242. |  7   1999         0          0          .       2003          0 |
+   243. |  7   2000         0          0          .       2003          0 |
+   244. |  7   2001         0          0          .       2003          0 |
+   245. |  7   2002         0          0          .       2003          0 |
+   246. |  7   2003         1       2003       2003       2003          1 |
+   247. |  7   2004         1       2004       2003       2003          1 |
+   248. |  7   2005         0          0          .       2003          1 |
+   249. |  7   2006         0          0          .       2003          1 |
+   250. |  7   2007         1       2007       2003       2003          1 |
+   251. |  7   2008         1       2008       2003       2003          1 |
+   252. |  7   2009         0          0          .       2003          1 |
+   253. |  7   2010         0          0          .       2003          1 |
+   254. |  7   2011         0          0          .       2003          1 |
+   255. |  7   2012         0          0          .       2003          1 |
+   256. |  7   2013         1       2013       2003       2003          1 |
+   257. |  7   2014         0          0          .       2003          1 |
+   258. |  7   2015         0          0          .       2003          1 |
+   259. |  7   2016         0          0          .       2003          1 |
+        |-----------------------------------------------------------------|
+   260. |  8   1980         0          0          .       2008          0 |
+   261. |  8   1981         0          0          .       2008          0 |
+   262. |  8   1982         0          0          .       2008          0 |
+   263. |  8   1983         0          0          .       2008          0 |
+   264. |  8   1984         0          0          .       2008          0 |
+   265. |  8   1985         0          0          .       2008          0 |
+   266. |  8   1986         0          0          .       2008          0 |
+   267. |  8   1987         0          0          .       2008          0 |
+   268. |  8   1988         0          0          .       2008          0 |
+   269. |  8   1989         0          0          .       2008          0 |
+   270. |  8   1990         0          0          .       2008          0 |
+   271. |  8   1991         0          0          .       2008          0 |
+   272. |  8   1992         0          0          .       2008          0 |
+   273. |  8   1993         0          0          .       2008          0 |
+   274. |  8   1994         0          0          .       2008          0 |
+   275. |  8   1995         0          0          .       2008          0 |
+   276. |  8   1996         0          0          .       2008          0 |
+   277. |  8   1997         0          0          .       2008          0 |
+   278. |  8   1998         0          0          .       2008          0 |
+   279. |  8   1999         0          0          .       2008          0 |
+   280. |  8   2000         0          0          .       2008          0 |
+   281. |  8   2001         0          0          .       2008          0 |
+   282. |  8   2002         0          0          .       2008          0 |
+   283. |  8   2003         0          0          .       2008          0 |
+   284. |  8   2004         0          0          .       2008          0 |
+   285. |  8   2005         0          0          .       2008          0 |
+   286. |  8   2006         0          0          .       2008          0 |
+   287. |  8   2007         0          0          .       2008          0 |
+   288. |  8   2008         1       2008       2008       2008          1 |
+   289. |  8   2009         0          0          .       2008          1 |
+   290. |  8   2010         1       2010       2008       2008          1 |
+   291. |  8   2011         0          0          .       2008          1 |
+   292. |  8   2012         0          0          .       2008          1 |
+   293. |  8   2013         1       2013       2008       2008          1 |
+   294. |  8   2014         0          0          .       2008          1 |
+   295. |  8   2015         0          0          .       2008          1 |
+   296. |  8   2016         0          0          .       2008          1 |
+        |-----------------------------------------------------------------|
+   297. |  9   1980         0          0          .          .          0 |
+   298. |  9   1981         0          0          .          .          0 |
+   299. |  9   1982         0          0          .          .          0 |
+   300. |  9   1983         0          0          .          .          0 |
+   301. |  9   1984         0          0          .          .          0 |
+   302. |  9   1985         0          0          .          .          0 |
+   303. |  9   1986         0          0          .          .          0 |
+   304. |  9   1987         0          0          .          .          0 |
+   305. |  9   1988         0          0          .          .          0 |
+   306. |  9   1989         0          0          .          .          0 |
+   307. |  9   1990         0          0          .          .          0 |
+   308. |  9   1991         0          0          .          .          0 |
+   309. |  9   1992         0          0          .          .          0 |
+   310. |  9   1993         0          0          .          .          0 |
+   311. |  9   1994         0          0          .          .          0 |
+   312. |  9   1995         0          0          .          .          0 |
+   313. |  9   1996         0          0          .          .          0 |
+   314. |  9   1997         0          0          .          .          0 |
+   315. |  9   1998         0          0          .          .          0 |
+   316. |  9   1999         0          0          .          .          0 |
+   317. |  9   2000         0          0          .          .          0 |
+   318. |  9   2001         0          0          .          .          0 |
+   319. |  9   2002         0          0          .          .          0 |
+   320. |  9   2003         0          0          .          .          0 |
+   321. |  9   2004         0          0          .          .          0 |
+   322. |  9   2005         0          0          .          .          0 |
+   323. |  9   2006         0          0          .          .          0 |
+   324. |  9   2007         0          0          .          .          0 |
+   325. |  9   2008         0          0          .          .          0 |
+   326. |  9   2009         0          0          .          .          0 |
+   327. |  9   2010         0          0          .          .          0 |
+   328. |  9   2011         0          0          .          .          0 |
+   329. |  9   2012         0          0          .          .          0 |
+   330. |  9   2013         0          0          .          .          0 |
+   331. |  9   2014         0          0          .          .          0 |
+   332. |  9   2015         0          0          .          .          0 |
+   333. |  9   2016         0          0          .          .          0 |
+        |-----------------------------------------------------------------|
+   334. | 10   1980         0          0          .       2010          0 |
+   335. | 10   1981         0          0          .       2010          0 |
+   336. | 10   1982         0          0          .       2010          0 |
+   337. | 10   1983         0          0          .       2010          0 |
+   338. | 10   1984         0          0          .       2010          0 |
+   339. | 10   1985         0          0          .       2010          0 |
+   340. | 10   1986         0          0          .       2010          0 |
+   341. | 10   1987         0          0          .       2010          0 |
+   342. | 10   1988         0          0          .       2010          0 |
+   343. | 10   1989         0          0          .       2010          0 |
+   344. | 10   1990         0          0          .       2010          0 |
+   345. | 10   1991         0          0          .       2010          0 |
+   346. | 10   1992         0          0          .       2010          0 |
+   347. | 10   1993         0          0          .       2010          0 |
+   348. | 10   1994         0          0          .       2010          0 |
+   349. | 10   1995         0          0          .       2010          0 |
+   350. | 10   1996         0          0          .       2010          0 |
+   351. | 10   1997         0          0          .       2010          0 |
+   352. | 10   1998         0          0          .       2010          0 |
+   353. | 10   1999         0          0          .       2010          0 |
+   354. | 10   2000         0          0          .       2010          0 |
+   355. | 10   2001         0          0          .       2010          0 |
+   356. | 10   2002         0          0          .       2010          0 |
+   357. | 10   2003         0          0          .       2010          0 |
+   358. | 10   2004         0          0          .       2010          0 |
+   359. | 10   2005         0          0          .       2010          0 |
+   360. | 10   2006         0          0          .       2010          0 |
+   361. | 10   2007         0          0          .       2010          0 |
+   362. | 10   2008         0          0          .       2010          0 |
+   363. | 10   2009         0          0          .       2010          0 |
+   364. | 10   2010         1       2010       2010       2010          1 |
+   365. | 10   2011         1       2011       2010       2010          1 |
+   366. | 10   2012         0          0          .       2010          1 |
+   367. | 10   2013         1       2013       2010       2010          1 |
+   368. | 10   2014         0          0          .       2010          1 |
+   369. | 10   2015         1       2015       2010       2010          1 |
+   370. | 10   2016         0          0          .       2010          1 |
+        +-----------------------------------------------------------------+
+
+. 
+. xtsum id if year>=1997
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+id       overall |  4504.302   2602.998          1       9022 |     N =  179680
+         between |             2603.136          1       9022 |     n =    8984
+         within  |                    0   4504.302   4504.302 |     T =      20
+
+. logit missInt i.birthyr afqt female i.race hgcMoth hgcFath liveWithMom14 fema
+> leHeadHH14 m_hgcMoth m_hgcFath m_afqt c.age##c.age if year>=1997 & !inlist(ye
+> ar,2012,2014,2016)
+
+Iteration 0:   log likelihood = -62112.054  
+Iteration 1:   log likelihood = -59005.928  
+Iteration 2:   log likelihood = -58782.293  
+Iteration 3:   log likelihood = -58781.758  
+Iteration 4:   log likelihood = -58781.758  
+
+Logistic regression                             Number of obs     =    152,728
+                                                LR chi2(19)       =    6660.59
+                                                Prob > chi2       =     0.0000
+Log likelihood = -58781.758                     Pseudo R2         =     0.0536
+
+------------------------------------------------------------------------------
+     missInt |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+     birthyr |
+       1981  |   .0065796   .0223701     0.29   0.769     -.037265    .0504243
+       1982  |  -.1460466   .0233963    -6.24   0.000    -.1919024   -.1001907
+       1983  |  -.1776725   .0241286    -7.36   0.000    -.2249637   -.1303813
+       1984  |  -.1577578   .0248243    -6.35   0.000    -.2064126    -.109103
+             |
+        afqt |  -.1110917   .0099795   -11.13   0.000    -.1306513   -.0915322
+      female |  -.2032807     .01515   -13.42   0.000    -.2329742   -.1735871
+             |
+        race |
+      Black  |  -.4447303   .0209153   -21.26   0.000    -.4857236   -.4037371
+   Hispanic  |  -.2933481   .0217942   -13.46   0.000    -.3360638   -.2506323
+      Asian  |   .0559041   .0432222     1.29   0.196    -.0288098    .1406181
+      Mixed  |  -.3582216   .0853432    -4.20   0.000    -.5254913   -.1909519
+             |
+     hgcMoth |   -.010456   .0034826    -3.00   0.003    -.0172816   -.0036303
+     hgcFath |    .010983   .0032904     3.34   0.001     .0045339    .0174321
+liveWithM~14 |  -.0548596   .0257018    -2.13   0.033    -.1052342    -.004485
+femaleHea~14 |  -.0898298    .019042    -4.72   0.000    -.1271514   -.0525082
+   m_hgcMoth |  -.0679585   .0504299    -1.35   0.178    -.1667993    .0308824
+   m_hgcFath |   .1733373   .0433998     3.99   0.000     .0882752    .2583995
+      m_afqt |   .7238085   .0166034    43.59   0.000     .6912665    .7563505
+         age |   .4300641   .0130913    32.85   0.000     .4044057    .4557224
+             |
+ c.age#c.age |  -.0075501   .0002754   -27.42   0.000    -.0080899   -.0070104
+             |
+       _cons |  -7.290802   .1606522   -45.38   0.000    -7.605675    -6.97593
+------------------------------------------------------------------------------
+
+. logit missInt i.birthyr afqt female i.race hgcMoth hgcFath liveWithMom14 fema
+> leHeadHH14 m_hgcMoth m_hgcFath m_afqt c.age##c.age if year>=1997 & !inlist(ye
+> ar,2012,2014,2016) & age<=34
+
+Iteration 0:   log likelihood = -62112.054  
+Iteration 1:   log likelihood = -59005.928  
+Iteration 2:   log likelihood = -58782.293  
+Iteration 3:   log likelihood = -58781.758  
+Iteration 4:   log likelihood = -58781.758  
+
+Logistic regression                             Number of obs     =    152,728
+                                                LR chi2(19)       =    6660.59
+                                                Prob > chi2       =     0.0000
+Log likelihood = -58781.758                     Pseudo R2         =     0.0536
+
+------------------------------------------------------------------------------
+     missInt |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+     birthyr |
+       1981  |   .0065796   .0223701     0.29   0.769     -.037265    .0504243
+       1982  |  -.1460466   .0233963    -6.24   0.000    -.1919024   -.1001907
+       1983  |  -.1776725   .0241286    -7.36   0.000    -.2249637   -.1303813
+       1984  |  -.1577578   .0248243    -6.35   0.000    -.2064126    -.109103
+             |
+        afqt |  -.1110917   .0099795   -11.13   0.000    -.1306513   -.0915322
+      female |  -.2032807     .01515   -13.42   0.000    -.2329742   -.1735871
+             |
+        race |
+      Black  |  -.4447303   .0209153   -21.26   0.000    -.4857236   -.4037371
+   Hispanic  |  -.2933481   .0217942   -13.46   0.000    -.3360638   -.2506323
+      Asian  |   .0559041   .0432222     1.29   0.196    -.0288098    .1406181
+      Mixed  |  -.3582216   .0853432    -4.20   0.000    -.5254913   -.1909519
+             |
+     hgcMoth |   -.010456   .0034826    -3.00   0.003    -.0172816   -.0036303
+     hgcFath |    .010983   .0032904     3.34   0.001     .0045339    .0174321
+liveWithM~14 |  -.0548596   .0257018    -2.13   0.033    -.1052342    -.004485
+femaleHea~14 |  -.0898298    .019042    -4.72   0.000    -.1271514   -.0525082
+   m_hgcMoth |  -.0679585   .0504299    -1.35   0.178    -.1667993    .0308824
+   m_hgcFath |   .1733373   .0433998     3.99   0.000     .0882752    .2583995
+      m_afqt |   .7238085   .0166034    43.59   0.000     .6912665    .7563505
+         age |   .4300641   .0130913    32.85   0.000     .4044057    .4557224
+             |
+ c.age#c.age |  -.0075501   .0002754   -27.42   0.000    -.0080899   -.0070104
+             |
+       _cons |  -7.290802   .1606522   -45.38   0.000    -7.605675    -6.97593
+------------------------------------------------------------------------------
+
+. tab year, sum(missInt)
+
+            |         Summary of missInt
+       YEAR |        Mean   Std. Dev.       Freq.
+------------+------------------------------------
+       1980 |           0           0       8,984
+       1981 |           0           0       8,984
+       1982 |           0           0       8,984
+       1983 |           0           0       8,984
+       1984 |           0           0       8,984
+       1985 |           0           0       8,984
+       1986 |           0           0       8,984
+       1987 |           0           0       8,984
+       1988 |           0           0       8,984
+       1989 |           0           0       8,984
+       1990 |           0           0       8,984
+       1991 |           0           0       8,984
+       1992 |           0           0       8,984
+       1993 |           0           0       8,984
+       1994 |           0           0       8,984
+       1995 |           0           0       8,984
+       1996 |           0           0       8,984
+       1997 |           0           0       8,984
+       1998 |   .06656278   .24927714       8,984
+       1999 |   .08637578   .28093378       8,984
+       2000 |   .10062333   .30084606       8,984
+       2001 |   .12266251   .32806768       8,984
+       2002 |   .12110419   .32626647       8,984
+       2003 |   .13691006   .34377151       8,984
+       2004 |   .16495993   .37116504       8,984
+       2005 |    .1832146   .38686389       8,984
+       2006 |   .15861532   .36533732       8,984
+       2007 |   .17430988   .37939685       8,984
+       2008 |   .16629564   .37236653       8,984
+       2009 |   .15861532   .36533732       8,984
+       2010 |   .16752004    .3734603       8,984
+       2011 |   .17375334   .37891833       8,984
+       2012 |           0           0       8,984
+       2013 |   .20525378   .40390943       8,984
+       2014 |           0           0       8,984
+       2015 |   .20937222   .40688318       8,984
+       2016 |           0           0       8,984
+------------+------------------------------------
+      Total |   .06476078   .24610364     332,408
+
+. tab year, sum(missIntEverBefore)
+
+            |    Summary of missIntEverBefore
+       YEAR |        Mean   Std. Dev.       Freq.
+------------+------------------------------------
+       1980 |           0           0       8,984
+       1981 |           0           0       8,984
+       1982 |           0           0       8,984
+       1983 |           0           0       8,984
+       1984 |           0           0       8,984
+       1985 |           0           0       8,984
+       1986 |           0           0       8,984
+       1987 |           0           0       8,984
+       1988 |           0           0       8,984
+       1989 |           0           0       8,984
+       1990 |           0           0       8,984
+       1991 |           0           0       8,984
+       1992 |           0           0       8,984
+       1993 |           0           0       8,984
+       1994 |           0           0       8,984
+       1995 |           0           0       8,984
+       1996 |           0           0       8,984
+       1997 |           0           0       8,984
+       1998 |   .06656278   .24927714       8,984
+       1999 |   .11420303    .3180754       8,984
+       2000 |   .15538736   .36229371       8,984
+       2001 |   .19824132   .39869712       8,984
+       2002 |   .22673642     .418744       8,984
+       2003 |   .25667854    .4368248       8,984
+       2004 |   .29563669   .45635383       8,984
+       2005 |   .33392698   .47164024       8,984
+       2006 |   .35329475   .47801988       8,984
+       2007 |   .37410953   .48391906       8,984
+       2008 |   .38924755   .48760677       8,984
+       2009 |   .40082369   .49009264       8,984
+       2010 |   .41128673   .49209441       8,984
+       2011 |   .42297418    .4940589       8,984
+       2012 |   .42297418    .4940589       8,984
+       2013 |   .44723954   .49723622       8,984
+       2014 |   .44723954   .49723622       8,984
+       2015 |   .46471505   .49878118       8,984
+       2016 |   .46471505   .49878118       8,984
+------------+------------------------------------
+      Total |   .16881062   .37458512     332,408
+
+. tab birthyr if inlist(age,29,30) & !inlist(year,2012,2014,2016), sum(missInt)
+
+    Year of |         Summary of missInt
+      birth |        Mean   Std. Dev.       Freq.
+------------+------------------------------------
+       1980 |   .20254287   .40195402       3,382
+       1981 |   .17609392   .38100172       1,874
+       1982 |   .21184139   .40872406       1,841
+       1983 |   .19147759   .39357292       1,807
+       1984 |   .19198193   .39397019       1,771
+------------+------------------------------------
+      Total |   .19587822   .39689381      10,675
+
+. drop if missInt
+(21,527 observations deleted)
+
+. xtsum id if year>=1997 & !missInt
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+id       overall |  4549.806   2598.966          1       9022 |     N =  158153
+         between |             2603.136          1       9022 |     n =    8984
+         within  |                    0   4549.806   4549.806 | T-bar = 17.6039
+
+. 
+. xtsum id if year>=1997
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+id       overall |  4549.806   2598.966          1       9022 |     N =  158153
+         between |             2603.136          1       9022 |     n =    8984
+         within  |                    0   4549.806   4549.806 | T-bar = 17.6039
+
+. xtsum id if year>=1997 & female
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+id       overall |  4606.557   2597.682          1       9022 |     N =   78212
+         between |             2599.634          1       9022 |     n =    4385
+         within  |                    0   4606.557   4606.557 | T-bar = 17.8363
+
+. xtsum id if year>=1997 & !female
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+id       overall |  4494.283   2599.038          2       9021 |     N =   79941
+         between |             2606.137          2       9021 |     n =    4599
+         within  |                    0   4494.283   4494.283 | T-bar = 17.3823
+
+. 
+. xtsum id if year>=1997 & !mi(hgc)
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+id       overall |  4559.472   2594.671          1       9022 |     N =  120924
+         between |             2602.293          1       9022 |     n =    8847
+         within  |                    0   4559.472   4559.472 |     T = 13.6684
+
+. xtsum id if year>=1997 & !mi(hgc) & female
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+id       overall |  4622.554   2593.374          1       9022 |     N =   60016
+         between |             2600.478          1       9022 |     n =    4320
+         within  |                    0   4622.554   4622.554 |     T = 13.8926
+
+. xtsum id if year>=1997 & !mi(hgc) & !female
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+id       overall |  4497.314   2594.471          2       9021 |     N =   60908
+         between |              2603.78          2       9021 |     n =    4527
+         within  |                    0   4497.314   4497.314 |     T = 13.4544
+
+. 
+. xtsum id if year>=1997 & !mi(hgc) & age==25
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+id       overall |  4587.461   2590.889          1       9022 |     N =    7365
+         between |             2590.889          1       9022 |     n =    7365
+         within  |                    0   4587.461   4587.461 |     T =       1
+
+. xtsum id if year>=1997 & !mi(hgc) & age==25 & female
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+id       overall |  4652.341   2593.529          1       9022 |     N =    3660
+         between |             2593.529          1       9022 |     n =    3660
+         within  |                    0   4652.341   4652.341 |     T =       1
+
+. xtsum id if year>=1997 & !mi(hgc) & age==25 & !female
+
+Variable         |      Mean   Std. Dev.       Min        Max |    Observations
+-----------------+--------------------------------------------+----------------
+id       overall |  4523.368   2587.032          2       9021 |     N =    3705
+         between |             2587.032          2       9021 |     n =    3705
+         within  |                    0   4523.368   4523.368 |     T =       1
+
+. 
+. drop if year<=1996
+(152,728 observations deleted)
+
+. 
+. compress
+  variable svyRound was float now byte
+  variable age was float now byte
+  variable birthq was float now byte
+  variable birthmo was float now byte
+  variable birthyr was float now int
+  variable m_hgcMoth was float now byte
+  variable m_hgcFath was float now byte
+  variable m_afqt was float now byte
+  variable m_asvabAR was float now byte
+  variable m_asvabCS was float now byte
+  variable m_asvabMK was float now byte
+  variable m_asvabNO was float now byte
+  variable m_asvabPC was float now byte
+  variable m_asvabWK was float now byte
+  variable foreignBorn was float now byte
+  variable black was float now byte
+  variable hispanic was float now byte
+  variable mixed was float now byte
+  variable white was float now byte
+  variable asian was float now byte
+  variable race was float now byte
+  variable female was float now byte
+  variable born1980 was float now byte
+  variable born1981 was float now byte
+  variable born1982 was float now byte
+  variable born1983 was float now byte
+  variable born1984 was float now byte
+  variable liveWithMom14 was float now byte
+  variable femaleHeadHH14 was float now byte
+  variable m_famIncAsTeen was float now byte
+  variable miss_interview was float now byte
+  variable missInt was float now byte
+  variable ever_miss_interview was float now byte
+  variable age_at_miss_int was float now byte
+  variable year_miss_int was float now byte
+  variable yrFirstMissInt was float now byte
+  variable yrFirstMissIntFull was float now int
+  variable missIntEverBefore was float now byte
+  variable miss_interview_cum was float now byte
+  variable missIntCum was float now byte
+  variable miss_interview_length was float now byte
+  variable long_miss_flag was float now byte
+  variable short_miss_flag was float now byte
+  variable miss_interview_last_spell was float now byte
+  variable not_missing_interview was float now byte
+  variable nonmissing_int_year was float now int
+  variable max_nonmissing_int_year was float now int
+  variable missIntLastSpell was float now byte
+  variable lastValidInt was float now int
+  variable lastValidIntDate was float now int
+  variable ever_miss_1_int was float now byte
+  variable ever_miss_2_int was float now byte
+  variable ever_miss_3_int was float now byte
+  variable ever_miss_4_int was float now byte
+  variable ever_miss_5_int was float now byte
+  variable ever_miss_6_int was float now byte
+  variable ever_miss_7_int was float now byte
+  variable ever_miss_8_int was float now byte
+  variable ever_miss_9_int was float now byte
+  variable ever_miss_10_int was float now byte
+  variable ever_miss_11_int was float now byte
+  variable ever_miss_12_int was float now byte
+  variable ever_miss_13_int was float now byte
+  variable ever_miss_14_int was float now byte
+  variable ever_miss_3plus_int was float now byte
+  variable ever_return_after_1_miss_int was float now byte
+  variable ever_return_after_2_miss_int was float now byte
+  variable ever_return_after_3_miss_int was float now byte
+  variable ever_return_after_4_miss_int was float now byte
+  variable ever_return_after_5_miss_int was float now byte
+  variable ever_return_after_6_miss_int was float now byte
+  variable ever_return_after_7_miss_int was float now byte
+  variable ever_return_after_8_miss_int was float now byte
+  variable ever_return_after_9_miss_int was float now byte
+  variable ever_return_after_10_miss_int was float now byte
+  variable ever_return_after_11_miss_int was float now byte
+  variable ever_return_after_12_miss_int was float now byte
+  variable ever_return_after_13_miss_int was float now byte
+  variable ever_return_after_14_miss_int was float now byte
+  variable ever_return_after_3plus_miss_int was float now byte
+  variable hgc was float now byte
+  variable grad4yr was float now byte
+  variable ged was float now byte
+  variable gradHS was float now byte
+  variable gradGrad was float now byte
+  variable enrolled was float now byte
+  variable hours was float now int
+  variable occ was float now int
+  variable ind was float now int
+  variable selfemp was float now byte
+  variable empFT was float now byte
+  variable empPT was float now byte
+  (42,226,851 bytes saved)
+
+. save master, replace
+(note: file master.dta not found)
+file master.dta saved
+
+. !gzip -f master.dta
+
+
+. log close
+      name:  <unnamed>
+       log:  /home/data/ransom/NLSYvCPS/Data/NLSY/y97/create_master.log
+  log type:  text
+ closed on:  11 Feb 2019, 11:56:15
+-------------------------------------------------------------------------------

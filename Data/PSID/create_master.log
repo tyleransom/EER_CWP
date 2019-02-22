@@ -1,0 +1,4333 @@
+-------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /home/data/ransom/NLSYvCPS/Data/PSID/create_master.log
+  log type:  text
+ opened on:  12 Feb 2019, 09:21:07
+
+. 
+. cd RawData
+/home/data/ransom/NLSYvCPS/Data/PSID/RawData
+
+. ********************************************************************
+. * This do-file creates the PSID extract to be used
+. ********************************************************************
+. 
+. * [requires downloading of "Cross-year Individual: 1968-2015" file]
+. psid install
+ind2015er.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. D
+> o nothing
+fam1968.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1969.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1970.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1971.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1972.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1973.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1974.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1975.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1976.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1977.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1978.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1979.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1980.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1981.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1982.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1983.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1984.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1985.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1986.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1987.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1988.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1989.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1990.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1991.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1992.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1993.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. Do 
+> nothing
+fam1994er.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. D
+> o nothing
+fam1995er.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. D
+> o nothing
+fam1996er.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. D
+> o nothing
+fam1997er.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. D
+> o nothing
+fam1999er.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. D
+> o nothing
+fam2001er.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. D
+> o nothing
+fam2003er.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. D
+> o nothing
+fam2005er.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. D
+> o nothing
+fam2007er.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. D
+> o nothing
+fam2009er.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. D
+> o nothing
+fam2011er.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. D
+> o nothing
+fam2013er.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. D
+> o nothing
+fam2015er.dta already exists in /home/data/ransom/NLSYvCPS/Data/PSID/RawData. D
+> o nothing
+Note: All files already installed. Do nothing
+
+. 
+. #delimit ;
+delimiter now ;
+. psid use 
+> 
+> || selfEmp
+> [68]V198 [69]V641 [70]V1280 [71]V1986 [72]V2584 [73]V3117 [74]V3532 [75]V3970
+>  [76]V4461 [77]V5376 [78]V5875 [79]V6493 [80]V7096 [81]V7707 [82]V8375 [83]V9
+> 006 [84]V10456 [85]V11640 [86]V13049 [87]V14149 [88]V15157 [89]V16658 [90]V18
+> 096 [91]V19396 [92]V20696 [93]V22451 [94]ER2074 [95]ER5073 [96]ER7169 [97]ER1
+> 0086 [99]ER13210 [01]ER17221
+> 
+> || empStat
+> [79]ER30293 [80]ER30323 [81]ER30353 [82]ER30382 [83]ER30411 [84]ER30441 [85]E
+> R30474 [86]ER30509 [87]ER30545 [88]ER30580 [89]ER30616 [90]ER30653 [91]ER3069
+> 9 [92]ER30744 [93]ER30816 [94]ER33111 [95]ER33211 [96]ER33311 [97]ER33411 [99
+> ]ER33512 [01]ER33612 [03]ER33712 [05]ER33813 [07]ER33913 [09]ER34016 [11]ER34
+> 116 [13]ER34216 [15]ER34317
+> 
+> || hrsWorkedIndiv
+> [68]ER30013 [69]ER30034 [70]ER30058 [71]ER30082 [72]ER30107 [73]ER30131 [74]E
+> R30153 [75]ER30177 [76]ER30204 [77]ER30233 [78]ER30270 [79]ER30300 [80]ER3033
+> 0 [81]ER30360 [82]ER30388 [83]ER30417 [84]ER30447 [85]ER30482 [86]ER30517 [87
+> ]ER30553 [88]ER30588 [89]ER30624 [90]ER30661 [91]ER30709 [92]ER30754 [93]ER30
+> 823
+> 
+> || hrsWorkedHead
+> [68]V47 [69]V465 [70]V1138 [71]V1839 [72]V2439 [73]V3027 [74]V3423 [75]V3823 
+> [76]V4332 [77]V5232 [78]V5731 [79]V6336 [80]V6934 [81]V7530 [82]V8228 [83]V88
+> 30 [84]V10037 [85]V11146 [86]V12545 [87]V13745 [88]V14835 [89]V16335 [90]V177
+> 44 [91]V19044 [92]V20344 [93]V21634 [94]ER4096 [95]ER6936 [96]ER9187 [97]ER12
+> 174 [99]ER16471 [01]ER20399 [03]ER24080 [05]ER27886 [07]ER40876 [09]ER46767 [
+> 11]ER52175 [13]ER57976 [15]ER65156
+> 
+> || hrsWorkedWife
+> [68]V53 [69]V475 [70]V1148 [71]V1849 [72]V2449 [73]V3035 [74]V3431 [75]V3831 
+> [76]V4344 [77]V5244 [78]V5743 [79]V6348 [80]V6946 [81]V7540 [82]V8238 [83]V88
+> 40 [84]V10131 [85]V11258 [86]V12657 [87]V13809 [88]V14865 [89]V16365 [90]V177
+> 74 [91]V19074 [92]V20374 [93]V21670 [94]ER4107 [95]ER6947 [96]ER9198 [97]ER12
+> 185 [99]ER16482 [01]ER20410 [03]ER24091 [05]ER27897 [07]ER40887 [09]ER46788 [
+> 11]ER52196 [13]ER57997 [15]ER65177
+> 
+> || laborIncomeHead
+> [68]V74 [69]V514 [70]V1196 [71]V1897 [72]V2498 [73]V3051 [74]V3463 [75]V3863 
+> [76]V5031 [77]V5627 [78]V6174 [79]V6767 [80]V7413 [81]V8066 [82]V8690 [83]V93
+> 76 [84]V11023 [85]V12372 [86]V13624 [87]V14671 [88]V16145 [89]V17534 [90]V188
+> 78 [91]V20178 [92]V21484 [93]V23323 [94]ER4140 [95]ER6980 [96]ER9231 [97]ER12
+> 080 [99]ER16463 [01]ER20443 [03]ER24116 [05]ER27931 [07]ER40921 [09]ER46829 [
+> 11]ER52237 [13]ER58038 [15]ER65216
+> 
+> || laborIncomeWife
+> [68]V75 [69]V516 [70]V1198 [71]V1899 [72]V2500 [73]V3053 [74]V3465 [75]V3865 
+> [76]V4379 [77]V5289 [78]V5788 [79]V6398 [80]V6988 [81]V7580 [82]V8273 [83]V88
+> 81 [84]V10263 [85]V11404 [86]V12803 [87]V13905 [88]V14920 [89]V16420 [90]V178
+> 36 [91]V19136 [92]V20436 [93]V23324
+> 
+> || laborIncomeIndiv
+> [68]ER30012 [69]ER30033 [70]ER30057 [71]ER30081 [72]ER30106 [73]ER30130 [74]E
+> R30152
+> 
+> || txblIncomeIndiv
+> [75]ER30173 [76]ER30202 [77]ER30231 [78]ER30268 [79]ER30298 [80]ER30328 [81]E
+> R30358 [82]ER30386 [83]ER30415 [84]ER30445 [85]ER30480 [86]ER30515 [87]ER3055
+> 1 [88]ER30586 [89]ER30622 [90]ER30659 [05]ER33838F [07]ER33938F [09]ER34032D 
+> [11]ER34144D [13]ER34251D [15]ER34401D
+> 
+> || wageSalaryHead
+> [68]V251 [69]V699 [70]V1191 [71]V1892 [72]V2493 [73]V3046 [74]V3458 [75]V3858
+>  [76]V4373 [77]V5283 [78]V5782 [79]V6391 [80]V6981 [81]V7573 [82]V8265 [83]V8
+> 873 [84]V10256 [85]V11397 [86]V12796 [87]V13898 [88]V14913 [89]V16413 [90]V17
+> 829 [91]V19129 [92]V20429 [93]V21739 [94]ER4122 [95]ER6962 [96]ER9213 [97]ER1
+> 2196 [99]ER16493 [01]ER20425 [03]ER24117 [05]ER27913 [07]ER40903 [09]ER46811 
+> [11]ER52219 [13]ER58020 [15]ER65200
+> 
+> || hrlyWageIndiv
+> [99]ER33537O [01]ER33628O [03]ER33728O
+> 
+> || hrlyWageHead
+> [68]V337 [69]V871 [70]V1567 [71]V2279 [72]V2906 [73]V3275 [74]V3695 [75]V4174
+>  [76]V5050 [77]V5631 [78]V6178 [79]V6771 [80]V7417 [81]V8069 [82]V8693 [83]V9
+> 379 [84]V11026 [85]V12377 [86]V13629 [87]V14676 [88]V16150 [89]V17536 [90]V18
+> 887 [91]V20187 [92]V21493 [94]ER4148 [95]ER6988 [96]ER9239 [97]ER12217 [99]ER
+> 16514 [01]ER20451 [03]ER24137 [05]ER28003 [07]ER40993 [09]ER46901 [11]ER52309
+>  [13]ER58118 [15]ER65315
+> 
+> || hrlyWageWife
+> [68]V338 [69]V873 [70]V1569 [71]V2281 [72]V2908 [73]V3277 [74]V3697 [75]V4176
+>  [76]V5052 [77]V5632 [78]V6179 [79]V6772 [80]V7418 [81]V8070 [82]V8694 [83]V9
+> 380 [84]V11027 [85]V12378 [86]V13630 [87]V14677 [88]V16151 [89]V17537 [90]V18
+> 888 [91]V20188 [92]V21494 [94]ER4149 [95]ER6989 [96]ER9240 [97]ER12218 [99]ER
+> 16515 [01]ER20452 [03]ER24138 [05]ER28004 [07]ER40994 [09]ER46902 [11]ER52310
+>  [13]ER58119 [15]ER65316
+> 
+> || hgc 
+> [68]ER30010 [70]ER30052 [71]ER30076 [72]ER30100 [73]ER30126 [74]ER30147 [75]E
+> R30169 [76]ER30197 [77]ER30226 [78]ER30255 [79]ER30296 [80]ER30326 [81]ER3035
+> 6 [82]ER30384 [83]ER30413 [84]ER30443 [85]ER30478 [86]ER30513 [87]ER30549 [88
+> ]ER30584 [89]ER30620 [90]ER30657 [91]ER30703 [92]ER30748 [93]ER30820 [94]ER33
+> 115 [95]ER33215 [96]ER33315 [97]ER33415 [99]ER33516 [01]ER33616 [03]ER33716 [
+> 05]ER33817 [07]ER33917 [09]ER34020 [11]ER34119 [13]ER34230 [15]ER34349 
+> 
+> || hgcHead
+> [68]V313 [69]V794 [70]V1485 [71]V2197 [72]V2823 [73]V3241 [74]V3663 [75]V4198
+>  [76]V5074 [77]V5647 [78]V6194 [79]V6787 [80]V7433 [81]V8085 [82]V8709 [83]V9
+> 395 [84]V11042 [85]V12400 [86]V13640 [87]V14687 [88]V16161 [89]V17545 [90]V18
+> 898
+> 
+> || hgcHeadAlt
+> [75]V4093 [76]V4684 [77]V5608 [78]V6157 [79]V6754 [80]V7387 [81]V8039 [82]V86
+> 63 [83]V9349 [84]V10996 [91]V20198 [92]V21504 [93]V23333 [94]ER4158 [95]ER699
+> 8 [96]ER9249 [97]ER12222 [99]ER16516 [01]ER20457 [03]ER24148 [05]ER28047 [07]
+> ER41037 [09]ER46981 [11]ER52405 [13]ER58223 [15]ER65459
+> 
+> || gradBAHead
+> [75]V4099 [76]V4690 [77]V5614 [78]V6163 [79]V6760 [80]V7393 [81]V8045 [82]V86
+> 69 [83]V9355 [84]V11002 [85]V11960 [86]V13583 [87]V14630 [88]V16104 [89]V1750
+> 1 [90]V18832 [91]V20132 [92]V21438 [93]V23294 [94]ER3963 [95]ER6833 [96]ER907
+> 9 [97]ER11869 [99]ER15952 [01]ER20013 [03]ER23450 [05]ER27417 [07]ER40589 [09
+> ]ER46567 [11]ER51928 [13]ER57684 [15]ER64836
+> 
+> || hgcWife
+> [68]V246 [72]V2687 [73]V3216 [74]V3638 [75]V4199 [76]V5075 [77]V5648 [78]V619
+> 5 [79]V6788 [80]V7434 [81]V8086 [82]V8710 [83]V9396 [84]V11043 [85]V12401 [86
+> ]V13641 [87]V14688 [88]V16162 [89]V17546 [90]V18899
+> 
+> || hgcWifeAlt
+> [75]V4102 [76]V4695 [77]V5567 [78]V6116 [79]V6713 [80]V7346 [81]V7998 [82]V86
+> 22 [83]V9308 [84]V10955 [91]V20199 [92]V21505 [93]V23334 [94]ER4159 [95]ER699
+> 9 [96]ER9250 [97]ER12223 [99]ER16517 [01]ER20458 [03]ER24149 [05]ER28048 [07]
+> ER41038 [09]ER46982 [11]ER52406 [13]ER58224 [15]ER65460
+> 
+> || gradBAwife
+> [75]V4105 [76]V4698 [77]V5570 [78]V6119 [79]V6716 [80]V7349 [81]V8001 [82]V86
+> 25 [83]V9311 [84]V10958 [85]V12315 [86]V13513 [87]V14560 [88]V16034 [89]V1743
+> 1 [90]V18762 [91]V20062 [92]V21368 [93]V23225 [94]ER3897 [95]ER6767 [96]ER901
+> 3 [97]ER11781 [99]ER15860 [01]ER19921 [03]ER23358 [05]ER27321 [07]ER40496 [09
+> ]ER46473 [11]ER51834 [13]ER57574 [15]ER64697
+> 
+> || in_school 
+> [68]ER30009 [79]ER30294 [80]ER30324 [81]ER30354 [82]ER30383 [83]ER30412 [84]E
+> R30442 [85]ER30477 [86]ER30512 [87]ER30548 [88]ER30583 [89]ER30619 [90]ER3065
+> 6 [91]ER30702 [92]ER30747 [93]ER30819 [94]ER33114 [95]ER33214 [96]ER33314 [97
+> ]ER33414 [99]ER33515 [01]ER33615 [03]ER33715 [05]ER33816 [07]ER33916 [09]ER34
+> 019 
+> 
+> || age 
+> [68]ER30004 [69]ER30023 [70]ER30046 [71]ER30070 [72]ER30094 [73]ER30120 [74]E
+> R30141 [75]ER30163 [76]ER30191 [77]ER30220 [78]ER30249 [79]ER30286 [80]ER3031
+> 6 [81]ER30346 [82]ER30376 [83]ER30402 [84]ER30432 [85]ER30466 [86]ER30501 [87
+> ]ER30538 [88]ER30573 [89]ER30609 [90]ER30645 [91]ER30692 [92]ER30736 [93]ER30
+> 809 [94]ER33104 [95]ER33204 [96]ER33304 [97]ER33404 [99]ER33504 [01]ER33604 [
+> 03]ER33704 [05]ER33804 [07]ER33904 [09]ER34004 [11]ER34104 [13]ER34204 [15]ER
+> 34305 
+> 
+> || birthyr 
+> [83]ER30404 [84]ER30434 [85]ER30468 [86]ER30503 [87]ER30540 [88]ER30575 [89]E
+> R30611 [90]ER30647 [91]ER30694 [92]ER30738 [93]ER30811 [94]ER33106 [95]ER3320
+> 6 [96]ER33306 [97]ER33406 [99]ER33506 [01]ER33606 [03]ER33706 [05]ER33806 [07
+> ]ER33906 [09]ER34006 [11]ER34106 [13]ER34206 [15]ER34307 
+> 
+> || svywgt 
+> [68]ER30019 [69]ER30042 [70]ER30066 [71]ER30090 [72]ER30116 [73]ER30137 [74]E
+> R30159 [75]ER30187 [76]ER30216 [77]ER30245 [78]ER30282 [79]ER30312 [80]ER3034
+> 2 [81]ER30372 [82]ER30398 [83]ER30428 [84]ER30462 [85]ER30497 [86]ER30534 [87
+> ]ER30569 [88]ER30605 [89]ER30641 [90]ER30686 [91]ER30730 [92]ER30803 [93]ER30
+> 864 [94]ER33119 [95]ER33275 [96]ER33318 [97]ER33430 [99]ER33546 [01]ER33637 [
+> 03]ER33740 [05]ER33848 [07]ER33950 [09]ER34045 [11]ER34154 [13]ER34268 [15]ER
+> 34413 
+> 
+> || raceHead
+> [68]V181 [69]V801 [70]V1490 [71]V2202 [72]V2828 [73]V3300 [74]V3720 [75]V4204
+>  [76]V5096 [77]V5662 [78]V6209 [79]V6802 [80]V7447 [81]V8099 [82]V8723 [83]V9
+> 408 [84]V11055 [85]V11938 [86]V13565 [87]V14612 [88]V16086 [89]V17483 [90]V18
+> 814 [91]V20114 [92]V21420 [93]V23276 [94]ER3944 [95]ER6814 [96]ER9060 [97]ER1
+> 1848 [99]ER15928 [01]ER19989 [03]ER23426 [05]ER27393 [07]ER40565 [09]ER46543 
+> [11]ER51904 [13]ER57659 [15]ER64810
+> 
+> || raceWife
+> [85]V12293 [86]V13500 [87]V14547 [88]V16021 [89]V17418 [90]V18749 [91]V20049 
+> [92]V21355 [93]V23212 [94]ER3883 [95]ER6753 [96]ER8999 [97]ER11760 [99]ER1583
+> 6 [01]ER19897 [03]ER23334 [05]ER27297 [07]ER40472 [09]ER46449 [11]ER51810 [13
+> ]ER57549 [15]ER64671
+> 
+> || relHD
+> [68]ER30003 [69]ER30022 [70]ER30045 [71]ER30069 [72]ER30093 [73]ER30119 [74]E
+> R30140 [75]ER30162 [76]ER30190 [77]ER30219 [78]ER30248 [79]ER30285 [80]ER3031
+> 5 [81]ER30345 [82]ER30375 [83]ER30401 [84]ER30431 [85]ER30465 [86]ER30500 [87
+> ]ER30537 [88]ER30572 [89]ER30608 [90]ER30644 [91]ER30691 [92]ER30735 [93]ER30
+> 808 [94]ER33103 [95]ER33203 [96]ER33303 [97]ER33403 [99]ER33503 [01]ER33603 [
+> 03]ER33703 [05]ER33803 [07]ER33903 [09]ER34003 [11]ER34103 [13]ER34203 [15]ER
+> 34303
+> 
+> || mightMoveHD
+> [68]V111 [69]V605 [70]V1276 [71]V1981 [72]V2579 [73]V3112 [74]V3526 [75]V3944
+>  [76]V4455 [77]V5369 [78]V5869 [79]V6487 [80]V7092 [81]V7703 [82]V8371 [83]V9
+> 002 [84]V10450 [85]V11631 [86]V13040 [87]V14143 [88]V15151 [89]V16652 [90]V18
+> 090 [91]V19390 [92]V20690 [93]V22445 [95]ER5066A [96]ER7161 [97]ER10079 [99]E
+> R13084 [01]ER17095 [03]ER21121 [05]ER25102 [07]ER36107 [09]ER42138 [11]ER4744
+> 6 [13]ER53146 [15]ER60161
+> 
+> || movedSinceSpring
+> [69]V603 [70]V1274 [71]V1979 [72]V2577 [73]V3110 [74]V3524 [75]V3941 [76]V445
+> 2 [77]V5366 [78]V5866 [79]V6484 [80]V7089 [81]V7700 [82]V8369 [83]V8999 [84]V
+> 10447 [85]V11628 [86]V13037 [87]V14140 [88]V15148 [89]V16649 [90]V18087 [91]V
+> 19387 [92]V20687 [93]V22441 [94]ER2062 [95]ER5061 [96]ER7155 [97]ER10072 [99]
+> ER13077 [01]ER17088 [03]ER21117 [05]ER25098 [07]ER36103 [09]ER42132 [11]ER474
+> 40 [13]ER53140 [15]ER60155
+> 
+> || advDegDumHD
+> [75]V4100 [76]V4691 [77]V5615 [78]V6164 [79]V6761 [80]V7394 [81]V8046 [82]V86
+> 70 [83]V9356 [84]V11003
+> 
+> || advDegDumWife
+> [75]V4106 [76]V4699 [77]V5571 [78]V6120 [79]V6717 [80]V7350 [81]V8002 [82]V86
+> 26 [83]V9312 [84]V10959
+> 
+> || highDegHD
+> [85]V11961 [86]V13584 [87]V14631 [88]V16105 [89]V17502 [90]V18833 [91]V20133 
+> [92]V21439 [93]V23295 [94]ER3964 [95]ER6834 [96]ER9080 [97]ER11870 [99]ER1595
+> 3 [01]ER20014 [03]ER23451 [05]ER27418 [07]ER40590 [09]ER46568 [11]ER51929 [13
+> ]ER57685 [15]ER64837
+> 
+> || highDegWife
+> [85]V12316 [86]V13514 [87]V14561 [88]V16035 [89]V17432 [90]V18763 [91]V20063 
+> [92]V21369 [93]V23226 [94]ER3898 [95]ER6768 [96]ER9014 [97]ER11782 [99]ER1586
+> 1 [01]ER19922 [03]ER23359 [05]ER27322 [07]ER40497 [09]ER46474 [11]ER51835 [13
+> ]ER57575 [15]ER64698
+> 
+> using ../RawData, design(any) clear keepnotes;
+
+. #delimit cr
+delimiter now cr
+. 
+. *-------------------------------------------------------------------
+. * Import gender and 1968 parent IDs
+. *-------------------------------------------------------------------
+. preserve
+
+.     tempfile sexdata
+
+.     #delimit ;
+delimiter now ;
+.     *  PSID DATA CENTER *****************************************************
+>        JOBID            : 244930                            
+>        DATA_DOMAIN      : IND                               
+>        USER_WHERE       : NULL                              
+>        FILE_TYPE        : All Individuals Data              
+>        OUTPUT_DATA_TYPE : ASCII                             
+>        STATEMENTS       : do                                
+>        CODEBOOK_TYPE    : PDF                               
+>        N_OF_VARIABLES   : 8                                 
+>        N_OF_OBSERVATIONS: 77223                             
+>        MAX_REC_LENGTH   : 22                                
+>        DATE & TIME      : May 22, 2018 @ 15:15:12
+>     *************************************************************************
+>     ;
+.     infix
+>           ER30000              1 - 1           ER30001              2 - 5    
+>        ER30002              6 - 8     
+>           ER32000              9 - 9           ER32006             10 - 10   
+>        ER32009             11 - 14    
+>           ER32016             15 - 18          ER32050             19 - 22   
+>  
+>     using sexdata.txt, clear 
+>     ;
+(77,223 observations read)
+
+.     label variable ER30000       "RELEASE NUMBER"                           ;
+
+.     label variable ER30001       "1968 INTERVIEW NUMBER"                    ;
+
+.     label variable ER30002       "PERSON NUMBER                         68" ;
+
+.     label variable ER32000       "SEX OF INDIVIDUAL"                        ;
+
+.     label variable ER32006       "WHETHER SAMPLE OR NONSAMPLE"              ;
+
+.     label variable ER32009       "1968 ID OF MOTHER"                        ;
+
+.     label variable ER32016       "1968 ID OF FATHER"                        ;
+
+.     label variable ER32050       "YEAR OF DEATH"                            ;
+
+.     #delimit cr
+delimiter now cr
+. 
+.     gen  x11101ll=(ER30001 * 1000) + ER30002
+
+.     drop ER30000 ER30001 ER30002
+
+.     ren  ER32000 sex
+
+.     ren  ER32006 sampleOrNot
+
+.     ren  ER32009 mothID1968
+
+.     ren  ER32016 fathID1968
+
+.     ren  ER32050 yrDied
+
+. 
+.     save `sexdata', replace
+(note: file /tmp/St02082.000002 not found)
+file /tmp/St02082.000002 saved
+
+. restore
+
+. 
+. merge 1:1 x11101ll using `sexdata', nogen
+(note: variable x11101ll was long, now double to accommodate using data's
+       values)
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                             0
+    matched                            77,223  
+    -----------------------------------------
+
+. 
+. *-------------------------------------------------------------------
+. * recode missing wage values
+. *-------------------------------------------------------------------
+. foreach yy in 1968 1969 1970 1971 1972 1973 1974 1975 1976 1977 1978 1979 198
+> 0 1981 1982 1983 1984 1985 1986 1987 1988 1989 1990 1991 1992 1994 1995 1996 
+> 1997 1999 2001 2003 2005 2007 2009 2011 2013 2015 {
+  2.     if `yy'<1976 {
+  3.         recode hrlyWageHead`yy' hrlyWageWife`yy' (99.99 0 = .) 
+  4.     }
+  5.     else if inrange(`yy',1976,1993) | inrange(`yy',2003,2015) {
+  6.         recode hrlyWageHead`yy' hrlyWageWife`yy' (      0 = .) 
+  7.     }
+  8.     else if inrange(`yy',1994,2001) {
+  9.         recode hrlyWageHead`yy' hrlyWageWife`yy' (9998 9999 9999.99 0 = .)
+>  
+ 10.     }
+ 11. }
+(hrlyWageHead1968: 8138 changes made)
+(hrlyWageWife1968: 41146 changes made)
+(hrlyWageHead1969: 7800 changes made)
+(hrlyWageWife1969: 38476 changes made)
+(hrlyWageHead1970: 6917 changes made)
+(hrlyWageWife1970: 37042 changes made)
+(hrlyWageHead1971: 7066 changes made)
+(hrlyWageWife1971: 36814 changes made)
+(hrlyWageHead1972: 7917 changes made)
+(hrlyWageWife1972: 35680 changes made)
+(hrlyWageHead1973: 7663 changes made)
+(hrlyWageWife1973: 36148 changes made)
+(hrlyWageHead1974: 7517 changes made)
+(hrlyWageWife1974: 35055 changes made)
+(hrlyWageHead1975: 7556 changes made)
+(hrlyWageWife1975: 34454 changes made)
+(hrlyWageHead1976: 8385 changes made)
+(hrlyWageWife1976: 32657 changes made)
+(hrlyWageHead1977: 7774 changes made)
+(hrlyWageWife1977: 32159 changes made)
+(hrlyWageHead1978: 7228 changes made)
+(hrlyWageWife1978: 31004 changes made)
+(hrlyWageHead1979: 7209 changes made)
+(hrlyWageWife1979: 29485 changes made)
+(hrlyWageHead1980: 6868 changes made)
+(hrlyWageWife1980: 28142 changes made)
+(hrlyWageHead1981: 6998 changes made)
+(hrlyWageWife1981: 27928 changes made)
+(hrlyWageHead1982: 7635 changes made)
+(hrlyWageWife1982: 27687 changes made)
+(hrlyWageHead1983: 8154 changes made)
+(hrlyWageWife1983: 26883 changes made)
+(hrlyWageHead1984: 8167 changes made)
+(hrlyWageWife1984: 26077 changes made)
+(hrlyWageHead1985: 7477 changes made)
+(hrlyWageWife1985: 24411 changes made)
+(hrlyWageHead1986: 7086 changes made)
+(hrlyWageWife1986: 23695 changes made)
+(hrlyWageHead1987: 6746 changes made)
+(hrlyWageWife1987: 22999 changes made)
+(hrlyWageHead1988: 6421 changes made)
+(hrlyWageWife1988: 22348 changes made)
+(hrlyWageHead1989: 6197 changes made)
+(hrlyWageWife1989: 20850 changes made)
+(hrlyWageHead1990: 8330 changes made)
+(hrlyWageWife1990: 26105 changes made)
+(hrlyWageHead1991: 8104 changes made)
+(hrlyWageWife1991: 24821 changes made)
+(hrlyWageHead1992: 8740 changes made)
+(hrlyWageWife1992: 25073 changes made)
+(hrlyWageHead1994: 16460 changes made)
+(hrlyWageWife1994: 30596 changes made)
+(hrlyWageHead1995: 14163 changes made)
+(hrlyWageWife1995: 27882 changes made)
+(hrlyWageHead1996: 7942 changes made)
+(hrlyWageWife1996: 20945 changes made)
+(hrlyWageHead1997: 6853 changes made)
+(hrlyWageWife1997: 19013 changes made)
+(hrlyWageHead1999: 5859 changes made)
+(hrlyWageWife1999: 19734 changes made)
+(hrlyWageHead2001: 5405 changes made)
+(hrlyWageWife2001: 17399 changes made)
+(hrlyWageHead2003: 5695 changes made)
+(hrlyWageWife2003: 17823 changes made)
+(hrlyWageHead2005: 5363 changes made)
+(hrlyWageWife2005: 17240 changes made)
+(hrlyWageHead2007: 5233 changes made)
+(hrlyWageWife2007: 16700 changes made)
+(hrlyWageHead2009: 5177 changes made)
+(hrlyWageWife2009: 16276 changes made)
+(hrlyWageHead2011: 5425 changes made)
+(hrlyWageWife2011: 15766 changes made)
+(hrlyWageHead2013: 4979 changes made)
+(hrlyWageWife2013: 14803 changes made)
+(hrlyWageHead2015: 4666 changes made)
+(hrlyWageWife2015: 13483 changes made)
+
+. 
+. * hgc:
+. recode hgc* (98 99 = .)
+(hgc1968: 534 changes made)
+(hgc1970: 19 changes made)
+(hgc1971: 20 changes made)
+(hgc1972: 7 changes made)
+(hgc1973: 7 changes made)
+(hgc1974: 11 changes made)
+(hgc1975: 32 changes made)
+(hgc1976: 56 changes made)
+(hgc1977: 65 changes made)
+(hgc1978: 80 changes made)
+(hgc1979: 244 changes made)
+(hgc1980: 226 changes made)
+(hgc1981: 229 changes made)
+(hgc1982: 201 changes made)
+(hgc1983: 230 changes made)
+(hgc1984: 230 changes made)
+(hgc1985: 265 changes made)
+(hgc1986: 265 changes made)
+(hgc1987: 314 changes made)
+(hgc1988: 324 changes made)
+(hgc1989: 312 changes made)
+(hgc1990: 656 changes made)
+(hgc1991: 618 changes made)
+(hgc1992: 812 changes made)
+(hgc1993: 913 changes made)
+(hgc1994: 933 changes made)
+(hgc1995: 714 changes made)
+(hgc1996: 544 changes made)
+(hgc1997: 543 changes made)
+(hgc1999: 757 changes made)
+(hgc2001: 1073 changes made)
+(hgc2003: 1016 changes made)
+(hgc2005: 985 changes made)
+(hgc2007: 972 changes made)
+(hgc2009: 399 changes made)
+(hgc2011: 388 changes made)
+(hgc2013: 353 changes made)
+(hgc2015: 471 changes made)
+(hgcWife1968: 0 changes made)
+(hgcHead1968: 0 changes made)
+(hgcHead1969: 0 changes made)
+(hgcHead1970: 0 changes made)
+(hgcHead1971: 0 changes made)
+(hgcWife1972: 0 changes made)
+(hgcHead1972: 0 changes made)
+(hgcWife1973: 0 changes made)
+(hgcHead1973: 0 changes made)
+(hgcWife1974: 0 changes made)
+(hgcHead1974: 0 changes made)
+(hgcHeadAlt1975: 53 changes made)
+(hgcWifeAlt1975: 126 changes made)
+(hgcHead1975: 0 changes made)
+(hgcWife1975: 0 changes made)
+(hgcHeadAlt1976: 168 changes made)
+(hgcWifeAlt1976: 258 changes made)
+(hgcHead1976: 0 changes made)
+(hgcWife1976: 0 changes made)
+(hgcWifeAlt1977: 369 changes made)
+(hgcHeadAlt1977: 259 changes made)
+(hgcHead1977: 0 changes made)
+(hgcWife1977: 0 changes made)
+(hgcWifeAlt1978: 492 changes made)
+(hgcHeadAlt1978: 284 changes made)
+(hgcHead1978: 0 changes made)
+(hgcWife1978: 0 changes made)
+(hgcWifeAlt1979: 520 changes made)
+(hgcHeadAlt1979: 310 changes made)
+(hgcHead1979: 0 changes made)
+(hgcWife1979: 0 changes made)
+(hgcWifeAlt1980: 488 changes made)
+(hgcHeadAlt1980: 356 changes made)
+(hgcHead1980: 0 changes made)
+(hgcWife1980: 0 changes made)
+(hgcWifeAlt1981: 434 changes made)
+(hgcHeadAlt1981: 341 changes made)
+(hgcHead1981: 0 changes made)
+(hgcWife1981: 0 changes made)
+(hgcWifeAlt1982: 425 changes made)
+(hgcHeadAlt1982: 281 changes made)
+(hgcHead1982: 0 changes made)
+(hgcWife1982: 0 changes made)
+(hgcWifeAlt1983: 447 changes made)
+(hgcHeadAlt1983: 244 changes made)
+(hgcHead1983: 0 changes made)
+(hgcWife1983: 0 changes made)
+(hgcWifeAlt1984: 362 changes made)
+(hgcHeadAlt1984: 247 changes made)
+(hgcHead1984: 0 changes made)
+(hgcWife1984: 0 changes made)
+(hgcHead1985: 0 changes made)
+(hgcWife1985: 0 changes made)
+(hgcHead1986: 0 changes made)
+(hgcWife1986: 0 changes made)
+(hgcHead1987: 0 changes made)
+(hgcWife1987: 0 changes made)
+(hgcHead1988: 0 changes made)
+(hgcWife1988: 0 changes made)
+(hgcHead1989: 0 changes made)
+(hgcWife1989: 0 changes made)
+(hgcHead1990: 0 changes made)
+(hgcWife1990: 0 changes made)
+(hgcHeadAlt1991: 1059 changes made)
+(hgcWifeAlt1991: 768 changes made)
+(hgcHeadAlt1992: 1236 changes made)
+(hgcWifeAlt1992: 921 changes made)
+(hgcHeadAlt1993: 1304 changes made)
+(hgcWifeAlt1993: 1260 changes made)
+(hgcHeadAlt1994: 1741 changes made)
+(hgcWifeAlt1994: 1499 changes made)
+(hgcHeadAlt1995: 1775 changes made)
+(hgcWifeAlt1995: 1601 changes made)
+(hgcHeadAlt1996: 1507 changes made)
+(hgcWifeAlt1996: 1337 changes made)
+(hgcHeadAlt1997: 1519 changes made)
+(hgcWifeAlt1997: 1173 changes made)
+(hgcHeadAlt1999: 1654 changes made)
+(hgcWifeAlt1999: 1371 changes made)
+(hgcHeadAlt2001: 2121 changes made)
+(hgcWifeAlt2001: 1713 changes made)
+(hgcHeadAlt2003: 2196 changes made)
+(hgcWifeAlt2003: 1732 changes made)
+(hgcHeadAlt2005: 1867 changes made)
+(hgcWifeAlt2005: 1558 changes made)
+(hgcHeadAlt2007: 1692 changes made)
+(hgcWifeAlt2007: 1494 changes made)
+(hgcHeadAlt2009: 531 changes made)
+(hgcWifeAlt2009: 328 changes made)
+(hgcHeadAlt2011: 493 changes made)
+(hgcWifeAlt2011: 353 changes made)
+(hgcHeadAlt2013: 380 changes made)
+(hgcWifeAlt2013: 323 changes made)
+(hgcHeadAlt2015: 404 changes made)
+(hgcWifeAlt2015: 293 changes made)
+
+. 
+. recode raceHead* raceWife* (9 8 = .)
+(raceHead1968: 147 changes made)
+(raceHead1969: 0 changes made)
+(raceHead1970: 0 changes made)
+(raceHead1971: 0 changes made)
+(raceHead1972: 0 changes made)
+(raceHead1973: 0 changes made)
+(raceHead1974: 0 changes made)
+(raceHead1975: 0 changes made)
+(raceHead1976: 0 changes made)
+(raceHead1977: 0 changes made)
+(raceHead1978: 0 changes made)
+(raceHead1979: 0 changes made)
+(raceHead1980: 0 changes made)
+(raceHead1981: 0 changes made)
+(raceHead1982: 0 changes made)
+(raceHead1983: 0 changes made)
+(raceHead1984: 0 changes made)
+(raceHead1985: 193 changes made)
+(raceHead1986: 186 changes made)
+(raceHead1987: 209 changes made)
+(raceHead1988: 169 changes made)
+(raceHead1989: 163 changes made)
+(raceHead1990: 298 changes made)
+(raceHead1991: 306 changes made)
+(raceHead1992: 581 changes made)
+(raceHead1993: 767 changes made)
+(raceHead1994: 868 changes made)
+(raceHead1995: 881 changes made)
+(raceHead1996: 846 changes made)
+(raceHead1997: 272 changes made)
+(raceHead1999: 356 changes made)
+(raceHead2001: 739 changes made)
+(raceHead2003: 747 changes made)
+(raceHead2005: 258 changes made)
+(raceHead2007: 295 changes made)
+(raceHead2009: 342 changes made)
+(raceHead2011: 362 changes made)
+(raceHead2013: 280 changes made)
+(raceHead2015: 280 changes made)
+(raceWife1985: 353 changes made)
+(raceWife1986: 314 changes made)
+(raceWife1987: 276 changes made)
+(raceWife1988: 278 changes made)
+(raceWife1989: 243 changes made)
+(raceWife1990: 242 changes made)
+(raceWife1991: 268 changes made)
+(raceWife1992: 430 changes made)
+(raceWife1993: 885 changes made)
+(raceWife1994: 923 changes made)
+(raceWife1995: 976 changes made)
+(raceWife1996: 864 changes made)
+(raceWife1997: 110 changes made)
+(raceWife1999: 330 changes made)
+(raceWife2001: 719 changes made)
+(raceWife2003: 601 changes made)
+(raceWife2005: 130 changes made)
+(raceWife2007: 193 changes made)
+(raceWife2009: 204 changes made)
+(raceWife2011: 220 changes made)
+(raceWife2013: 258 changes made)
+(raceWife2015: 227 changes made)
+
+. 
+. recode advDegDum* highDeg* (0 = 999)
+(advDegDumHD1975: 50134 changes made)
+(advDegDumHD1976: 49175 changes made)
+(advDegDumHD1977: 48178 changes made)
+(advDegDumHD1978: 47101 changes made)
+(advDegDumHD1979: 46079 changes made)
+(advDegDumHD1980: 44911 changes made)
+(advDegDumHD1981: 43771 changes made)
+(advDegDumHD1982: 42886 changes made)
+(advDegDumHD1983: 41671 changes made)
+(advDegDumHD1984: 40618 changes made)
+(advDegDumWife1975: 53098 changes made)
+(advDegDumWife1976: 52026 changes made)
+(advDegDumWife1977: 50986 changes made)
+(advDegDumWife1978: 49826 changes made)
+(advDegDumWife1979: 48685 changes made)
+(advDegDumWife1980: 47529 changes made)
+(advDegDumWife1981: 46440 changes made)
+(advDegDumWife1982: 45484 changes made)
+(advDegDumWife1983: 44321 changes made)
+(advDegDumWife1984: 43099 changes made)
+(highDegHD1985: 37075 changes made)
+(highDegHD1986: 35711 changes made)
+(highDegHD1987: 34753 changes made)
+(highDegHD1988: 33644 changes made)
+(highDegHD1989: 32359 changes made)
+(highDegHD1990: 40409 changes made)
+(highDegHD1991: 38673 changes made)
+(highDegHD1992: 38822 changes made)
+(highDegHD1993: 38525 changes made)
+(highDegHD1994: 40015 changes made)
+(highDegHD1995: 37593 changes made)
+(highDegHD1996: 31197 changes made)
+(highDegHD1997: 28288 changes made)
+(highDegHD1999: 27716 changes made)
+(highDegHD2001: 27063 changes made)
+(highDegHD2003: 26184 changes made)
+(highDegHD2005: 25082 changes made)
+(highDegHD2007: 23905 changes made)
+(highDegHD2009: 21348 changes made)
+(highDegHD2011: 20034 changes made)
+(highDegHD2013: 18532 changes made)
+(highDegHD2015: 16901 changes made)
+(highDegWife1985: 40486 changes made)
+(highDegWife1986: 38935 changes made)
+(highDegWife1987: 37800 changes made)
+(highDegWife1988: 36621 changes made)
+(highDegWife1989: 35261 changes made)
+(highDegWife1990: 43516 changes made)
+(highDegWife1991: 41641 changes made)
+(highDegWife1992: 41680 changes made)
+(highDegWife1993: 41578 changes made)
+(highDegWife1994: 43153 changes made)
+(highDegWife1995: 40508 changes made)
+(highDegWife1996: 33912 changes made)
+(highDegWife1997: 30573 changes made)
+(highDegWife1999: 29893 changes made)
+(highDegWife2001: 28976 changes made)
+(highDegWife2003: 28179 changes made)
+(highDegWife2005: 27009 changes made)
+(highDegWife2007: 25659 changes made)
+(highDegWife2009: 23133 changes made)
+(highDegWife2011: 21667 changes made)
+(highDegWife2013: 19983 changes made)
+(highDegWife2015: 18224 changes made)
+
+. 
+. *-------------------------------------------------------------------
+. * recode 0s as missing
+. *-------------------------------------------------------------------
+. recode _all (0 = .)
+(x11101ll: 0 changes made)
+(x11102_1968: 0 changes made)
+(x11102_1969: 0 changes made)
+(x11102_1970: 0 changes made)
+(x11102_1971: 0 changes made)
+(x11102_1972: 0 changes made)
+(x11102_1973: 0 changes made)
+(x11102_1974: 0 changes made)
+(x11102_1975: 0 changes made)
+(x11102_1976: 0 changes made)
+(x11102_1977: 0 changes made)
+(x11102_1978: 0 changes made)
+(x11102_1979: 0 changes made)
+(x11102_1980: 0 changes made)
+(x11102_1981: 0 changes made)
+(x11102_1982: 0 changes made)
+(x11102_1983: 0 changes made)
+(x11102_1984: 0 changes made)
+(x11102_1985: 0 changes made)
+(x11102_1986: 0 changes made)
+(x11102_1987: 0 changes made)
+(x11102_1988: 0 changes made)
+(x11102_1989: 0 changes made)
+(x11102_1990: 0 changes made)
+(x11102_1991: 0 changes made)
+(x11102_1992: 0 changes made)
+(x11102_1993: 0 changes made)
+(x11102_1994: 0 changes made)
+(x11102_1995: 0 changes made)
+(x11102_1996: 0 changes made)
+(x11102_1997: 0 changes made)
+(x11102_1999: 0 changes made)
+(x11102_2001: 0 changes made)
+(x11102_2003: 0 changes made)
+(x11102_2005: 0 changes made)
+(x11102_2007: 0 changes made)
+(x11102_2009: 0 changes made)
+(x11102_2011: 0 changes made)
+(x11102_2013: 0 changes made)
+(x11102_2015: 0 changes made)
+(xsqnr_1969: 60011 changes made)
+(xsqnr_1970: 59874 changes made)
+(xsqnr_1971: 59633 changes made)
+(xsqnr_1972: 59172 changes made)
+(xsqnr_1973: 58988 changes made)
+(xsqnr_1974: 58829 changes made)
+(xsqnr_1975: 58601 changes made)
+(xsqnr_1976: 58455 changes made)
+(xsqnr_1977: 58225 changes made)
+(xsqnr_1978: 58083 changes made)
+(xsqnr_1979: 57780 changes made)
+(xsqnr_1980: 57476 changes made)
+(xsqnr_1981: 57427 changes made)
+(xsqnr_1982: 57111 changes made)
+(xsqnr_1983: 56896 changes made)
+(xsqnr_1984: 56830 changes made)
+(xsqnr_1985: 56543 changes made)
+(xsqnr_1986: 56786 changes made)
+(xsqnr_1987: 56737 changes made)
+(xsqnr_1988: 56717 changes made)
+(xsqnr_1989: 56772 changes made)
+(xsqnr_1990: 49026 changes made)
+(xsqnr_1991: 49378 changes made)
+(xsqnr_1992: 47948 changes made)
+(xsqnr_1993: 47497 changes made)
+(xsqnr_1994: 45678 changes made)
+(xsqnr_1995: 47339 changes made)
+(xsqnr_1996: 53413 changes made)
+(xsqnr_1997: 57462 changes made)
+(xsqnr_1999: 56708 changes made)
+(xsqnr_2001: 55823 changes made)
+(xsqnr_2003: 54933 changes made)
+(xsqnr_2005: 54305 changes made)
+(xsqnr_2007: 53722 changes made)
+(xsqnr_2009: 52838 changes made)
+(xsqnr_2011: 52562 changes made)
+(xsqnr_2013: 52271 changes made)
+(xsqnr_2015: 52586 changes made)
+(selfEmp1968: 12701 changes made)
+(selfEmp1969: 11677 changes made)
+(selfEmp1970: 11832 changes made)
+(selfEmp1971: 12444 changes made)
+(selfEmp1972: 12093 changes made)
+(selfEmp1973: 11664 changes made)
+(selfEmp1974: 11259 changes made)
+(selfEmp1975: 12745 changes made)
+(selfEmp1976: 12247 changes made)
+(selfEmp1977: 11702 changes made)
+(selfEmp1978: 11185 changes made)
+(selfEmp1979: 10609 changes made)
+(selfEmp1980: 10875 changes made)
+(selfEmp1981: 11378 changes made)
+(selfEmp1982: 12189 changes made)
+(selfEmp1983: 12681 changes made)
+(selfEmp1984: 11366 changes made)
+(selfEmp1985: 9691 changes made)
+(selfEmp1986: 9745 changes made)
+(selfEmp1987: 8902 changes made)
+(selfEmp1988: 8703 changes made)
+(selfEmp1989: 8092 changes made)
+(selfEmp1990: 10976 changes made)
+(selfEmp1991: 11107 changes made)
+(selfEmp1992: 11665 changes made)
+(selfEmp1993: 11597 changes made)
+(selfEmp1994: 11356 changes made)
+(selfEmp1995: 10487 changes made)
+(selfEmp1996: 8616 changes made)
+(selfEmp1997: 7069 changes made)
+(selfEmp1999: 6290 changes made)
+(selfEmp2001: 6574 changes made)
+(empStat1979: 64096 changes made)
+(empStat1980: 63879 changes made)
+(empStat1981: 63789 changes made)
+(empStat1982: 63580 changes made)
+(empStat1983: 63365 changes made)
+(empStat1984: 63363 changes made)
+(empStat1985: 63285 changes made)
+(empStat1986: 63331 changes made)
+(empStat1987: 63337 changes made)
+(empStat1988: 63287 changes made)
+(empStat1989: 63336 changes made)
+(empStat1990: 58185 changes made)
+(empStat1991: 58457 changes made)
+(empStat1992: 57443 changes made)
+(empStat1993: 57202 changes made)
+(empStat1994: 59238 changes made)
+(empStat1995: 59599 changes made)
+(empStat1996: 60775 changes made)
+(empStat1997: 63872 changes made)
+(empStat1999: 63287 changes made)
+(empStat2001: 62457 changes made)
+(empStat2003: 61651 changes made)
+(empStat2005: 61307 changes made)
+(empStat2007: 60904 changes made)
+(empStat2009: 60136 changes made)
+(empStat2011: 60064 changes made)
+(empStat2013: 59808 changes made)
+(empStat2015: 59945 changes made)
+(hrsWorkedIndiv1968: 70523 changes made)
+(hrsWorkedIndiv1969: 70465 changes made)
+(hrsWorkedIndiv1970: 68410 changes made)
+(hrsWorkedIndiv1971: 68028 changes made)
+(hrsWorkedIndiv1972: 69659 changes made)
+(hrsWorkedIndiv1973: 69583 changes made)
+(hrsWorkedIndiv1974: 69188 changes made)
+(hrsWorkedIndiv1975: 68982 changes made)
+(hrsWorkedIndiv1976: 68831 changes made)
+(hrsWorkedIndiv1977: 68658 changes made)
+(hrsWorkedIndiv1978: 68287 changes made)
+(hrsWorkedIndiv1979: 67652 changes made)
+(hrsWorkedIndiv1980: 67326 changes made)
+(hrsWorkedIndiv1981: 67328 changes made)
+(hrsWorkedIndiv1982: 67378 changes made)
+(hrsWorkedIndiv1983: 67368 changes made)
+(hrsWorkedIndiv1984: 67328 changes made)
+(hrsWorkedIndiv1985: 66978 changes made)
+(hrsWorkedIndiv1986: 66987 changes made)
+(hrsWorkedIndiv1987: 66964 changes made)
+(hrsWorkedIndiv1988: 66866 changes made)
+(hrsWorkedIndiv1989: 66773 changes made)
+(hrsWorkedIndiv1990: 63546 changes made)
+(hrsWorkedIndiv1991: 63718 changes made)
+(hrsWorkedIndiv1992: 63315 changes made)
+(hrsWorkedIndiv1993: 63251 changes made)
+(hrsWorkedHead1968: 8021 changes made)
+(hrsWorkedHead1969: 7725 changes made)
+(hrsWorkedHead1970: 6838 changes made)
+(hrsWorkedHead1971: 6966 changes made)
+(hrsWorkedHead1972: 7853 changes made)
+(hrsWorkedHead1973: 7608 changes made)
+(hrsWorkedHead1974: 7515 changes made)
+(hrsWorkedHead1975: 7492 changes made)
+(hrsWorkedHead1976: 8288 changes made)
+(hrsWorkedHead1977: 7709 changes made)
+(hrsWorkedHead1978: 7123 changes made)
+(hrsWorkedHead1979: 7095 changes made)
+(hrsWorkedHead1980: 6777 changes made)
+(hrsWorkedHead1981: 6865 changes made)
+(hrsWorkedHead1982: 7522 changes made)
+(hrsWorkedHead1983: 7897 changes made)
+(hrsWorkedHead1984: 8027 changes made)
+(hrsWorkedHead1985: 7250 changes made)
+(hrsWorkedHead1986: 6796 changes made)
+(hrsWorkedHead1987: 6534 changes made)
+(hrsWorkedHead1988: 6243 changes made)
+(hrsWorkedHead1989: 6062 changes made)
+(hrsWorkedHead1990: 8157 changes made)
+(hrsWorkedHead1991: 7893 changes made)
+(hrsWorkedHead1992: 8628 changes made)
+(hrsWorkedHead1993: 8254 changes made)
+(hrsWorkedHead1994: 7177 changes made)
+(hrsWorkedHead1995: 6527 changes made)
+(hrsWorkedHead1996: 6264 changes made)
+(hrsWorkedHead1997: 5201 changes made)
+(hrsWorkedHead1999: 4363 changes made)
+(hrsWorkedHead2001: 4257 changes made)
+(hrsWorkedHead2003: 4769 changes made)
+(hrsWorkedHead2005: 4778 changes made)
+(hrsWorkedHead2007: 4485 changes made)
+(hrsWorkedHead2009: 4587 changes made)
+(hrsWorkedHead2011: 5347 changes made)
+(hrsWorkedHead2013: 4862 changes made)
+(hrsWorkedHead2015: 4578 changes made)
+(hrsWorkedWife1968: 41024 changes made)
+(hrsWorkedWife1969: 38393 changes made)
+(hrsWorkedWife1970: 36944 changes made)
+(hrsWorkedWife1971: 36628 changes made)
+(hrsWorkedWife1972: 35578 changes made)
+(hrsWorkedWife1973: 36065 changes made)
+(hrsWorkedWife1974: 35024 changes made)
+(hrsWorkedWife1975: 34405 changes made)
+(hrsWorkedWife1976: 32622 changes made)
+(hrsWorkedWife1977: 32151 changes made)
+(hrsWorkedWife1978: 30998 changes made)
+(hrsWorkedWife1979: 29406 changes made)
+(hrsWorkedWife1980: 28042 changes made)
+(hrsWorkedWife1981: 27799 changes made)
+(hrsWorkedWife1982: 27638 changes made)
+(hrsWorkedWife1983: 26789 changes made)
+(hrsWorkedWife1984: 25971 changes made)
+(hrsWorkedWife1985: 24297 changes made)
+(hrsWorkedWife1986: 23564 changes made)
+(hrsWorkedWife1987: 22850 changes made)
+(hrsWorkedWife1988: 22208 changes made)
+(hrsWorkedWife1989: 20809 changes made)
+(hrsWorkedWife1990: 25983 changes made)
+(hrsWorkedWife1991: 24692 changes made)
+(hrsWorkedWife1992: 24957 changes made)
+(hrsWorkedWife1993: 25751 changes made)
+(hrsWorkedWife1994: 23085 changes made)
+(hrsWorkedWife1995: 21445 changes made)
+(hrsWorkedWife1996: 20573 changes made)
+(hrsWorkedWife1997: 18635 changes made)
+(hrsWorkedWife1999: 17875 changes made)
+(hrsWorkedWife2001: 17281 changes made)
+(hrsWorkedWife2003: 17666 changes made)
+(hrsWorkedWife2005: 16930 changes made)
+(hrsWorkedWife2007: 16376 changes made)
+(hrsWorkedWife2009: 15978 changes made)
+(hrsWorkedWife2011: 15713 changes made)
+(hrsWorkedWife2013: 14784 changes made)
+(hrsWorkedWife2015: 13468 changes made)
+(laborIncomeHead1968: 8015 changes made)
+(laborIncomeHead1969: 7799 changes made)
+(laborIncomeHead1970: 6917 changes made)
+(laborIncomeHead1971: 7018 changes made)
+(laborIncomeHead1972: 7917 changes made)
+(laborIncomeHead1973: 7663 changes made)
+(laborIncomeHead1974: 7517 changes made)
+(laborIncomeHead1975: 7552 changes made)
+(laborIncomeHead1976: 8385 changes made)
+(laborIncomeHead1977: 7750 changes made)
+(laborIncomeHead1978: 7228 changes made)
+(laborIncomeHead1979: 7209 changes made)
+(laborIncomeHead1980: 6862 changes made)
+(laborIncomeHead1981: 6996 changes made)
+(laborIncomeHead1982: 7635 changes made)
+(laborIncomeHead1983: 8121 changes made)
+(laborIncomeHead1984: 8150 changes made)
+(laborIncomeHead1985: 7467 changes made)
+(laborIncomeHead1986: 7074 changes made)
+(laborIncomeHead1987: 6732 changes made)
+(laborIncomeHead1988: 6410 changes made)
+(laborIncomeHead1989: 6175 changes made)
+(laborIncomeHead1990: 8329 changes made)
+(laborIncomeHead1991: 8095 changes made)
+(laborIncomeHead1992: 8720 changes made)
+(laborIncomeHead1993: 8692 changes made)
+(laborIncomeHead1994: 8769 changes made)
+(laborIncomeHead1995: 7968 changes made)
+(laborIncomeHead1996: 7711 changes made)
+(laborIncomeHead1997: 6627 changes made)
+(laborIncomeHead1999: 5731 changes made)
+(laborIncomeHead2001: 5395 changes made)
+(laborIncomeHead2003: 5688 changes made)
+(laborIncomeHead2005: 5337 changes made)
+(laborIncomeHead2007: 5223 changes made)
+(laborIncomeHead2009: 5172 changes made)
+(laborIncomeHead2011: 6081 changes made)
+(laborIncomeHead2013: 5546 changes made)
+(laborIncomeHead2015: 5063 changes made)
+(laborIncomeWife1968: 41123 changes made)
+(laborIncomeWife1969: 38476 changes made)
+(laborIncomeWife1970: 37042 changes made)
+(laborIncomeWife1971: 36814 changes made)
+(laborIncomeWife1972: 35680 changes made)
+(laborIncomeWife1973: 36148 changes made)
+(laborIncomeWife1974: 35055 changes made)
+(laborIncomeWife1975: 34454 changes made)
+(laborIncomeWife1976: 32657 changes made)
+(laborIncomeWife1977: 32159 changes made)
+(laborIncomeWife1978: 31004 changes made)
+(laborIncomeWife1979: 29408 changes made)
+(laborIncomeWife1980: 28128 changes made)
+(laborIncomeWife1981: 27928 changes made)
+(laborIncomeWife1982: 27687 changes made)
+(laborIncomeWife1983: 26869 changes made)
+(laborIncomeWife1984: 26053 changes made)
+(laborIncomeWife1985: 24411 changes made)
+(laborIncomeWife1986: 23691 changes made)
+(laborIncomeWife1987: 22990 changes made)
+(laborIncomeWife1988: 22345 changes made)
+(laborIncomeWife1989: 20835 changes made)
+(laborIncomeWife1990: 26079 changes made)
+(laborIncomeWife1991: 24813 changes made)
+(laborIncomeWife1992: 25073 changes made)
+(laborIncomeWife1993: 25819 changes made)
+(laborIncomeIndiv1968: 70369 changes made)
+(laborIncomeIndiv1969: 70223 changes made)
+(laborIncomeIndiv1970: 70212 changes made)
+(laborIncomeIndiv1971: 69988 changes made)
+(laborIncomeIndiv1972: 69398 changes made)
+(laborIncomeIndiv1973: 69331 changes made)
+(laborIncomeIndiv1974: 68935 changes made)
+(txblIncomeIndiv1975: 67997 changes made)
+(txblIncomeIndiv1976: 67820 changes made)
+(txblIncomeIndiv1977: 67583 changes made)
+(txblIncomeIndiv1978: 67880 changes made)
+(txblIncomeIndiv1979: 67186 changes made)
+(txblIncomeIndiv1980: 66864 changes made)
+(txblIncomeIndiv1981: 66867 changes made)
+(txblIncomeIndiv1982: 66803 changes made)
+(txblIncomeIndiv1983: 66693 changes made)
+(txblIncomeIndiv1984: 66632 changes made)
+(txblIncomeIndiv1985: 66290 changes made)
+(txblIncomeIndiv1986: 66272 changes made)
+(txblIncomeIndiv1987: 66246 changes made)
+(txblIncomeIndiv1988: 66141 changes made)
+(txblIncomeIndiv1989: 65992 changes made)
+(txblIncomeIndiv1990: 62555 changes made)
+(txblIncomeIndiv2005: 75047 changes made)
+(txblIncomeIndiv2007: 75089 changes made)
+(txblIncomeIndiv2009: 75045 changes made)
+(txblIncomeIndiv2011: 75369 changes made)
+(txblIncomeIndiv2013: 75325 changes made)
+(txblIncomeIndiv2015: 75228 changes made)
+(wageSalaryHead1968: 12134 changes made)
+(wageSalaryHead1969: 11064 changes made)
+(wageSalaryHead1970: 10173 changes made)
+(wageSalaryHead1971: 10289 changes made)
+(wageSalaryHead1972: 10862 changes made)
+(wageSalaryHead1973: 10528 changes made)
+(wageSalaryHead1974: 10562 changes made)
+(wageSalaryHead1975: 10359 changes made)
+(wageSalaryHead1976: 11141 changes made)
+(wageSalaryHead1977: 10142 changes made)
+(wageSalaryHead1978: 9691 changes made)
+(wageSalaryHead1979: 9594 changes made)
+(wageSalaryHead1980: 9293 changes made)
+(wageSalaryHead1981: 9313 changes made)
+(wageSalaryHead1982: 9893 changes made)
+(wageSalaryHead1983: 10227 changes made)
+(wageSalaryHead1984: 10289 changes made)
+(wageSalaryHead1985: 9661 changes made)
+(wageSalaryHead1986: 9106 changes made)
+(wageSalaryHead1987: 8734 changes made)
+(wageSalaryHead1988: 8565 changes made)
+(wageSalaryHead1989: 8026 changes made)
+(wageSalaryHead1990: 10673 changes made)
+(wageSalaryHead1991: 10069 changes made)
+(wageSalaryHead1992: 10850 changes made)
+(wageSalaryHead1993: 10165 changes made)
+(wageSalaryHead1994: 9185 changes made)
+(wageSalaryHead1995: 8231 changes made)
+(wageSalaryHead1996: 7914 changes made)
+(wageSalaryHead1997: 6629 changes made)
+(wageSalaryHead1999: 6015 changes made)
+(wageSalaryHead2001: 5599 changes made)
+(wageSalaryHead2003: 6237 changes made)
+(wageSalaryHead2005: 5501 changes made)
+(wageSalaryHead2007: 5331 changes made)
+(wageSalaryHead2009: 5233 changes made)
+(wageSalaryHead2011: 6170 changes made)
+(wageSalaryHead2013: 5607 changes made)
+(wageSalaryHead2015: 5118 changes made)
+(hrlyWageIndiv1999: 68576 changes made)
+(hrlyWageIndiv2001: 67611 changes made)
+(hrlyWageIndiv2003: 75496 changes made)
+(hrlyWageHead1968: 0 changes made)
+(hrlyWageHead1969: 0 changes made)
+(hrlyWageHead1970: 0 changes made)
+(hrlyWageHead1971: 0 changes made)
+(hrlyWageHead1972: 0 changes made)
+(hrlyWageHead1973: 0 changes made)
+(hrlyWageHead1974: 0 changes made)
+(hrlyWageHead1975: 0 changes made)
+(hrlyWageHead1976: 0 changes made)
+(hrlyWageHead1977: 0 changes made)
+(hrlyWageHead1978: 0 changes made)
+(hrlyWageHead1979: 0 changes made)
+(hrlyWageHead1980: 0 changes made)
+(hrlyWageHead1981: 0 changes made)
+(hrlyWageHead1982: 0 changes made)
+(hrlyWageHead1983: 0 changes made)
+(hrlyWageHead1984: 0 changes made)
+(hrlyWageHead1985: 0 changes made)
+(hrlyWageHead1986: 0 changes made)
+(hrlyWageHead1987: 0 changes made)
+(hrlyWageHead1988: 0 changes made)
+(hrlyWageHead1989: 0 changes made)
+(hrlyWageHead1990: 0 changes made)
+(hrlyWageHead1991: 0 changes made)
+(hrlyWageHead1992: 0 changes made)
+(hrlyWageHead1994: 0 changes made)
+(hrlyWageHead1995: 0 changes made)
+(hrlyWageHead1996: 0 changes made)
+(hrlyWageHead1997: 0 changes made)
+(hrlyWageHead1999: 0 changes made)
+(hrlyWageHead2001: 0 changes made)
+(hrlyWageHead2003: 0 changes made)
+(hrlyWageHead2005: 0 changes made)
+(hrlyWageHead2007: 0 changes made)
+(hrlyWageHead2009: 0 changes made)
+(hrlyWageHead2011: 0 changes made)
+(hrlyWageHead2013: 0 changes made)
+(hrlyWageHead2015: 0 changes made)
+(hrlyWageWife1968: 0 changes made)
+(hrlyWageWife1969: 0 changes made)
+(hrlyWageWife1970: 0 changes made)
+(hrlyWageWife1971: 0 changes made)
+(hrlyWageWife1972: 0 changes made)
+(hrlyWageWife1973: 0 changes made)
+(hrlyWageWife1974: 0 changes made)
+(hrlyWageWife1975: 0 changes made)
+(hrlyWageWife1976: 0 changes made)
+(hrlyWageWife1977: 0 changes made)
+(hrlyWageWife1978: 0 changes made)
+(hrlyWageWife1979: 0 changes made)
+(hrlyWageWife1980: 0 changes made)
+(hrlyWageWife1981: 0 changes made)
+(hrlyWageWife1982: 0 changes made)
+(hrlyWageWife1983: 0 changes made)
+(hrlyWageWife1984: 0 changes made)
+(hrlyWageWife1985: 0 changes made)
+(hrlyWageWife1986: 0 changes made)
+(hrlyWageWife1987: 0 changes made)
+(hrlyWageWife1988: 0 changes made)
+(hrlyWageWife1989: 0 changes made)
+(hrlyWageWife1990: 0 changes made)
+(hrlyWageWife1991: 0 changes made)
+(hrlyWageWife1992: 0 changes made)
+(hrlyWageWife1994: 0 changes made)
+(hrlyWageWife1995: 0 changes made)
+(hrlyWageWife1996: 0 changes made)
+(hrlyWageWife1997: 0 changes made)
+(hrlyWageWife1999: 0 changes made)
+(hrlyWageWife2001: 0 changes made)
+(hrlyWageWife2003: 0 changes made)
+(hrlyWageWife2005: 0 changes made)
+(hrlyWageWife2007: 0 changes made)
+(hrlyWageWife2009: 0 changes made)
+(hrlyWageWife2011: 0 changes made)
+(hrlyWageWife2013: 0 changes made)
+(hrlyWageWife2015: 0 changes made)
+(hgc1968: 68195 changes made)
+(hgc1970: 76990 changes made)
+(hgc1971: 77019 changes made)
+(hgc1972: 76992 changes made)
+(hgc1973: 76936 changes made)
+(hgc1974: 76948 changes made)
+(hgc1975: 67878 changes made)
+(hgc1976: 67676 changes made)
+(hgc1977: 67411 changes made)
+(hgc1978: 67170 changes made)
+(hgc1979: 64184 changes made)
+(hgc1980: 63933 changes made)
+(hgc1981: 63788 changes made)
+(hgc1982: 63571 changes made)
+(hgc1983: 63351 changes made)
+(hgc1984: 63349 changes made)
+(hgc1985: 63349 changes made)
+(hgc1986: 63354 changes made)
+(hgc1987: 63327 changes made)
+(hgc1988: 63297 changes made)
+(hgc1989: 63337 changes made)
+(hgc1990: 58305 changes made)
+(hgc1991: 58586 changes made)
+(hgc1992: 57572 changes made)
+(hgc1993: 57225 changes made)
+(hgc1994: 56005 changes made)
+(hgc1995: 56826 changes made)
+(hgc1996: 60756 changes made)
+(hgc1997: 63915 changes made)
+(hgc1999: 63327 changes made)
+(hgc2001: 62457 changes made)
+(hgc2003: 61748 changes made)
+(hgc2005: 61317 changes made)
+(hgc2007: 60913 changes made)
+(hgc2009: 60142 changes made)
+(hgc2011: 60054 changes made)
+(hgc2013: 60494 changes made)
+(hgc2015: 60024 changes made)
+(hgcWife1968: 16249 changes made)
+(hgcHead1968: 3204 changes made)
+(hgcHead1969: 2797 changes made)
+(hgcHead1970: 2513 changes made)
+(hgcHead1971: 2258 changes made)
+(hgcWife1972: 16537 changes made)
+(hgcHead1972: 2015 changes made)
+(hgcWife1973: 14876 changes made)
+(hgcHead1973: 1774 changes made)
+(hgcWife1974: 13619 changes made)
+(hgcHead1974: 1404 changes made)
+(hgcHeadAlt1975: 393 changes made)
+(hgcWifeAlt1975: 17217 changes made)
+(hgcHead1975: 1735 changes made)
+(hgcWife1975: 17203 changes made)
+(hgcHeadAlt1976: 335 changes made)
+(hgcWifeAlt1976: 17030 changes made)
+(hgcHead1976: 1528 changes made)
+(hgcWife1976: 17036 changes made)
+(hgcWifeAlt1977: 16801 changes made)
+(hgcHeadAlt1977: 267 changes made)
+(hgcHead1977: 1408 changes made)
+(hgcWife1977: 16743 changes made)
+(hgcWifeAlt1978: 14363 changes made)
+(hgcHeadAlt1978: 229 changes made)
+(hgcHead1978: 1232 changes made)
+(hgcWife1978: 16515 changes made)
+(hgcWifeAlt1979: 12740 changes made)
+(hgcHeadAlt1979: 186 changes made)
+(hgcHead1979: 1148 changes made)
+(hgcWife1979: 16246 changes made)
+(hgcWifeAlt1980: 16075 changes made)
+(hgcHeadAlt1980: 216 changes made)
+(hgcHead1980: 1009 changes made)
+(hgcWife1980: 16048 changes made)
+(hgcWifeAlt1981: 16302 changes made)
+(hgcHeadAlt1981: 182 changes made)
+(hgcHead1981: 904 changes made)
+(hgcWife1981: 16296 changes made)
+(hgcWifeAlt1982: 16581 changes made)
+(hgcHeadAlt1982: 172 changes made)
+(hgcHead1982: 865 changes made)
+(hgcWife1982: 16575 changes made)
+(hgcWifeAlt1983: 15981 changes made)
+(hgcHeadAlt1983: 154 changes made)
+(hgcHead1983: 716 changes made)
+(hgcWife1983: 15975 changes made)
+(hgcWifeAlt1984: 15746 changes made)
+(hgcHeadAlt1984: 154 changes made)
+(hgcHead1984: 692 changes made)
+(hgcWife1984: 15740 changes made)
+(hgcHead1985: 0 changes made)
+(hgcWife1985: 16037 changes made)
+(hgcHead1986: 0 changes made)
+(hgcWife1986: 15181 changes made)
+(hgcHead1987: 0 changes made)
+(hgcWife1987: 14704 changes made)
+(hgcHead1988: 0 changes made)
+(hgcWife1988: 14311 changes made)
+(hgcHead1989: 0 changes made)
+(hgcWife1989: 13726 changes made)
+(hgcHead1990: 0 changes made)
+(hgcWife1990: 16574 changes made)
+(hgcHeadAlt1991: 463 changes made)
+(hgcWifeAlt1991: 16191 changes made)
+(hgcHeadAlt1992: 406 changes made)
+(hgcWifeAlt1992: 16360 changes made)
+(hgcHeadAlt1993: 348 changes made)
+(hgcWifeAlt1993: 17218 changes made)
+(hgcHeadAlt1994: 313 changes made)
+(hgcWifeAlt1994: 18347 changes made)
+(hgcHeadAlt1995: 257 changes made)
+(hgcWifeAlt1995: 16930 changes made)
+(hgcHeadAlt1996: 47 changes made)
+(hgcWifeAlt1996: 14722 changes made)
+(hgcHeadAlt1997: 285 changes made)
+(hgcWifeAlt1997: 13176 changes made)
+(hgcHeadAlt1999: 236 changes made)
+(hgcWifeAlt1999: 13200 changes made)
+(hgcHeadAlt2001: 202 changes made)
+(hgcWifeAlt2001: 12663 changes made)
+(hgcHeadAlt2003: 168 changes made)
+(hgcWifeAlt2003: 13088 changes made)
+(hgcHeadAlt2005: 169 changes made)
+(hgcWifeAlt2005: 12452 changes made)
+(hgcHeadAlt2007: 137 changes made)
+(hgcWifeAlt2007: 12037 changes made)
+(hgcHeadAlt2009: 141 changes made)
+(hgcWifeAlt2009: 11622 changes made)
+(hgcHeadAlt2011: 97 changes made)
+(hgcWifeAlt2011: 11238 changes made)
+(hgcHeadAlt2013: 66 changes made)
+(hgcWifeAlt2013: 10480 changes made)
+(hgcHeadAlt2015: 56 changes made)
+(hgcWifeAlt2015: 9480 changes made)
+(gradBAHead1975: 43275 changes made)
+(gradBAHead1976: 42193 changes made)
+(gradBAHead1977: 41178 changes made)
+(gradBAHead1978: 40069 changes made)
+(gradBAHead1979: 38987 changes made)
+(gradBAHead1980: 37755 changes made)
+(gradBAHead1981: 36635 changes made)
+(gradBAHead1982: 35727 changes made)
+(gradBAHead1983: 34656 changes made)
+(gradBAHead1984: 33602 changes made)
+(gradBAHead1985: 29891 changes made)
+(gradBAHead1986: 28696 changes made)
+(gradBAHead1987: 27643 changes made)
+(gradBAHead1988: 26721 changes made)
+(gradBAHead1989: 25473 changes made)
+(gradBAHead1990: 32713 changes made)
+(gradBAHead1991: 31286 changes made)
+(gradBAHead1992: 31480 changes made)
+(gradBAHead1993: 30631 changes made)
+(gradBAHead1994: 31546 changes made)
+(gradBAHead1995: 29586 changes made)
+(gradBAHead1996: 23759 changes made)
+(gradBAHead1997: 21797 changes made)
+(gradBAHead1999: 21419 changes made)
+(gradBAHead2001: 20553 changes made)
+(gradBAHead2003: 19657 changes made)
+(gradBAHead2005: 18525 changes made)
+(gradBAHead2007: 17499 changes made)
+(gradBAHead2009: 15504 changes made)
+(gradBAHead2011: 14394 changes made)
+(gradBAHead2013: 12958 changes made)
+(gradBAHead2015: 11583 changes made)
+(gradBAwife1975: 49159 changes made)
+(gradBAwife1976: 47988 changes made)
+(gradBAwife1977: 46995 changes made)
+(gradBAwife1978: 45576 changes made)
+(gradBAwife1979: 44246 changes made)
+(gradBAwife1980: 43303 changes made)
+(gradBAwife1981: 42058 changes made)
+(gradBAwife1982: 41109 changes made)
+(gradBAwife1983: 39719 changes made)
+(gradBAwife1984: 38424 changes made)
+(gradBAwife1985: 35729 changes made)
+(gradBAwife1986: 34212 changes made)
+(gradBAwife1987: 33139 changes made)
+(gradBAwife1988: 31943 changes made)
+(gradBAwife1989: 30556 changes made)
+(gradBAwife1990: 38234 changes made)
+(gradBAwife1991: 36381 changes made)
+(gradBAwife1992: 36367 changes made)
+(gradBAwife1993: 36224 changes made)
+(gradBAwife1994: 37282 changes made)
+(gradBAwife1995: 34843 changes made)
+(gradBAwife1996: 29054 changes made)
+(gradBAwife1997: 26502 changes made)
+(gradBAwife1999: 25901 changes made)
+(gradBAwife2001: 24749 changes made)
+(gradBAwife2003: 24046 changes made)
+(gradBAwife2005: 22802 changes made)
+(gradBAwife2007: 21559 changes made)
+(gradBAwife2009: 19599 changes made)
+(gradBAwife2011: 18318 changes made)
+(gradBAwife2013: 16737 changes made)
+(gradBAwife2015: 15136 changes made)
+(in_school1968: 58993 changes made)
+(in_school1979: 74275 changes made)
+(in_school1980: 74252 changes made)
+(in_school1981: 74180 changes made)
+(in_school1982: 74098 changes made)
+(in_school1983: 74087 changes made)
+(in_school1984: 74202 changes made)
+(in_school1985: 75929 changes made)
+(in_school1986: 75875 changes made)
+(in_school1987: 75898 changes made)
+(in_school1988: 75907 changes made)
+(in_school1989: 75940 changes made)
+(in_school1990: 75184 changes made)
+(in_school1991: 75186 changes made)
+(in_school1992: 75081 changes made)
+(in_school1993: 74968 changes made)
+(in_school1994: 74900 changes made)
+(in_school1995: 74935 changes made)
+(in_school1996: 75335 changes made)
+(in_school1997: 75657 changes made)
+(in_school1999: 75490 changes made)
+(in_school2001: 75402 changes made)
+(in_school2003: 75248 changes made)
+(in_school2005: 75331 changes made)
+(in_school2007: 75349 changes made)
+(in_school2009: 75243 changes made)
+(age1968: 58992 changes made)
+(age1969: 60010 changes made)
+(age1970: 59873 changes made)
+(age1971: 59632 changes made)
+(age1972: 59171 changes made)
+(age1973: 58987 changes made)
+(age1974: 58828 changes made)
+(age1975: 58600 changes made)
+(age1976: 58454 changes made)
+(age1977: 58224 changes made)
+(age1978: 58082 changes made)
+(age1979: 57779 changes made)
+(age1980: 57475 changes made)
+(age1981: 57426 changes made)
+(age1982: 57110 changes made)
+(age1983: 56895 changes made)
+(age1984: 56829 changes made)
+(age1985: 56542 changes made)
+(age1986: 56785 changes made)
+(age1987: 56736 changes made)
+(age1988: 56716 changes made)
+(age1989: 56771 changes made)
+(age1990: 49025 changes made)
+(age1991: 49377 changes made)
+(age1992: 47947 changes made)
+(age1993: 47496 changes made)
+(age1994: 45677 changes made)
+(age1995: 47338 changes made)
+(age1996: 53412 changes made)
+(age1997: 57460 changes made)
+(age1999: 56707 changes made)
+(age2001: 55822 changes made)
+(age2003: 54932 changes made)
+(age2005: 54305 changes made)
+(age2007: 53722 changes made)
+(age2009: 52838 changes made)
+(age2011: 52562 changes made)
+(age2013: 52271 changes made)
+(age2015: 52586 changes made)
+(birthyr1983: 56895 changes made)
+(birthyr1984: 56829 changes made)
+(birthyr1985: 56541 changes made)
+(birthyr1986: 56785 changes made)
+(birthyr1987: 56736 changes made)
+(birthyr1988: 56716 changes made)
+(birthyr1989: 56771 changes made)
+(birthyr1990: 49025 changes made)
+(birthyr1991: 49377 changes made)
+(birthyr1992: 47947 changes made)
+(birthyr1993: 47496 changes made)
+(birthyr1994: 45676 changes made)
+(birthyr1995: 47337 changes made)
+(birthyr1996: 53412 changes made)
+(birthyr1997: 57460 changes made)
+(birthyr1999: 56704 changes made)
+(birthyr2001: 55822 changes made)
+(birthyr2003: 54930 changes made)
+(birthyr2005: 54305 changes made)
+(birthyr2007: 53722 changes made)
+(birthyr2009: 52838 changes made)
+(birthyr2011: 52562 changes made)
+(birthyr2013: 52271 changes made)
+(birthyr2015: 52586 changes made)
+(svywgt1968: 58993 changes made)
+(svywgt1969: 60549 changes made)
+(svywgt1970: 60865 changes made)
+(svywgt1971: 60981 changes made)
+(svywgt1972: 60943 changes made)
+(svywgt1973: 61073 changes made)
+(svywgt1974: 61161 changes made)
+(svywgt1975: 61201 changes made)
+(svywgt1976: 61290 changes made)
+(svywgt1977: 61328 changes made)
+(svywgt1978: 61393 changes made)
+(svywgt1979: 61334 changes made)
+(svywgt1980: 61308 changes made)
+(svywgt1981: 61327 changes made)
+(svywgt1982: 61216 changes made)
+(svywgt1983: 61215 changes made)
+(svywgt1984: 61238 changes made)
+(svywgt1985: 61202 changes made)
+(svywgt1986: 61445 changes made)
+(svywgt1987: 61472 changes made)
+(svywgt1988: 61535 changes made)
+(svywgt1989: 61661 changes made)
+(svywgt1990: 61598 changes made)
+(svywgt1991: 61618 changes made)
+(svywgt1992: 61471 changes made)
+(svywgt1993: 61102 changes made)
+(svywgt1994: 59062 changes made)
+(svywgt1995: 59525 changes made)
+(svywgt1996: 59638 changes made)
+(svywgt1997: 62179 changes made)
+(svywgt1999: 61913 changes made)
+(svywgt2001: 61581 changes made)
+(svywgt2003: 61219 changes made)
+(svywgt2005: 60614 changes made)
+(svywgt2007: 60327 changes made)
+(svywgt2009: 59748 changes made)
+(svywgt2011: 59581 changes made)
+(svywgt2013: 59444 changes made)
+(svywgt2015: 59718 changes made)
+(raceHead1968: 0 changes made)
+(raceHead1969: 0 changes made)
+(raceHead1970: 0 changes made)
+(raceHead1971: 0 changes made)
+(raceHead1972: 0 changes made)
+(raceHead1973: 0 changes made)
+(raceHead1974: 0 changes made)
+(raceHead1975: 0 changes made)
+(raceHead1976: 0 changes made)
+(raceHead1977: 0 changes made)
+(raceHead1978: 0 changes made)
+(raceHead1979: 0 changes made)
+(raceHead1980: 0 changes made)
+(raceHead1981: 0 changes made)
+(raceHead1982: 0 changes made)
+(raceHead1983: 0 changes made)
+(raceHead1984: 0 changes made)
+(raceHead1985: 0 changes made)
+(raceHead1986: 0 changes made)
+(raceHead1987: 0 changes made)
+(raceHead1988: 0 changes made)
+(raceHead1989: 0 changes made)
+(raceHead1990: 0 changes made)
+(raceHead1991: 0 changes made)
+(raceHead1992: 0 changes made)
+(raceHead1993: 0 changes made)
+(raceHead1994: 0 changes made)
+(raceHead1995: 0 changes made)
+(raceHead1996: 0 changes made)
+(raceHead1997: 0 changes made)
+(raceHead1999: 0 changes made)
+(raceHead2001: 0 changes made)
+(raceHead2003: 0 changes made)
+(raceHead2005: 19 changes made)
+(raceHead2007: 11 changes made)
+(raceHead2009: 0 changes made)
+(raceHead2011: 0 changes made)
+(raceHead2013: 0 changes made)
+(raceHead2015: 0 changes made)
+(raceWife1985: 16037 changes made)
+(raceWife1986: 15181 changes made)
+(raceWife1987: 14704 changes made)
+(raceWife1988: 14311 changes made)
+(raceWife1989: 13726 changes made)
+(raceWife1990: 16574 changes made)
+(raceWife1991: 15933 changes made)
+(raceWife1992: 16114 changes made)
+(raceWife1993: 17057 changes made)
+(raceWife1994: 18225 changes made)
+(raceWife1995: 16836 changes made)
+(raceWife1996: 14703 changes made)
+(raceWife1997: 13078 changes made)
+(raceWife1999: 13114 changes made)
+(raceWife2001: 12587 changes made)
+(raceWife2003: 13019 changes made)
+(raceWife2005: 12388 changes made)
+(raceWife2007: 11959 changes made)
+(raceWife2009: 11580 changes made)
+(raceWife2011: 11187 changes made)
+(raceWife2013: 10441 changes made)
+(raceWife2015: 9447 changes made)
+(relHD1968: 58993 changes made)
+(relHD1969: 60011 changes made)
+(relHD1970: 59874 changes made)
+(relHD1971: 59633 changes made)
+(relHD1972: 59172 changes made)
+(relHD1973: 58988 changes made)
+(relHD1974: 58829 changes made)
+(relHD1975: 58601 changes made)
+(relHD1976: 58455 changes made)
+(relHD1977: 58225 changes made)
+(relHD1978: 58083 changes made)
+(relHD1979: 57780 changes made)
+(relHD1980: 57476 changes made)
+(relHD1981: 57427 changes made)
+(relHD1982: 57111 changes made)
+(relHD1983: 56896 changes made)
+(relHD1984: 56830 changes made)
+(relHD1985: 56543 changes made)
+(relHD1986: 56786 changes made)
+(relHD1987: 56737 changes made)
+(relHD1988: 56717 changes made)
+(relHD1989: 56772 changes made)
+(relHD1990: 49026 changes made)
+(relHD1991: 49378 changes made)
+(relHD1992: 47948 changes made)
+(relHD1993: 47497 changes made)
+(relHD1994: 45678 changes made)
+(relHD1995: 47339 changes made)
+(relHD1996: 53413 changes made)
+(relHD1997: 57462 changes made)
+(relHD1999: 56708 changes made)
+(relHD2001: 55823 changes made)
+(relHD2003: 54933 changes made)
+(relHD2005: 54305 changes made)
+(relHD2007: 53722 changes made)
+(relHD2009: 52838 changes made)
+(relHD2011: 52562 changes made)
+(relHD2013: 52271 changes made)
+(relHD2015: 52586 changes made)
+(mightMoveHD1968: 0 changes made)
+(mightMoveHD1969: 0 changes made)
+(mightMoveHD1970: 0 changes made)
+(mightMoveHD1971: 0 changes made)
+(mightMoveHD1972: 0 changes made)
+(mightMoveHD1973: 0 changes made)
+(mightMoveHD1974: 0 changes made)
+(mightMoveHD1975: 0 changes made)
+(mightMoveHD1976: 0 changes made)
+(mightMoveHD1977: 0 changes made)
+(mightMoveHD1978: 0 changes made)
+(mightMoveHD1979: 0 changes made)
+(mightMoveHD1980: 0 changes made)
+(mightMoveHD1981: 0 changes made)
+(mightMoveHD1982: 0 changes made)
+(mightMoveHD1983: 0 changes made)
+(mightMoveHD1984: 0 changes made)
+(mightMoveHD1985: 0 changes made)
+(mightMoveHD1986: 0 changes made)
+(mightMoveHD1987: 0 changes made)
+(mightMoveHD1988: 0 changes made)
+(mightMoveHD1989: 0 changes made)
+(mightMoveHD1990: 0 changes made)
+(mightMoveHD1991: 0 changes made)
+(mightMoveHD1992: 0 changes made)
+(mightMoveHD1993: 0 changes made)
+(mightMoveHD1995: 0 changes made)
+(mightMoveHD1996: 0 changes made)
+(mightMoveHD1997: 0 changes made)
+(mightMoveHD1999: 0 changes made)
+(mightMoveHD2001: 0 changes made)
+(mightMoveHD2003: 0 changes made)
+(mightMoveHD2005: 0 changes made)
+(mightMoveHD2007: 0 changes made)
+(mightMoveHD2009: 0 changes made)
+(mightMoveHD2011: 0 changes made)
+(mightMoveHD2013: 0 changes made)
+(mightMoveHD2015: 0 changes made)
+(movedSinceSpring1969: 0 changes made)
+(movedSinceSpring1970: 0 changes made)
+(movedSinceSpring1971: 0 changes made)
+(movedSinceSpring1972: 0 changes made)
+(movedSinceSpring1973: 0 changes made)
+(movedSinceSpring1974: 0 changes made)
+(movedSinceSpring1975: 0 changes made)
+(movedSinceSpring1976: 0 changes made)
+(movedSinceSpring1977: 0 changes made)
+(movedSinceSpring1978: 0 changes made)
+(movedSinceSpring1979: 0 changes made)
+(movedSinceSpring1980: 0 changes made)
+(movedSinceSpring1981: 0 changes made)
+(movedSinceSpring1982: 0 changes made)
+(movedSinceSpring1983: 0 changes made)
+(movedSinceSpring1984: 0 changes made)
+(movedSinceSpring1985: 0 changes made)
+(movedSinceSpring1986: 0 changes made)
+(movedSinceSpring1987: 0 changes made)
+(movedSinceSpring1988: 0 changes made)
+(movedSinceSpring1989: 0 changes made)
+(movedSinceSpring1990: 0 changes made)
+(movedSinceSpring1991: 0 changes made)
+(movedSinceSpring1992: 0 changes made)
+(movedSinceSpring1993: 0 changes made)
+(movedSinceSpring1994: 0 changes made)
+(movedSinceSpring1995: 0 changes made)
+(movedSinceSpring1996: 0 changes made)
+(movedSinceSpring1997: 0 changes made)
+(movedSinceSpring1999: 0 changes made)
+(movedSinceSpring2001: 0 changes made)
+(movedSinceSpring2003: 0 changes made)
+(movedSinceSpring2005: 0 changes made)
+(movedSinceSpring2007: 0 changes made)
+(movedSinceSpring2009: 0 changes made)
+(movedSinceSpring2011: 0 changes made)
+(movedSinceSpring2013: 0 changes made)
+(movedSinceSpring2015: 0 changes made)
+(advDegDumHD1975: 0 changes made)
+(advDegDumHD1976: 0 changes made)
+(advDegDumHD1977: 0 changes made)
+(advDegDumHD1978: 0 changes made)
+(advDegDumHD1979: 0 changes made)
+(advDegDumHD1980: 0 changes made)
+(advDegDumHD1981: 0 changes made)
+(advDegDumHD1982: 0 changes made)
+(advDegDumHD1983: 0 changes made)
+(advDegDumHD1984: 0 changes made)
+(advDegDumWife1975: 0 changes made)
+(advDegDumWife1976: 0 changes made)
+(advDegDumWife1977: 0 changes made)
+(advDegDumWife1978: 0 changes made)
+(advDegDumWife1979: 0 changes made)
+(advDegDumWife1980: 0 changes made)
+(advDegDumWife1981: 0 changes made)
+(advDegDumWife1982: 0 changes made)
+(advDegDumWife1983: 0 changes made)
+(advDegDumWife1984: 0 changes made)
+(highDegHD1985: 0 changes made)
+(highDegHD1986: 0 changes made)
+(highDegHD1987: 0 changes made)
+(highDegHD1988: 0 changes made)
+(highDegHD1989: 0 changes made)
+(highDegHD1990: 0 changes made)
+(highDegHD1991: 0 changes made)
+(highDegHD1992: 0 changes made)
+(highDegHD1993: 0 changes made)
+(highDegHD1994: 0 changes made)
+(highDegHD1995: 0 changes made)
+(highDegHD1996: 0 changes made)
+(highDegHD1997: 0 changes made)
+(highDegHD1999: 0 changes made)
+(highDegHD2001: 0 changes made)
+(highDegHD2003: 0 changes made)
+(highDegHD2005: 0 changes made)
+(highDegHD2007: 0 changes made)
+(highDegHD2009: 0 changes made)
+(highDegHD2011: 0 changes made)
+(highDegHD2013: 0 changes made)
+(highDegHD2015: 0 changes made)
+(highDegWife1985: 0 changes made)
+(highDegWife1986: 0 changes made)
+(highDegWife1987: 0 changes made)
+(highDegWife1988: 0 changes made)
+(highDegWife1989: 0 changes made)
+(highDegWife1990: 0 changes made)
+(highDegWife1991: 0 changes made)
+(highDegWife1992: 0 changes made)
+(highDegWife1993: 0 changes made)
+(highDegWife1994: 0 changes made)
+(highDegWife1995: 0 changes made)
+(highDegWife1996: 0 changes made)
+(highDegWife1997: 0 changes made)
+(highDegWife1999: 0 changes made)
+(highDegWife2001: 0 changes made)
+(highDegWife2003: 0 changes made)
+(highDegWife2005: 0 changes made)
+(highDegWife2007: 0 changes made)
+(highDegWife2009: 0 changes made)
+(highDegWife2011: 0 changes made)
+(highDegWife2013: 0 changes made)
+(highDegWife2015: 0 changes made)
+(sex: 0 changes made)
+(sampleOrNot: 22380 changes made)
+(mothID1968: 30031 changes made)
+(fathID1968: 40029 changes made)
+(yrDied: 70360 changes made)
+
+. 
+. *-------------------------------------------------------------------
+. * reshape long
+. *-------------------------------------------------------------------
+. psid long
+(note: j = 1968 1969 1970 1971 1972 1973 1974 1975 1976 1977 1978 1979 1980 198
+> 1 1982 1983 1984 1985 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 
+> 1997 1999 2001 2003 2005 2007 2009 2011 2013 2015)
+(note: xsqnr1968 not found)
+(note: empStat1968 not found)
+(note: txblIncomeIndiv1968 not found)
+(note: hrlyWageIndiv1968 not found)
+(note: hgcHeadAlt1968 not found)
+(note: hgcWifeAlt1968 not found)
+(note: gradBAHead1968 not found)
+(note: gradBAwife1968 not found)
+(note: birthyr1968 not found)
+(note: raceWife1968 not found)
+(note: movedSinceSpring1968 not found)
+(note: advDegDumHD1968 not found)
+(note: advDegDumWife1968 not found)
+(note: highDegHD1968 not found)
+(note: highDegWife1968 not found)
+(note: empStat1969 not found)
+(note: txblIncomeIndiv1969 not found)
+(note: hrlyWageIndiv1969 not found)
+(note: hgc1969 not found)
+(note: hgcWife1969 not found)
+(note: hgcHeadAlt1969 not found)
+(note: hgcWifeAlt1969 not found)
+(note: gradBAHead1969 not found)
+(note: gradBAwife1969 not found)
+(note: in_school1969 not found)
+(note: birthyr1969 not found)
+(note: raceWife1969 not found)
+(note: advDegDumHD1969 not found)
+(note: advDegDumWife1969 not found)
+(note: highDegHD1969 not found)
+(note: highDegWife1969 not found)
+(note: mothID1969 not found)
+(note: fathID1969 not found)
+(note: empStat1970 not found)
+(note: txblIncomeIndiv1970 not found)
+(note: hrlyWageIndiv1970 not found)
+(note: hgcWife1970 not found)
+(note: hgcHeadAlt1970 not found)
+(note: hgcWifeAlt1970 not found)
+(note: gradBAHead1970 not found)
+(note: gradBAwife1970 not found)
+(note: in_school1970 not found)
+(note: birthyr1970 not found)
+(note: raceWife1970 not found)
+(note: advDegDumHD1970 not found)
+(note: advDegDumWife1970 not found)
+(note: highDegHD1970 not found)
+(note: highDegWife1970 not found)
+(note: mothID1970 not found)
+(note: fathID1970 not found)
+(note: empStat1971 not found)
+(note: txblIncomeIndiv1971 not found)
+(note: hrlyWageIndiv1971 not found)
+(note: hgcWife1971 not found)
+(note: hgcHeadAlt1971 not found)
+(note: hgcWifeAlt1971 not found)
+(note: gradBAHead1971 not found)
+(note: gradBAwife1971 not found)
+(note: in_school1971 not found)
+(note: birthyr1971 not found)
+(note: raceWife1971 not found)
+(note: advDegDumHD1971 not found)
+(note: advDegDumWife1971 not found)
+(note: highDegHD1971 not found)
+(note: highDegWife1971 not found)
+(note: mothID1971 not found)
+(note: fathID1971 not found)
+(note: empStat1972 not found)
+(note: txblIncomeIndiv1972 not found)
+(note: hrlyWageIndiv1972 not found)
+(note: hgcHeadAlt1972 not found)
+(note: hgcWifeAlt1972 not found)
+(note: gradBAHead1972 not found)
+(note: gradBAwife1972 not found)
+(note: in_school1972 not found)
+(note: birthyr1972 not found)
+(note: raceWife1972 not found)
+(note: advDegDumHD1972 not found)
+(note: advDegDumWife1972 not found)
+(note: highDegHD1972 not found)
+(note: highDegWife1972 not found)
+(note: mothID1972 not found)
+(note: fathID1972 not found)
+(note: empStat1973 not found)
+(note: txblIncomeIndiv1973 not found)
+(note: hrlyWageIndiv1973 not found)
+(note: hgcHeadAlt1973 not found)
+(note: hgcWifeAlt1973 not found)
+(note: gradBAHead1973 not found)
+(note: gradBAwife1973 not found)
+(note: in_school1973 not found)
+(note: birthyr1973 not found)
+(note: raceWife1973 not found)
+(note: advDegDumHD1973 not found)
+(note: advDegDumWife1973 not found)
+(note: highDegHD1973 not found)
+(note: highDegWife1973 not found)
+(note: mothID1973 not found)
+(note: fathID1973 not found)
+(note: empStat1974 not found)
+(note: txblIncomeIndiv1974 not found)
+(note: hrlyWageIndiv1974 not found)
+(note: hgcHeadAlt1974 not found)
+(note: hgcWifeAlt1974 not found)
+(note: gradBAHead1974 not found)
+(note: gradBAwife1974 not found)
+(note: in_school1974 not found)
+(note: birthyr1974 not found)
+(note: raceWife1974 not found)
+(note: advDegDumHD1974 not found)
+(note: advDegDumWife1974 not found)
+(note: highDegHD1974 not found)
+(note: highDegWife1974 not found)
+(note: mothID1974 not found)
+(note: fathID1974 not found)
+(note: empStat1975 not found)
+(note: laborIncomeIndiv1975 not found)
+(note: hrlyWageIndiv1975 not found)
+(note: in_school1975 not found)
+(note: birthyr1975 not found)
+(note: raceWife1975 not found)
+(note: highDegHD1975 not found)
+(note: highDegWife1975 not found)
+(note: mothID1975 not found)
+(note: fathID1975 not found)
+(note: empStat1976 not found)
+(note: laborIncomeIndiv1976 not found)
+(note: hrlyWageIndiv1976 not found)
+(note: in_school1976 not found)
+(note: birthyr1976 not found)
+(note: raceWife1976 not found)
+(note: highDegHD1976 not found)
+(note: highDegWife1976 not found)
+(note: mothID1976 not found)
+(note: fathID1976 not found)
+(note: empStat1977 not found)
+(note: laborIncomeIndiv1977 not found)
+(note: hrlyWageIndiv1977 not found)
+(note: in_school1977 not found)
+(note: birthyr1977 not found)
+(note: raceWife1977 not found)
+(note: highDegHD1977 not found)
+(note: highDegWife1977 not found)
+(note: mothID1977 not found)
+(note: fathID1977 not found)
+(note: empStat1978 not found)
+(note: laborIncomeIndiv1978 not found)
+(note: hrlyWageIndiv1978 not found)
+(note: in_school1978 not found)
+(note: birthyr1978 not found)
+(note: raceWife1978 not found)
+(note: highDegHD1978 not found)
+(note: highDegWife1978 not found)
+(note: mothID1978 not found)
+(note: fathID1978 not found)
+(note: laborIncomeIndiv1979 not found)
+(note: hrlyWageIndiv1979 not found)
+(note: birthyr1979 not found)
+(note: raceWife1979 not found)
+(note: highDegHD1979 not found)
+(note: highDegWife1979 not found)
+(note: mothID1979 not found)
+(note: fathID1979 not found)
+(note: laborIncomeIndiv1980 not found)
+(note: hrlyWageIndiv1980 not found)
+(note: birthyr1980 not found)
+(note: raceWife1980 not found)
+(note: highDegHD1980 not found)
+(note: highDegWife1980 not found)
+(note: mothID1980 not found)
+(note: fathID1980 not found)
+(note: laborIncomeIndiv1981 not found)
+(note: hrlyWageIndiv1981 not found)
+(note: birthyr1981 not found)
+(note: raceWife1981 not found)
+(note: highDegHD1981 not found)
+(note: highDegWife1981 not found)
+(note: mothID1981 not found)
+(note: fathID1981 not found)
+(note: laborIncomeIndiv1982 not found)
+(note: hrlyWageIndiv1982 not found)
+(note: birthyr1982 not found)
+(note: raceWife1982 not found)
+(note: highDegHD1982 not found)
+(note: highDegWife1982 not found)
+(note: mothID1982 not found)
+(note: fathID1982 not found)
+(note: laborIncomeIndiv1983 not found)
+(note: hrlyWageIndiv1983 not found)
+(note: raceWife1983 not found)
+(note: highDegHD1983 not found)
+(note: highDegWife1983 not found)
+(note: mothID1983 not found)
+(note: fathID1983 not found)
+(note: laborIncomeIndiv1984 not found)
+(note: hrlyWageIndiv1984 not found)
+(note: raceWife1984 not found)
+(note: highDegHD1984 not found)
+(note: highDegWife1984 not found)
+(note: mothID1984 not found)
+(note: fathID1984 not found)
+(note: laborIncomeIndiv1985 not found)
+(note: hrlyWageIndiv1985 not found)
+(note: hgcHeadAlt1985 not found)
+(note: hgcWifeAlt1985 not found)
+(note: advDegDumHD1985 not found)
+(note: advDegDumWife1985 not found)
+(note: mothID1985 not found)
+(note: fathID1985 not found)
+(note: laborIncomeIndiv1986 not found)
+(note: hrlyWageIndiv1986 not found)
+(note: hgcHeadAlt1986 not found)
+(note: hgcWifeAlt1986 not found)
+(note: advDegDumHD1986 not found)
+(note: advDegDumWife1986 not found)
+(note: mothID1986 not found)
+(note: fathID1986 not found)
+(note: laborIncomeIndiv1987 not found)
+(note: hrlyWageIndiv1987 not found)
+(note: hgcHeadAlt1987 not found)
+(note: hgcWifeAlt1987 not found)
+(note: advDegDumHD1987 not found)
+(note: advDegDumWife1987 not found)
+(note: mothID1987 not found)
+(note: fathID1987 not found)
+(note: laborIncomeIndiv1988 not found)
+(note: hrlyWageIndiv1988 not found)
+(note: hgcHeadAlt1988 not found)
+(note: hgcWifeAlt1988 not found)
+(note: advDegDumHD1988 not found)
+(note: advDegDumWife1988 not found)
+(note: mothID1988 not found)
+(note: fathID1988 not found)
+(note: laborIncomeIndiv1989 not found)
+(note: hrlyWageIndiv1989 not found)
+(note: hgcHeadAlt1989 not found)
+(note: hgcWifeAlt1989 not found)
+(note: advDegDumHD1989 not found)
+(note: advDegDumWife1989 not found)
+(note: mothID1989 not found)
+(note: fathID1989 not found)
+(note: laborIncomeIndiv1990 not found)
+(note: hrlyWageIndiv1990 not found)
+(note: hgcHeadAlt1990 not found)
+(note: hgcWifeAlt1990 not found)
+(note: advDegDumHD1990 not found)
+(note: advDegDumWife1990 not found)
+(note: mothID1990 not found)
+(note: fathID1990 not found)
+(note: laborIncomeIndiv1991 not found)
+(note: txblIncomeIndiv1991 not found)
+(note: hrlyWageIndiv1991 not found)
+(note: hgcWife1991 not found)
+(note: hgcHead1991 not found)
+(note: advDegDumHD1991 not found)
+(note: advDegDumWife1991 not found)
+(note: mothID1991 not found)
+(note: fathID1991 not found)
+(note: laborIncomeIndiv1992 not found)
+(note: txblIncomeIndiv1992 not found)
+(note: hrlyWageIndiv1992 not found)
+(note: hgcWife1992 not found)
+(note: hgcHead1992 not found)
+(note: advDegDumHD1992 not found)
+(note: advDegDumWife1992 not found)
+(note: mothID1992 not found)
+(note: fathID1992 not found)
+(note: laborIncomeIndiv1993 not found)
+(note: txblIncomeIndiv1993 not found)
+(note: hrlyWageIndiv1993 not found)
+(note: hrlyWageHead1993 not found)
+(note: hrlyWageWife1993 not found)
+(note: hgcWife1993 not found)
+(note: hgcHead1993 not found)
+(note: advDegDumHD1993 not found)
+(note: advDegDumWife1993 not found)
+(note: mothID1993 not found)
+(note: fathID1993 not found)
+(note: hrsWorkedIndiv1994 not found)
+(note: laborIncomeWife1994 not found)
+(note: laborIncomeIndiv1994 not found)
+(note: txblIncomeIndiv1994 not found)
+(note: hrlyWageIndiv1994 not found)
+(note: hgcWife1994 not found)
+(note: hgcHead1994 not found)
+(note: mightMoveHD1994 not found)
+(note: advDegDumHD1994 not found)
+(note: advDegDumWife1994 not found)
+(note: mothID1994 not found)
+(note: fathID1994 not found)
+(note: hrsWorkedIndiv1995 not found)
+(note: laborIncomeWife1995 not found)
+(note: laborIncomeIndiv1995 not found)
+(note: txblIncomeIndiv1995 not found)
+(note: hrlyWageIndiv1995 not found)
+(note: hgcWife1995 not found)
+(note: hgcHead1995 not found)
+(note: advDegDumHD1995 not found)
+(note: advDegDumWife1995 not found)
+(note: mothID1995 not found)
+(note: fathID1995 not found)
+(note: hrsWorkedIndiv1996 not found)
+(note: laborIncomeWife1996 not found)
+(note: laborIncomeIndiv1996 not found)
+(note: txblIncomeIndiv1996 not found)
+(note: hrlyWageIndiv1996 not found)
+(note: hgcWife1996 not found)
+(note: hgcHead1996 not found)
+(note: advDegDumHD1996 not found)
+(note: advDegDumWife1996 not found)
+(note: mothID1996 not found)
+(note: fathID1996 not found)
+(note: hrsWorkedIndiv1997 not found)
+(note: laborIncomeWife1997 not found)
+(note: laborIncomeIndiv1997 not found)
+(note: txblIncomeIndiv1997 not found)
+(note: hrlyWageIndiv1997 not found)
+(note: hgcWife1997 not found)
+(note: hgcHead1997 not found)
+(note: advDegDumHD1997 not found)
+(note: advDegDumWife1997 not found)
+(note: mothID1997 not found)
+(note: fathID1997 not found)
+(note: hrsWorkedIndiv1999 not found)
+(note: laborIncomeWife1999 not found)
+(note: laborIncomeIndiv1999 not found)
+(note: txblIncomeIndiv1999 not found)
+(note: hgcWife1999 not found)
+(note: hgcHead1999 not found)
+(note: advDegDumHD1999 not found)
+(note: advDegDumWife1999 not found)
+(note: mothID1999 not found)
+(note: fathID1999 not found)
+(note: hrsWorkedIndiv2001 not found)
+(note: laborIncomeWife2001 not found)
+(note: laborIncomeIndiv2001 not found)
+(note: txblIncomeIndiv2001 not found)
+(note: hgcWife2001 not found)
+(note: hgcHead2001 not found)
+(note: advDegDumHD2001 not found)
+(note: advDegDumWife2001 not found)
+(note: mothID2001 not found)
+(note: fathID2001 not found)
+(note: selfEmp2003 not found)
+(note: hrsWorkedIndiv2003 not found)
+(note: laborIncomeWife2003 not found)
+(note: laborIncomeIndiv2003 not found)
+(note: txblIncomeIndiv2003 not found)
+(note: hgcWife2003 not found)
+(note: hgcHead2003 not found)
+(note: advDegDumHD2003 not found)
+(note: advDegDumWife2003 not found)
+(note: mothID2003 not found)
+(note: fathID2003 not found)
+(note: selfEmp2005 not found)
+(note: hrsWorkedIndiv2005 not found)
+(note: laborIncomeWife2005 not found)
+(note: laborIncomeIndiv2005 not found)
+(note: hrlyWageIndiv2005 not found)
+(note: hgcWife2005 not found)
+(note: hgcHead2005 not found)
+(note: advDegDumHD2005 not found)
+(note: advDegDumWife2005 not found)
+(note: mothID2005 not found)
+(note: fathID2005 not found)
+(note: selfEmp2007 not found)
+(note: hrsWorkedIndiv2007 not found)
+(note: laborIncomeWife2007 not found)
+(note: laborIncomeIndiv2007 not found)
+(note: hrlyWageIndiv2007 not found)
+(note: hgcWife2007 not found)
+(note: hgcHead2007 not found)
+(note: advDegDumHD2007 not found)
+(note: advDegDumWife2007 not found)
+(note: mothID2007 not found)
+(note: fathID2007 not found)
+(note: selfEmp2009 not found)
+(note: hrsWorkedIndiv2009 not found)
+(note: laborIncomeWife2009 not found)
+(note: laborIncomeIndiv2009 not found)
+(note: hrlyWageIndiv2009 not found)
+(note: hgcWife2009 not found)
+(note: hgcHead2009 not found)
+(note: advDegDumHD2009 not found)
+(note: advDegDumWife2009 not found)
+(note: mothID2009 not found)
+(note: fathID2009 not found)
+(note: selfEmp2011 not found)
+(note: hrsWorkedIndiv2011 not found)
+(note: laborIncomeWife2011 not found)
+(note: laborIncomeIndiv2011 not found)
+(note: hrlyWageIndiv2011 not found)
+(note: hgcWife2011 not found)
+(note: hgcHead2011 not found)
+(note: in_school2011 not found)
+(note: advDegDumHD2011 not found)
+(note: advDegDumWife2011 not found)
+(note: mothID2011 not found)
+(note: fathID2011 not found)
+(note: selfEmp2013 not found)
+(note: hrsWorkedIndiv2013 not found)
+(note: laborIncomeWife2013 not found)
+(note: laborIncomeIndiv2013 not found)
+(note: hrlyWageIndiv2013 not found)
+(note: hgcWife2013 not found)
+(note: hgcHead2013 not found)
+(note: in_school2013 not found)
+(note: advDegDumHD2013 not found)
+(note: advDegDumWife2013 not found)
+(note: mothID2013 not found)
+(note: fathID2013 not found)
+(note: selfEmp2015 not found)
+(note: hrsWorkedIndiv2015 not found)
+(note: laborIncomeWife2015 not found)
+(note: laborIncomeIndiv2015 not found)
+(note: hrlyWageIndiv2015 not found)
+(note: hgcWife2015 not found)
+(note: hgcHead2015 not found)
+(note: in_school2015 not found)
+(note: advDegDumHD2015 not found)
+(note: advDegDumWife2015 not found)
+(note: mothID2015 not found)
+(note: fathID2015 not found)
+
+Data                               wide   ->   long
+-----------------------------------------------------------------------------
+Number of obs.                    77223   -> 3.0e+06
+Number of variables                1024   ->      42
+j variable (39 values)                    ->   wave
+xij variables:
+   x111021968 x111021969 ... x111022015   ->   x11102
+      xsqnr1968 xsqnr1969 ... xsqnr2015   ->   xsqnr
+selfEmp1968 selfEmp1969 ... selfEmp2015   ->   selfEmp
+empStat1968 empStat1969 ... empStat2015   ->   empStat
+hrsWorkedIndiv1968 hrsWorkedIndiv1969 ... hrsWorkedIndiv2015->hrsWorkedIndiv
+hrsWorkedHead1968 hrsWorkedHead1969 ... hrsWorkedHead2015->hrsWorkedHead
+hrsWorkedWife1968 hrsWorkedWife1969 ... hrsWorkedWife2015->hrsWorkedWife
+laborIncomeHead1968 laborIncomeHead1969 ... laborIncomeHead2015->laborIncomeHea
+> d
+laborIncomeWife1968 laborIncomeWife1969 ... laborIncomeWife2015->laborIncomeWif
+> e
+laborIncomeIndiv1968 laborIncomeIndiv1969 ... laborIncomeIndiv2015->laborIncome
+> Indiv
+txblIncomeIndiv1968 txblIncomeIndiv1969 ... txblIncomeIndiv2015->txblIncomeIndi
+> v
+wageSalaryHead1968 wageSalaryHead1969 ... wageSalaryHead2015->wageSalaryHead
+hrlyWageIndiv1968 hrlyWageIndiv1969 ... hrlyWageIndiv2015->hrlyWageIndiv
+hrlyWageHead1968 hrlyWageHead1969 ... hrlyWageHead2015->hrlyWageHead
+hrlyWageWife1968 hrlyWageWife1969 ... hrlyWageWife2015->hrlyWageWife
+            hgc1968 hgc1969 ... hgc2015   ->   hgc
+hgcWife1968 hgcWife1969 ... hgcWife2015   ->   hgcWife
+hgcHead1968 hgcHead1969 ... hgcHead2015   ->   hgcHead
+hgcHeadAlt1968 hgcHeadAlt1969 ... hgcHeadAlt2015->hgcHeadAlt
+hgcWifeAlt1968 hgcWifeAlt1969 ... hgcWifeAlt2015->hgcWifeAlt
+gradBAHead1968 gradBAHead1969 ... gradBAHead2015->gradBAHead
+gradBAwife1968 gradBAwife1969 ... gradBAwife2015->gradBAwife
+in_school1968 in_school1969 ... in_school2015->in_school
+            age1968 age1969 ... age2015   ->   age
+birthyr1968 birthyr1969 ... birthyr2015   ->   birthyr
+   svywgt1968 svywgt1969 ... svywgt2015   ->   svywgt
+raceHead1968 raceHead1969 ... raceHead2015->   raceHead
+raceWife1968 raceWife1969 ... raceWife2015->   raceWife
+      relHD1968 relHD1969 ... relHD2015   ->   relHD
+mightMoveHD1968 mightMoveHD1969 ... mightMoveHD2015->mightMoveHD
+movedSinceSpring1968 movedSinceSpring1969 ... movedSinceSpring2015->movedSinceS
+> pring
+advDegDumHD1968 advDegDumHD1969 ... advDegDumHD2015->advDegDumHD
+advDegDumWife1968 advDegDumWife1969 ... advDegDumWife2015->advDegDumWife
+highDegHD1968 highDegHD1969 ... highDegHD2015->highDegHD
+highDegWife1968 highDegWife1969 ... highDegWife2015->highDegWife
+   mothID1968 mothID1969 ... mothID2015   ->   mothID
+   fathID1968 fathID1969 ... fathID2015   ->   fathID
+-----------------------------------------------------------------------------
+
+. 
+. *-------------------------------------------------------------------
+. * create ID variable and declare panel structure of data
+. *-------------------------------------------------------------------
+. ren x11101ll id // individual ID
+
+. xtset id wave
+       panel variable:  id (strongly balanced)
+        time variable:  wave, 1968 to 2015, but with gaps
+                delta:  1 unit
+
+. gen id1968 = floor(id/1000) // "1968 ID"
+
+. gen   hhid = x11102         // year-by-year household ID (not constant across
+>  time)
+(1,211,049 missing values generated)
+
+. 
+. *-------------------------------------------------------------------
+. * Only keep SRC sample
+. *-------------------------------------------------------------------
+. gen     sample = .
+(3,011,697 missing values generated)
+
+. replace sample = 1 if inrange(x11102,   1,2999)
+(762,323 real changes made)
+
+. replace sample = 2 if inrange(x11102,5001,6999)
+(360,712 real changes made)
+
+. replace sample = 3 if inrange(x11102,3001,3999)
+(264,742 real changes made)
+
+. replace sample = 4 if inrange(x11102,7001,9999)
+(125,768 real changes made)
+
+. lab def vlsample 1 "SRC" 2 "SEO (disadvantaged)" 3 "Immigrant" 4 "Latino"
+
+. 
+. drop x11102
+
+. keep if inlist(sample,1,2,3,4) // only use the original non-disadvantaged sam
+> ple (to match with NLSY)
+(1,498,152 observations deleted)
+
+. 
+. sum , d
+
+                Person identification number
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%        40038           1001
+ 5%       297051           1001
+10%       624170           1001       Obs           1,513,545
+25%      1419034           1002       Sum of Wgt.   1,513,545
+
+50%      2714033                      Mean            3569955
+                        Largest       Std. Dev.       2385239
+75%      5852004        9308004
+90%      6546171        9308170       Variance       5.69e+12
+95%      6780181        9308170       Skewness       .1455082
+99%      8436002        9308170       Kurtosis       1.560294
+
+                            wave
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%         1968           1968
+ 5%         1968           1968
+10%         1970           1968       Obs           1,513,545
+25%         1975           1968       Sum of Wgt.   1,513,545
+
+50%         1983                      Mean           1985.107
+                        Largest       Std. Dev.      12.46865
+75%         1993           2015
+90%         2005           2015       Variance       155.4672
+95%         2009           2015       Skewness       .5598368
+99%         2015           2015       Kurtosis       2.450897
+
+          Sequence Number                       69
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            1              1
+10%            1              1       Obs             695,200
+25%            1              1       Sum of Wgt.     695,200
+
+50%            2                      Mean           5.256646
+                        Largest       Std. Dev.      13.36584
+75%            3             82
+90%            5             82       Variance       178.6457
+95%            8             83       Skewness       4.477783
+99%           72             83       Kurtosis       21.84775
+
+          Empl Status                           79
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            1              1
+10%            1              1       Obs             368,460
+25%            1              1       Sum of Wgt.     368,460
+
+50%            1                      Mean           2.634888
+                        Largest       Std. Dev.      2.264004
+75%            4              9
+90%            6              9       Variance       5.125713
+95%            7              9       Skewness       .9779417
+99%            8              9       Kurtosis       2.474491
+
+                       Yrly Heads Hrs
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%          100              1
+ 5%          520              1
+10%         1000              1       Obs           1,278,134
+25%         1778              1       Sum of Wgt.   1,278,134
+
+50%         2044                      Mean           2095.704
+                        Largest       Std. Dev.      1020.148
+75%         2430           9999
+90%         2950           9999       Variance        1040702
+95%         3318           9999       Skewness       3.295756
+99%         4750           9999       Kurtosis       27.81648
+
+                        Yrly Wife Hrs
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%           31              1
+ 5%          142              1
+10%          300              1       Obs             658,232
+25%          816              1       Sum of Wgt.     658,232
+
+50%         1600                      Mean           1548.296
+                        Largest       Std. Dev.      1262.609
+75%         2000           9999
+90%         2217           9999       Variance        1594183
+95%         2540           9999       Skewness       4.154707
+99%         9999           9999       Kurtosis       28.95121
+
+                      Hds Labor Income
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%          220              1
+ 5%         1300              1
+10%         2890              1       Obs           1,264,572
+25%         6364              1       Sum of Wgt.   1,264,572
+
+50%        13000                      Mean           94709.86
+                        Largest       Std. Dev.      855977.4
+75%        26412        9999999
+90%        45714        9999999       Variance       7.33e+11
+95%        65239        9999999       Skewness       11.46723
+99%       208819        9999999       Kurtosis       132.6851
+
+          Taxable Income                        75
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%           43         -99599
+ 5%          300         -98099
+10%          698         -90699       Obs             151,476
+25%         3000         -86666       Sum of Wgt.     151,476
+
+50%       8942.5                      Mean           13099.68
+                        Largest       Std. Dev.         19912
+75%        17500         999999
+90%        29450         999999       Variance       3.96e+08
+95%        39000         999999       Skewness       27.44855
+99%        70000        2600000       Kurtosis       2362.692
+
+                          Hds Wages
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            3              1
+ 5%            6              1
+10%          576              1       Obs           1,207,656
+25%         5500              1       Sum of Wgt.   1,207,656
+
+50%        13000                      Mean           97506.93
+                        Largest       Std. Dev.      875749.2
+75%        26412        9999999
+90%        45000        9999999       Variance       7.67e+11
+95%        65000        9999999       Skewness       11.20286
+99%       208819        9999999       Kurtosis       126.6658
+
+                      Head Hourly Earn
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%          .62            .01
+ 5%         1.39            .01
+10%         1.96            .01       Obs           1,223,398
+25%         3.49            .01       Sum of Wgt.   1,223,398
+
+50%         6.44                      Mean           10.03924
+                        Largest       Std. Dev.      15.68644
+75%        12.17            999
+90%         20.4            999       Variance       246.0645
+95%        28.27            999       Skewness       21.59768
+99%        56.82            999       Kurtosis       1025.229
+
+                      Wife Hourly Earn
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%          .43            .01
+ 5%            1            .01
+10%         1.44            .01       Obs             625,050
+25%         2.53            .01       Sum of Wgt.     625,050
+
+50%            5                      Mean           8.061435
+                        Largest       Std. Dev.      12.35784
+75%         9.86        1405.88
+90%        17.24        1405.88       Variance       152.7161
+95%        23.96        1405.88       Skewness       27.89294
+99%        46.34        1405.88       Kurtosis       2225.402
+
+          Yrs Schl Compl                        68
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            3              1
+ 5%            7              1
+10%            9              1       Obs             400,793
+25%           11              1       Sum of Wgt.     400,793
+
+50%           12                      Mean           12.19931
+                        Largest       Std. Dev.      2.772001
+75%           14             17
+90%           16             17       Variance       7.683991
+95%           17             17       Skewness      -.6396117
+99%           17             17       Kurtosis       4.236702
+
+                        Education-Hd
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            3              1
+ 5%            6              1
+10%            8              1       Obs             899,487
+25%           11              1       Sum of Wgt.     899,487
+
+50%           12                      Mean           11.99876
+                        Largest       Std. Dev.      2.965981
+75%           14             17
+90%           16             17       Variance        8.79704
+95%           17             17       Skewness      -.5916554
+99%           17             17       Kurtosis       3.779353
+
+                        Education-Wf
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            5              1
+ 5%            8              1
+10%            9              1       Obs             589,000
+25%           11              1       Sum of Wgt.     589,000
+
+50%           12                      Mean           12.26763
+                        Largest       Std. Dev.      2.609262
+75%           14             17
+90%           16             17       Variance       6.808246
+95%           17             17       Skewness      -.4989279
+99%           17             17       Kurtosis       4.177799
+
+                        Wtr Degree-Hd
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            1              1
+10%            1              1       Obs             388,072
+25%            1              1       Sum of Wgt.     388,072
+
+50%            1                      Mean           2.939156
+                        Largest       Std. Dev.      2.053446
+75%            5              9
+90%            5              9       Variance       4.216639
+95%            5              9       Skewness       .2134874
+99%            5              9       Kurtosis       1.415607
+
+                        Wtr Degree-Wf
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            1              1
+10%            1              1       Obs             253,366
+25%            1              1       Sum of Wgt.     253,366
+
+50%            1                      Mean           2.905465
+                        Largest       Std. Dev.      2.046826
+75%            5              9
+90%            5              9       Variance       4.189496
+95%            5              9       Skewness       .2333919
+99%            5              9       Kurtosis       1.394092
+
+          Age Of Individual                     68
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            2              1
+10%            5              1       Obs             713,456
+25%           12              1       Sum of Wgt.     713,456
+
+50%           26                      Mean           29.67867
+                        Largest       Std. Dev.      26.51154
+75%           43            999
+90%           60            999       Variance       702.8615
+95%           69            999       Skewness       14.67748
+99%           82            999       Kurtosis       526.9791
+
+          Year Ind Born                         83
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%         1910           1884
+ 5%         1924           1884
+10%         1934           1884       Obs             477,219
+25%         1952           1884       Sum of Wgt.     477,219
+
+50%         1967                      Mean           2019.185
+                        Largest       Std. Dev.      653.3436
+75%         1983           9999
+90%         1993           9999       Variance       426857.9
+95%         2001           9999       Skewness       12.11752
+99%         2012           9999       Kurtosis       148.0117
+
+          Individual Weight                     68
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%           .6           .204
+ 5%          1.1           .228
+10%        1.691           .228       Obs             539,195
+25%        3.867           .228       Sum of Wgt.     539,195
+
+50%       19.669                      Mean           20.20117
+                        Largest       Std. Dev.      16.64887
+75%         30.9        181.453
+90%       41.189        196.441       Variance        277.185
+95%       49.446        196.441       Skewness        .852251
+99%       67.329        225.816       Kurtosis       4.158836
+
+                            Race
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            1              1
+10%            1              1       Obs           1,491,576
+25%            1              1       Sum of Wgt.   1,491,576
+
+50%            1                      Mean           1.542627
+                        Largest       Std. Dev.      .8553477
+75%            2              7
+90%            2              7       Variance       .7316198
+95%            2              7       Skewness       3.401342
+99%            6              7       Kurtosis       20.04258
+
+                  N32 Race Of Wife (1 Men)
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            1              1
+10%            1              1       Obs             445,964
+25%            1              1       Sum of Wgt.     445,964
+
+50%            1                      Mean           1.484582
+                        Largest       Std. Dev.       1.04106
+75%            2              7
+90%            2              7       Variance       1.083805
+95%            3              7       Skewness       3.393327
+99%            7              7       Kurtosis       15.94316
+
+          Relationship To Head                  68
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            1              1
+10%            1              1       Obs             713,430
+25%            3              1       Sum of Wgt.     713,430
+
+50%           10                      Mean           16.49908
+                        Largest       Std. Dev.      15.79695
+75%           30             98
+90%           30             98       Variance       249.5435
+95%           35             98       Skewness       1.784898
+99%           88             98       Kurtosis       8.021715
+
+                         Might Move
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            1              1
+10%            1              1       Obs           1,473,404
+25%            1              1       Sum of Wgt.   1,473,404
+
+50%            5                      Mean           3.625636
+                        Largest       Std. Dev.      2.014147
+75%            5              9
+90%            5              9       Variance       4.056788
+95%            5              9       Skewness      -.3424855
+99%            8              9       Kurtosis       1.723128
+
+                     Moved Since Sprng68
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            1              1
+10%            1              1       Obs           1,436,322
+25%            1              1       Sum of Wgt.   1,436,322
+
+50%            5                      Mean           3.959396
+                        Largest       Std. Dev.      1.759348
+75%            5              9
+90%            5              9       Variance       3.095305
+95%            5              9       Skewness      -1.076221
+99%            5              9       Kurtosis       2.209563
+
+                  G47 Highest Coll Deg Rec
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            2              1
+10%            2              1       Obs             709,793
+25%          999              1       Sum of Wgt.     709,793
+
+50%          999                      Mean           785.8576
+                        Largest       Std. Dev.      408.1077
+75%          999            999
+90%          999            999       Variance       166551.9
+95%          999            999       Skewness       -1.39312
+99%          999            999       Kurtosis       2.942273
+
+                  N47 Highest Coll Deg Rec
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            2              1
+10%            2              1       Obs             709,793
+25%          999              1       Sum of Wgt.     709,793
+
+50%          999                      Mean           849.5467
+                        Largest       Std. Dev.       355.348
+75%          999            999
+90%          999            999       Variance       126272.2
+95%          999            999       Skewness      -1.957877
+99%          999            999       Kurtosis       4.835346
+
+                      SEX OF INDIVIDUAL
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            1              1
+10%            1              1       Obs           1,513,545
+25%            1              1       Sum of Wgt.   1,513,545
+
+50%            2                      Mean           1.508685
+                        Largest       Std. Dev.      .4999987
+75%            2              2
+90%            2              2       Variance       .2499987
+95%            2              9       Skewness      -.0303063
+99%            2              9       Kurtosis       1.067202
+
+                 WHETHER SAMPLE OR NONSAMPLE
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            1              1
+10%            1              1       Obs           1,062,572
+25%            1              1       Sum of Wgt.   1,062,572
+
+50%            2                      Mean           1.964118
+                        Largest       Std. Dev.      .9888001
+75%            2              5
+90%            4              5       Variance       .9777257
+95%            4              5       Skewness       1.111782
+99%            5              5       Kurtosis       3.616624
+
+                        YEAR OF DEATH
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%         1971            709
+ 5%         1977            709
+10%         1982            709       Obs             121,507
+25%         1990            709       Sum of Wgt.     121,507
+
+50%         1999                      Mean           2105.502
+                        Largest       Std. Dev.      882.8802
+75%         2008           9999
+90%         2013           9999       Variance       779477.4
+95%         2014           9999       Skewness       7.647898
+99%         8494           9999       Kurtosis        61.3714
+
+                        Self-Employed
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            1              1
+10%            1              1       Obs           1,028,413
+25%            1              1       Sum of Wgt.   1,028,413
+
+50%            1                      Mean           1.242227
+                        Largest       Std. Dev.      .6786204
+75%            1              9
+90%            3              9       Variance       .4605257
+95%            3              9       Skewness       3.518715
+99%            3              9       Kurtosis       23.94981
+
+          Hours Worked Ind                      68
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%           36              1
+ 5%          160              1
+10%          332              1       Obs             213,916
+25%         1040              1       Sum of Wgt.     213,916
+
+50%         1920                      Mean            2215.29
+                        Largest       Std. Dev.      2284.183
+75%         2240           9999
+90%         3120           9999       Variance        5217491
+95%         9999           9999       Skewness       2.634696
+99%         9999           9999       Kurtosis       9.489715
+
+                       Wife Lbr Income
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%           50              2
+ 5%          220              2
+10%          500              2       Obs             475,823
+25%         1700              5       Sum of Wgt.     475,823
+
+50%         4900                      Mean            7461.56
+                        Largest       Std. Dev.      8530.559
+75%        10000         200000
+90%        18000         240000       Variance       7.28e+07
+95%        24000         240000       Skewness       3.189527
+99%        38000         240000       Kurtosis       30.02848
+
+          Money Income Ind                      68
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%           35              2
+ 5%          150              3
+10%          333              3       Obs              44,626
+25%         1245              4       Sum of Wgt.      44,626
+
+50%         4000                      Mean           7836.105
+                        Largest       Std. Dev.      16894.77
+75%         7800          99999
+90%        12000          99999       Variance       2.85e+08
+95%        17932          99999       Skewness       4.856759
+99%        99999          99999       Kurtosis       26.49887
+
+          Calculated Hourly Wage Rate In 1997   99
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%         1.67            -99
+ 5%         4.33            -99
+10%         5.77            -99       Obs              17,041
+25%         8.79            -99       Sum of Wgt.      17,041
+
+50%        14.71                      Mean            186.654
+                        Largest       Std. Dev.       372.428
+75%           30            999
+90%          999            999       Variance       138702.6
+95%          999            999       Skewness       1.717522
+99%          999            999       Kurtosis       3.961385
+
+                       Wifes Education
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            2              1
+10%            2              1       Obs             582,101
+25%            3              1       Sum of Wgt.     582,101
+
+50%            4                      Mean           4.294868
+                        Largest       Std. Dev.      1.628499
+75%            5              9
+90%            7              9       Variance        2.65201
+95%            7              9       Skewness       .4736903
+99%            9              9       Kurtosis       2.899953
+
+                       Heads Education
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            2              1
+10%            2              1       Obs             983,210
+25%            3              1       Sum of Wgt.     983,210
+
+50%            4                      Mean           4.181392
+                        Largest       Std. Dev.      1.826558
+75%            6              9
+90%            7              9       Variance       3.336314
+95%            7              9       Skewness       .3954313
+99%            9              9       Kurtosis       2.454262
+
+          In School                             68
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            1              1
+10%            1              1       Obs              61,541
+25%            1              1       Sum of Wgt.      61,541
+
+50%            1                      Mean            2.40222
+                        Largest       Std. Dev.      1.941444
+75%            5              9
+90%            5              9       Variance       3.769205
+95%            5              9       Skewness       .9313523
+99%            9              9       Kurtosis       2.623141
+
+                     Wtr Advanced Deg-Hd
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            5              1
+10%            5              1       Obs             431,183
+25%          999              1       Sum of Wgt.     431,183
+
+50%          999                      Mean           882.5931
+                        Largest       Std. Dev.      319.8221
+75%          999            999
+90%          999            999       Variance       102286.2
+95%          999            999       Skewness      -2.383485
+99%          999            999       Kurtosis       6.681041
+
+                     Wtr Advanced Deg-Wf
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            5              1
+10%          999              1       Obs             431,183
+25%          999              1       Sum of Wgt.     431,183
+
+50%          999                      Mean           935.4872
+                        Largest       Std. Dev.      243.2046
+75%          999            999
+90%          999            999       Variance       59148.46
+95%          999            999       Skewness      -3.568079
+99%          999            999       Kurtosis       13.73124
+
+                      1968 ID OF MOTHER
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%           50              2
+ 5%          352              2
+10%          712              4       Obs              47,192
+25%       1731.5              4       Sum of Wgt.      47,192
+
+50%         5018                      Mean           4065.482
+                        Largest       Std. Dev.      2555.525
+75%         6150           9306
+90%         7096           9306       Variance        6530709
+95%         8203           9308       Skewness       .0637849
+99%         9076           9308       Kurtosis       1.707286
+
+                      1968 ID OF FATHER
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%           47              4
+ 5%          319              4
+10%          654              4       Obs              37,194
+25%         1567              4       Sum of Wgt.      37,194
+
+50%         3070                      Mean           3809.792
+                        Largest       Std. Dev.      2547.014
+75%         6014           9306
+90%         6830           9306       Variance        6487279
+95%         8042           9306       Skewness       .2237036
+99%         9036           9306       Kurtosis       1.741627
+
+                           id1968
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%           40              1
+ 5%          297              1
+10%          624              1       Obs           1,513,545
+25%         1419              1       Sum of Wgt.   1,513,545
+
+50%         2714                      Mean           3569.865
+                        Largest       Std. Dev.      2385.241
+75%         5852           9308
+90%         6546           9308       Variance        5689374
+95%         6780           9308       Skewness       .1455137
+99%         8436           9308       Kurtosis       1.560307
+
+                            hhid
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%           65              1
+ 5%          320              1
+10%          627              1       Obs           1,513,545
+25%         1529              1       Sum of Wgt.   1,513,545
+
+50%         2979                      Mean           3455.918
+                        Largest       Std. Dev.       2361.32
+75%         5477           9999
+90%         6775           9999       Variance        5575831
+95%         7761           9999       Skewness       .5461308
+99%         9128           9999       Kurtosis       2.329426
+
+                           sample
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            1              1
+ 5%            1              1
+10%            1              1       Obs           1,513,545
+25%            1              1       Sum of Wgt.   1,513,545
+
+50%            1                      Mean           1.837438
+                        Largest       Std. Dev.      .9922382
+75%            3              4
+90%            3              4       Variance       .9845366
+95%            4              4       Skewness       .8398542
+99%            4              4       Kurtosis       2.460296
+
+. 
+. *-------------------------------------------------------------------
+. * create head and wife variables
+. *-------------------------------------------------------------------
+. replace xsqnr=relHD if wave==1968
+(18,230 real changes made)
+
+. 
+. gen     head = (xsqnr==1)
+
+. replace head = . if mi(xsqnr)
+(800,115 real changes made, 800,115 to missing)
+
+. 
+. gen     wife = (xsqnr==2)
+
+. replace wife = . if mi(xsqnr)
+(800,115 real changes made, 800,115 to missing)
+
+. 
+. gen     died = inrange(xsqnr,81,89)
+
+. replace died = . if mi(xsqnr)
+(800,115 real changes made, 800,115 to missing)
+
+. 
+. *-------------------------------------------------------------------
+. * drop obs of people before they arrive in the panel (e.g. future children)
+. *-------------------------------------------------------------------
+. drop if mi(age)
+(800,089 observations deleted)
+
+. drop if !inrange(age,18,60)
+(313,925 observations deleted)
+
+. 
+. * l id hhid wave xsqnr head sex *ncome* *age* hrsWorked* in 1/100 , sepby(id)
+. 
+. * l id hhid wave xsqnr head sex* *age* yrDied in 1/100, sepby(id)
+. 
+. *-------------------------------------------------------------------
+. * Generate some employment measures
+. *-------------------------------------------------------------------
+. gen     empPT = .
+(399,531 missing values generated)
+
+. replace empPT = inrange(hrsWorkedHead,500,1500) if head==1
+(193,908 real changes made)
+
+. replace empPT = inrange(hrsWorkedWife,500,1500) if wife==1
+(138,685 real changes made)
+
+. replace empPT = inrange(hrsWorkedIndiv,500,1500) if wife==0 & head==0 & !mi(h
+> rsWorkedIndiv)
+(23,544 real changes made)
+
+. 
+. gen     empFT = .
+(399,531 missing values generated)
+
+. replace empFT = inrange(hrsWorkedHead,1500.00001,.) if head==1
+(193,908 real changes made)
+
+. replace empFT = inrange(hrsWorkedWife,1500.00001,.) if wife==1
+(138,685 real changes made)
+
+. replace empFT = inrange(hrsWorkedIndiv,1500.00001,.) if wife==0 & head==0 & !
+> mi(hrsWorkedIndiv)
+(23,544 real changes made)
+
+. 
+. gen      wage = .
+(399,531 missing values generated)
+
+. replace  wage = hrlyWageHead  if head==1 & (empPT | empFT)
+(157,243 real changes made)
+
+. replace  wage = hrlyWageWife  if wife==1 & (empPT | empFT)
+(72,092 real changes made)
+
+. replace  wage = hrlyWageIndiv if mi(wage) & !mi(hrlyWageIndiv) & (empPT | emp
+> FT)
+(1,962 real changes made)
+
+. 
+. do ../cpi_min_wage.do
+
+. ***********************************************
+. * Create fed min wage and cpi
+. * http://www.dol.gov/whd/minwage/chart.htm
+. * http://lmi2.detma.org/lmi/pdf/MinimumWage.pdf
+. * and
+. * http://www.bls.gov/cpi/
+. ***********************************************
+. 
+. generat fedMinWage=0.25 if wave==1938
+(399,531 missing values generated)
+
+. replace fedMinWage=0.30 if wave==1939
+(0 real changes made)
+
+. replace fedMinWage=0.30 if wave==1940
+(0 real changes made)
+
+. replace fedMinWage=0.30 if wave==1941
+(0 real changes made)
+
+. replace fedMinWage=0.30 if wave==1942
+(0 real changes made)
+
+. replace fedMinWage=0.30 if wave==1943
+(0 real changes made)
+
+. replace fedMinWage=0.30 if wave==1944
+(0 real changes made)
+
+. replace fedMinWage=0.40 if wave==1945
+(0 real changes made)
+
+. replace fedMinWage=0.40 if wave==1946
+(0 real changes made)
+
+. replace fedMinWage=0.40 if wave==1947
+(0 real changes made)
+
+. replace fedMinWage=0.40 if wave==1948
+(0 real changes made)
+
+. replace fedMinWage=0.40 if wave==1949
+(0 real changes made)
+
+. replace fedMinWage=0.75 if wave==1950
+(0 real changes made)
+
+. replace fedMinWage=0.75 if wave==1951
+(0 real changes made)
+
+. replace fedMinWage=0.75 if wave==1952
+(0 real changes made)
+
+. replace fedMinWage=0.75 if wave==1953
+(0 real changes made)
+
+. replace fedMinWage=0.75 if wave==1954
+(0 real changes made)
+
+. replace fedMinWage=0.75 if wave==1955
+(0 real changes made)
+
+. replace fedMinWage=1.00 if wave==1956
+(0 real changes made)
+
+. replace fedMinWage=1.00 if wave==1957
+(0 real changes made)
+
+. replace fedMinWage=1.00 if wave==1958
+(0 real changes made)
+
+. replace fedMinWage=1.00 if wave==1959
+(0 real changes made)
+
+. replace fedMinWage=1.00 if wave==1960
+(0 real changes made)
+
+. replace fedMinWage=1.15 if wave==1961
+(0 real changes made)
+
+. replace fedMinWage=1.15 if wave==1962
+(0 real changes made)
+
+. replace fedMinWage=1.25 if wave==1963
+(0 real changes made)
+
+. replace fedMinWage=1.25 if wave==1964
+(0 real changes made)
+
+. replace fedMinWage=1.25 if wave==1965
+(0 real changes made)
+
+. replace fedMinWage=1.25 if wave==1966
+(0 real changes made)
+
+. replace fedMinWage=1.40 if wave==1967
+(0 real changes made)
+
+. replace fedMinWage=1.60 if wave==1968
+(8,474 real changes made)
+
+. replace fedMinWage=1.60 if wave==1969
+(7,197 real changes made)
+
+. replace fedMinWage=1.60 if wave==1970
+(7,118 real changes made)
+
+. replace fedMinWage=1.60 if wave==1971
+(7,016 real changes made)
+
+. replace fedMinWage=1.60 if wave==1972
+(7,137 real changes made)
+
+. replace fedMinWage=1.60 if wave==1973
+(7,569 real changes made)
+
+. replace fedMinWage=2.00 if wave==1974
+(7,912 real changes made)
+
+. replace fedMinWage=2.10 if wave==1975
+(8,252 real changes made)
+
+. replace fedMinWage=2.30 if wave==1976
+(8,338 real changes made)
+
+. replace fedMinWage=2.30 if wave==1977
+(8,682 real changes made)
+
+. replace fedMinWage=2.65 if wave==1978
+(8,859 real changes made)
+
+. replace fedMinWage=2.90 if wave==1979
+(9,143 real changes made)
+
+. replace fedMinWage=3.10 if wave==1980
+(9,448 real changes made)
+
+. replace fedMinWage=3.35 if wave==1981
+(9,436 real changes made)
+
+. replace fedMinWage=3.35 if wave==1982
+(9,777 real changes made)
+
+. replace fedMinWage=3.35 if wave==1983
+(9,892 real changes made)
+
+. replace fedMinWage=3.35 if wave==1984
+(10,004 real changes made)
+
+. replace fedMinWage=3.35 if wave==1985
+(10,090 real changes made)
+
+. replace fedMinWage=3.35 if wave==1986
+(9,949 real changes made)
+
+. replace fedMinWage=3.35 if wave==1987
+(9,956 real changes made)
+
+. replace fedMinWage=3.35 if wave==1988
+(9,949 real changes made)
+
+. replace fedMinWage=3.35 if wave==1989
+(9,936 real changes made)
+
+. replace fedMinWage=3.80 if wave==1990
+(10,138 real changes made)
+
+. replace fedMinWage=4.25 if wave==1991
+(13,849 real changes made)
+
+. replace fedMinWage=4.25 if wave==1992
+(14,676 real changes made)
+
+. replace fedMinWage=4.25 if wave==1993
+(13,643 real changes made)
+
+. replace fedMinWage=4.25 if wave==1994
+(9,615 real changes made)
+
+. replace fedMinWage=4.25 if wave==1995
+(14,407 real changes made)
+
+. replace fedMinWage=4.75 if wave==1996
+(11,896 real changes made)
+
+. replace fedMinWage=5.15 if wave==1997
+(8,465 real changes made)
+
+. replace fedMinWage=5.15 if wave==1998
+(0 real changes made)
+
+. replace fedMinWage=5.15 if wave==1999
+(9,944 real changes made)
+
+. replace fedMinWage=5.15 if wave==2000
+(0 real changes made)
+
+. replace fedMinWage=5.15 if wave==2001
+(10,764 real changes made)
+
+. replace fedMinWage=5.15 if wave==2002
+(0 real changes made)
+
+. replace fedMinWage=5.15 if wave==2003
+(11,629 real changes made)
+
+. replace fedMinWage=5.15 if wave==2004
+(0 real changes made)
+
+. replace fedMinWage=5.15 if wave==2005
+(12,082 real changes made)
+
+. replace fedMinWage=5.15 if wave==2006
+(0 real changes made)
+
+. replace fedMinWage=5.85 if wave==2007
+(12,494 real changes made)
+
+. replace fedMinWage=6.55 if wave==2008
+(0 real changes made)
+
+. replace fedMinWage=7.25 if wave==2009
+(13,006 real changes made)
+
+. replace fedMinWage=7.25 if wave==2010
+(0 real changes made)
+
+. replace fedMinWage=7.25 if wave==2011
+(13,012 real changes made)
+
+. replace fedMinWage=7.25 if wave==2012
+(0 real changes made)
+
+. 
+. generat cpi= 14.100 if wave==1938
+(399,531 missing values generated)
+
+. replace cpi= 13.900 if wave==1939
+(0 real changes made)
+
+. replace cpi= 14.000 if wave==1940
+(0 real changes made)
+
+. replace cpi= 14.700 if wave==1941
+(0 real changes made)
+
+. replace cpi= 16.300 if wave==1942
+(0 real changes made)
+
+. replace cpi= 17.300 if wave==1943
+(0 real changes made)
+
+. replace cpi= 17.600 if wave==1944
+(0 real changes made)
+
+. replace cpi= 18.000 if wave==1945
+(0 real changes made)
+
+. replace cpi= 19.500 if wave==1946
+(0 real changes made)
+
+. replace cpi= 22.300 if wave==1947
+(0 real changes made)
+
+. replace cpi= 24.100 if wave==1948
+(0 real changes made)
+
+. replace cpi= 23.800 if wave==1949
+(0 real changes made)
+
+. replace cpi= 24.100 if wave==1950
+(0 real changes made)
+
+. replace cpi= 26.000 if wave==1951
+(0 real changes made)
+
+. replace cpi= 26.500 if wave==1952
+(0 real changes made)
+
+. replace cpi= 26.700 if wave==1953
+(0 real changes made)
+
+. replace cpi= 26.900 if wave==1954
+(0 real changes made)
+
+. replace cpi= 26.800 if wave==1955
+(0 real changes made)
+
+. replace cpi= 27.200 if wave==1956
+(0 real changes made)
+
+. replace cpi= 28.100 if wave==1957
+(0 real changes made)
+
+. replace cpi= 28.900 if wave==1958
+(0 real changes made)
+
+. replace cpi= 29.100 if wave==1959
+(0 real changes made)
+
+. replace cpi= 29.600 if wave==1960
+(0 real changes made)
+
+. replace cpi= 29.900 if wave==1961
+(0 real changes made)
+
+. replace cpi= 30.200 if wave==1962
+(0 real changes made)
+
+. replace cpi= 30.600 if wave==1963
+(0 real changes made)
+
+. replace cpi= 31.000 if wave==1964
+(0 real changes made)
+
+. replace cpi= 31.500 if wave==1965
+(0 real changes made)
+
+. replace cpi= 32.400 if wave==1966
+(0 real changes made)
+
+. replace cpi= 33.400 if wave==1967
+(0 real changes made)
+
+. replace cpi= 34.800 if wave==1968
+(8,474 real changes made)
+
+. replace cpi= 36.700 if wave==1969
+(7,197 real changes made)
+
+. replace cpi= 38.800 if wave==1970
+(7,118 real changes made)
+
+. replace cpi= 40.500 if wave==1971
+(7,016 real changes made)
+
+. replace cpi= 41.800 if wave==1972
+(7,137 real changes made)
+
+. replace cpi= 44.400 if wave==1973
+(7,569 real changes made)
+
+. replace cpi= 49.300 if wave==1974
+(7,912 real changes made)
+
+. replace cpi= 53.800 if wave==1975
+(8,252 real changes made)
+
+. replace cpi= 56.900 if wave==1976
+(8,338 real changes made)
+
+. replace cpi= 60.600 if wave==1977
+(8,682 real changes made)
+
+. replace cpi= 65.200 if wave==1978
+(8,859 real changes made)
+
+. replace cpi= 72.600 if wave==1979
+(9,143 real changes made)
+
+. replace cpi= 82.400 if wave==1980
+(9,448 real changes made)
+
+. replace cpi= 90.900 if wave==1981
+(9,436 real changes made)
+
+. replace cpi= 96.500 if wave==1982
+(9,777 real changes made)
+
+. replace cpi= 99.600 if wave==1983
+(9,892 real changes made)
+
+. replace cpi=103.900 if wave==1984
+(10,004 real changes made)
+
+. replace cpi=107.600 if wave==1985
+(10,090 real changes made)
+
+. replace cpi=109.600 if wave==1986
+(9,949 real changes made)
+
+. replace cpi=113.600 if wave==1987
+(9,956 real changes made)
+
+. replace cpi=118.300 if wave==1988
+(9,949 real changes made)
+
+. replace cpi=124.000 if wave==1989
+(9,936 real changes made)
+
+. replace cpi=130.700 if wave==1990
+(10,138 real changes made)
+
+. replace cpi=136.200 if wave==1991
+(13,849 real changes made)
+
+. replace cpi=140.300 if wave==1992
+(14,676 real changes made)
+
+. replace cpi=144.500 if wave==1993
+(13,643 real changes made)
+
+. replace cpi=148.200 if wave==1994
+(9,615 real changes made)
+
+. replace cpi=152.400 if wave==1995
+(14,407 real changes made)
+
+. replace cpi=156.900 if wave==1996
+(11,896 real changes made)
+
+. replace cpi=160.500 if wave==1997
+(8,465 real changes made)
+
+. replace cpi=163.000 if wave==1998
+(0 real changes made)
+
+. replace cpi=166.600 if wave==1999
+(9,944 real changes made)
+
+. replace cpi=172.200 if wave==2000
+(0 real changes made)
+
+. replace cpi=177.100 if wave==2001
+(10,764 real changes made)
+
+. replace cpi=179.900 if wave==2002
+(0 real changes made)
+
+. replace cpi=184.000 if wave==2003
+(11,629 real changes made)
+
+. replace cpi=188.900 if wave==2004
+(0 real changes made)
+
+. replace cpi=195.300 if wave==2005
+(12,082 real changes made)
+
+. replace cpi=201.600 if wave==2006
+(0 real changes made)
+
+. replace cpi=207.342 if wave==2007
+(12,494 real changes made)
+
+. replace cpi=215.303 if wave==2008
+(0 real changes made)
+
+. replace cpi=214.537 if wave==2009
+(13,006 real changes made)
+
+. replace cpi=218.056 if wave==2010
+(0 real changes made)
+
+. replace cpi=224.939 if wave==2011
+(13,012 real changes made)
+
+. replace cpi=229.594 if wave==2012
+(0 real changes made)
+
+. replace cpi=232.957 if wave==2013
+(13,073 real changes made)
+
+. replace cpi=236.704 if wave==2014
+(0 real changes made)
+
+. replace cpi=236.987 if wave==2015
+(12,704 real changes made)
+
+. replace cpi=240.001 if wave==2016
+(0 real changes made)
+
+. 
+. replace fedMinWage = fedMinWage*100
+(373,754 real changes made)
+
+. replace cpi=cpi/100
+(399,531 real changes made)
+
+. 
+. lab var fedMinWage "Federal Minimum Wage (undeflated)"
+
+. lab var cpi "CPI-Urban/100 (1982-84)"
+
+. 
+end of do-file
+
+. 
+. replace wage = wage/cpi
+(231,297 real changes made)
+
+. 
+. sum wage if (empPT | empFT), d
+
+                            wage
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%     .9536083      -59.42377
+ 5%     2.296651      -59.42377
+10%     3.129032      -59.42377       Obs             231,297
+25%     4.693309      -59.42377       Sum of Wgt.     231,297
+
+50%     7.288732                      Mean           10.33385
+                        Largest       Std. Dev.      28.94498
+75%     11.10661       599.6398
+90%     15.98964       599.6398       Variance       837.8119
+95%     20.41059       599.6398       Skewness       17.88528
+99%      38.3429       599.6398       Kurtosis       341.9506
+
+. 
+. * l id wave head wife hrsWorkedHead hrsWorkedWife wage empPT empFT hgc age bi
+> rthyr in 1/50, sepby(id)
+. 
+. *-------------------------------------------------------------------
+. * Create demographic variables
+. *-------------------------------------------------------------------
+. * gender
+. gen female = sex==2
+
+. gen   male = sex==1
+
+. drop if sex==9
+(0 observations deleted)
+
+. 
+. * race
+. gen     race = .
+(399,531 missing values generated)
+
+. replace race = raceHead if head==1
+(192,498 real changes made)
+
+. replace race = raceWife if wife==1
+(73,304 real changes made)
+
+. egen    race_mean = mean(race), by(id)
+(49812 missing values generated)
+
+. replace race = round(race_mean) if mi(race)
+(83,917 real changes made)
+
+. * l id wave head wife race race_mean hgc age birthyr in 1/50, sepby(id)
+. drop race_mean
+
+. 
+. * impute children's/others' race as same as head in first non-missing instanc
+> e
+. bys id (wave): egen firstmissrace = min(cond(race == ., wave, .))
+(349719 missing values generated)
+
+. * l id wave head wife race firstmissrace hgc age birthyr in 1/100, sepby(id)
+. replace race = raceHead if mi(race) & wave==firstmissrace
+(15,172 real changes made)
+
+. egen    race_mean = mean(race), by(id)
+(817 missing values generated)
+
+. replace race = round(race_mean) if mi(race)
+(33,823 real changes made)
+
+. * l id wave head wife race race_mean firstmissrace hgc age birthyr in 1/100, 
+> sepby(id)
+. 
+. gen white = (race==1) if !mi(race)
+(817 missing values generated)
+
+. gen black = (race==2) if !mi(race)
+(817 missing values generated)
+
+. gen other = (race>=3) if !mi(race)
+(817 missing values generated)
+
+. 
+. sum white black other if !mi(race)
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+       white |    398,714    .5984641    .4902096          0          1
+       black |    398,714    .3494058    .4767829          0          1
+       other |    398,714    .0521301    .2222896          0          1
+
+. mdesc race
+     Variable      Missing      Total     Missing/Total
+    ------------------------------------------------------------
+        race         817      399531        .002045
+
+. 
+. 
+. * birth cohort
+. drop    birthyr*
+
+. gen     birthyr = wave-age
+
+. egen    mean_birthyr = mean(birthyr), by(id)
+
+. replace birthyr = round(mean_birthyr)
+(62,767 real changes made)
+
+. 
+. *-------------------------------------------------------------------
+. * Create education attainment variables
+. *-------------------------------------------------------------------
+. mdesc hgc if !mi(wage)
+     Variable      Missing      Total     Missing/Total
+    ------------------------------------------------------------
+         hgc       29039      231297        .125549
+
+. * carry forward hgc variable in years it wasn't updated
+. bys id (wave): ipolate hgc wave , gen(hgc_ipolate)
+(39104 missing values generated)
+
+. replace hgc = hgc_ipolate if mi(hgc)
+variable hgc was byte now float
+(34,005 real changes made)
+
+. 
+. * l id wave head wife hrsWorkedHead hrsWorkedWife wage empPT empFT hgc hgc_ip
+> olate age birthyr in 501/550, sepby(id)
+. mdesc hgc if !mi(wage)
+     Variable      Missing      Total     Missing/Total
+    ------------------------------------------------------------
+         hgc       11189      231297        .048375
+
+. drop hgc_ipolate
+
+. 
+. * carry backwards hgc variable in years it wasn't updated
+. *bys id (wave): ipolate hgc wave , gen(hgc_ipolate) epolate
+. *replace hgc = hgc_ipolate if mi(hgc)
+. 
+. * l id wave head wife hrsWorkedHead hrsWorkedWife wage empPT empFT hgc hgc_ip
+> olate age birthyr in 501/550, sepby(id)
+. mdesc hgc if !mi(wage)
+     Variable      Missing      Total     Missing/Total
+    ------------------------------------------------------------
+         hgc       11189      231297        .048375
+
+. *drop hgc_ipolate
+. 
+. * if only has one valid value of hgc, set that value for all observations of 
+> that person
+. bys id (wave): egen hgc_count = count(hgc)
+
+. bys id (wave): egen hgc_const = mean(hgc) if hgc_count==1 
+(380522 missing values generated)
+
+. replace hgc = round(hgc_const) if mi(hgc)
+(9,400 real changes made)
+
+. 
+. * l id wave head wife hrsWorkedHead hrsWorkedWife wage empPT empFT hgc hgc_co
+> unt hgc_const age birthyr in 501/550, sepby(id)
+. mdesc hgc if !mi(wage)
+     Variable      Missing      Total     Missing/Total
+    ------------------------------------------------------------
+         hgc        7904      231297        .034173
+
+. drop hgc_*
+
+. 
+. * generate degree receipt from hgc variable
+. gen gradHS  = hgc>=12
+
+. gen grad4yr = hgc>=16
+
+. 
+. * generate grad degrees
+. recode highDegHD   (1/2 = 0) (3/6 = 1) (8/99 = .) (999 = 0)
+(highDegHD: 255277 changes made)
+
+. recode highDegWife (1/2 = 0) (3/6 = 1) (8/99 = .) (999 = 0)
+(highDegWife: 255277 changes made)
+
+. generat advDeg = .
+(399,531 missing values generated)
+
+. replace advDeg = advDegDumHD   if head==1 & wave<=1984
+(44,141 real changes made)
+
+. replace advDeg = advDegDumWife if wife==1 & wave<=1984
+(32,055 real changes made)
+
+. recode  advDeg (5 = 0) (9 = .) (999 = 0)
+(advDeg: 73610 changes made)
+
+. replace advDeg = highDegHD   if head==1 & wave>=1985
+(124,606 real changes made)
+
+. replace advDeg = highDegWife if wife==1 & wave>=1985
+(87,503 real changes made)
+
+. 
+. gen     gradGrad = advDeg
+(111,302 missing values generated)
+
+. replace gradGrad = 0 if grad4yr==0 | gradHS==0
+(81,524 real changes made)
+
+. 
+. sum gradGrad if !gradHS
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+    gradGrad |     85,945           0           0          0          0
+
+. sum gradGrad if  gradHS & !grad4yr
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+    gradGrad |    223,918           0           0          0          0
+
+. sum gradGrad if            grad4yr
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+    gradGrad |     59,802    .2210127    .4149325          0          1
+
+. 
+. *-------------------------------------------------------------------
+. * Drop observations missing race or education level
+. *-------------------------------------------------------------------
+. drop if mi(race) | mi(hgc)
+(30,216 observations deleted)
+
+. 
+. *-------------------------------------------------------------------
+. * Do basic wage regressions make sense?
+. *-------------------------------------------------------------------
+. gen logwage = ln(wage)
+(146,024 missing values generated)
+
+. reg logwage gradHS grad4yr gradGrad [aw=svywgt] if   male & inrange(wage,2,10
+> 0) & empFT==1
+(sum of wgt is   1.8119e+06)
+
+      Source |       SS           df       MS      Number of obs   =    67,648
+-------------+----------------------------------   F(3, 67644)     =   4002.15
+       Model |  3585.49042         3  1195.16347   Prob > F        =    0.0000
+    Residual |  20200.5329    67,644  .298630077   R-squared       =    0.1507
+-------------+----------------------------------   Adj R-squared   =    0.1507
+       Total |  23786.0233    67,647  .351619781   Root MSE        =    .54647
+
+------------------------------------------------------------------------------
+     logwage |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      gradHS |   .2057366   .0059866    34.37   0.000     .1940029    .2174702
+     grad4yr |   .3471405   .0054641    63.53   0.000     .3364309    .3578501
+    gradGrad |    .280521    .009029    31.07   0.000     .2628242    .2982178
+       _cons |   1.997098   .0052987   376.90   0.000     1.986713    2.007484
+------------------------------------------------------------------------------
+
+. reg logwage gradHS grad4yr gradGrad [aw=svywgt] if female & inrange(wage,2,10
+> 0) & empFT==1
+(sum of wgt is   1.2398e+06)
+
+      Source |       SS           df       MS      Number of obs   =    50,621
+-------------+----------------------------------   F(3, 50617)     =   4106.28
+       Model |  2777.72394         3  925.907979   Prob > F        =    0.0000
+    Residual |  11413.4105    50,617  .225485717   R-squared       =    0.1957
+-------------+----------------------------------   Adj R-squared   =    0.1957
+       Total |  14191.1345    50,620  .280346394   Root MSE        =    .47485
+
+------------------------------------------------------------------------------
+     logwage |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      gradHS |   .2934688   .0069043    42.51   0.000     .2799363    .3070013
+     grad4yr |    .349083   .0056832    61.42   0.000     .3379439    .3602221
+    gradGrad |   .2947135   .0093502    31.52   0.000      .276387      .31304
+       _cons |   1.614331   .0063832   252.90   0.000     1.601819    1.626842
+------------------------------------------------------------------------------
+
+. 
+. tab hgc if inrange(age,25,34) & !mi(logwage) & inrange(wage,2,100) & empFT==1
+
+   Yrs Schl |
+      Compl |
+         68 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          2 |         16        0.03        0.03
+       2.25 |          1        0.00        0.03
+   2.571429 |          1        0.00        0.03
+          3 |         37        0.06        0.09
+   3.142857 |          1        0.00        0.09
+   3.285714 |          2        0.00        0.10
+   3.428571 |          1        0.00        0.10
+   3.714286 |          1        0.00        0.10
+          4 |         34        0.06        0.16
+   4.142857 |          2        0.00        0.16
+   4.285714 |          3        0.01        0.17
+   4.428571 |          1        0.00        0.17
+   4.571429 |          3        0.01        0.17
+       4.75 |          1        0.00        0.17
+          5 |         48        0.08        0.25
+   5.111111 |          1        0.00        0.26
+   5.142857 |          1        0.00        0.26
+   5.222222 |          1        0.00        0.26
+   5.285714 |          1        0.00        0.26
+   5.333333 |          1        0.00        0.26
+   5.428571 |          2        0.00        0.27
+   5.444445 |          1        0.00        0.27
+   5.555555 |          1        0.00        0.27
+   5.571429 |          2        0.00        0.27
+   5.666667 |          1        0.00        0.27
+   5.714286 |          4        0.01        0.28
+   5.857143 |          1        0.00        0.28
+      5.875 |          1        0.00        0.28
+          6 |        201        0.34        0.62
+   6.142857 |          4        0.01        0.63
+       6.25 |          1        0.00        0.63
+   6.285714 |          4        0.01        0.64
+   6.428571 |          3        0.01        0.64
+        6.5 |          3        0.01        0.65
+   6.571429 |          1        0.00        0.65
+   6.692307 |          1        0.00        0.65
+   6.714286 |          2        0.00        0.65
+       6.75 |          1        0.00        0.65
+   6.769231 |          2        0.00        0.66
+   6.777778 |          1        0.00        0.66
+   6.846154 |          1        0.00        0.66
+   6.857143 |          3        0.01        0.67
+   6.884615 |          1        0.00        0.67
+   6.888889 |          1        0.00        0.67
+   6.923077 |          1        0.00        0.67
+          7 |        186        0.31        0.98
+   7.111111 |          1        0.00        0.98
+   7.142857 |          7        0.01        1.00
+   7.222222 |          1        0.00        1.00
+       7.25 |          3        0.01        1.00
+   7.285714 |          6        0.01        1.01
+   7.333333 |          2        0.00        1.02
+   7.428571 |          9        0.02        1.03
+   7.444445 |          2        0.00        1.03
+        7.5 |          3        0.01        1.04
+   7.555555 |          1        0.00        1.04
+   7.571429 |         14        0.02        1.06
+      7.625 |          2        0.00        1.07
+   7.666667 |          1        0.00        1.07
+   7.714286 |          7        0.01        1.08
+       7.75 |          1        0.00        1.08
+   7.777778 |          1        0.00        1.09
+   7.857143 |         10        0.02        1.10
+      7.875 |          1        0.00        1.10
+   7.888889 |          1        0.00        1.11
+          8 |        506        0.85        1.95
+   8.111111 |          1        0.00        1.95
+      8.125 |          1        0.00        1.96
+   8.142858 |          9        0.02        1.97
+        8.2 |          1        0.00        1.97
+   8.222222 |          1        0.00        1.97
+       8.25 |          2        0.00        1.98
+   8.285714 |         15        0.03        2.00
+   8.333333 |          1        0.00        2.00
+      8.375 |          1        0.00        2.01
+   8.384615 |          1        0.00        2.01
+        8.4 |          1        0.00        2.01
+   8.428572 |         10        0.02        2.03
+   8.444445 |          1        0.00        2.03
+        8.5 |          4        0.01        2.03
+   8.555555 |          1        0.00        2.04
+   8.571428 |         18        0.03        2.07
+      8.625 |          3        0.01        2.07
+   8.666667 |          2        0.00        2.07
+   8.714286 |         11        0.02        2.09
+       8.75 |          4        0.01        2.10
+   8.857142 |         18        0.03        2.13
+      8.875 |          1        0.00        2.13
+   8.923077 |          1        0.00        2.13
+          9 |      1,003        1.68        3.81
+   9.090909 |          1        0.00        3.81
+      9.125 |          2        0.00        3.82
+   9.142858 |         26        0.04        3.86
+   9.166667 |          1        0.00        3.86
+   9.181818 |          1        0.00        3.86
+   9.222222 |          1        0.00        3.87
+       9.25 |          5        0.01        3.87
+   9.272727 |          1        0.00        3.88
+   9.285714 |         13        0.02        3.90
+   9.333333 |          2        0.00        3.90
+   9.363636 |          1        0.00        3.90
+      9.375 |          5        0.01        3.91
+   9.428572 |         17        0.03        3.94
+        9.5 |          8        0.01        3.95
+   9.555555 |          1        0.00        3.96
+   9.571428 |         12        0.02        3.98
+      9.625 |          3        0.01        3.98
+   9.666667 |          2        0.00        3.98
+   9.714286 |         26        0.04        4.03
+       9.75 |          7        0.01        4.04
+   9.833333 |          1        0.00        4.04
+   9.857142 |         27        0.05        4.09
+      9.875 |          2        0.00        4.09
+   9.888889 |          1        0.00        4.09
+         10 |      1,810        3.03        7.12
+   10.11111 |          1        0.00        7.12
+   10.14286 |         14        0.02        7.15
+   10.22222 |          1        0.00        7.15
+      10.25 |          1        0.00        7.15
+   10.28571 |         35        0.06        7.21
+   10.33333 |          1        0.00        7.21
+     10.375 |          1        0.00        7.21
+       10.4 |          1        0.00        7.21
+   10.42857 |         14        0.02        7.24
+   10.44444 |          2        0.00        7.24
+       10.5 |          8        0.01        7.25
+   10.55556 |          2        0.00        7.26
+   10.57143 |         23        0.04        7.30
+       10.6 |          1        0.00        7.30
+     10.625 |          2        0.00        7.30
+   10.66667 |          3        0.01        7.31
+       10.7 |          1        0.00        7.31
+   10.71429 |         20        0.03        7.34
+      10.75 |          4        0.01        7.35
+       10.8 |          1        0.00        7.35
+   10.81818 |          1        0.00        7.35
+   10.85714 |         25        0.04        7.39
+   10.86364 |          1        0.00        7.39
+     10.875 |          2        0.00        7.40
+   10.88889 |          1        0.00        7.40
+   10.90909 |          1        0.00        7.40
+         11 |      2,565        4.30       11.70
+   11.05882 |          1        0.00       11.70
+   11.07143 |          2        0.00       11.70
+   11.11111 |          1        0.00       11.70
+     11.125 |          1        0.00       11.70
+   11.14286 |         33        0.06       11.76
+       11.2 |          1        0.00       11.76
+      11.25 |          5        0.01       11.77
+   11.26316 |          1        0.00       11.77
+   11.28571 |         20        0.03       11.81
+   11.31579 |          1        0.00       11.81
+   11.33333 |          3        0.01       11.81
+   11.35714 |          1        0.00       11.81
+     11.375 |          1        0.00       11.82
+       11.4 |          1        0.00       11.82
+   11.42857 |         33        0.06       11.87
+   11.44444 |          1        0.00       11.87
+       11.5 |          5        0.01       11.88
+   11.57143 |         22        0.04       11.92
+       11.6 |          1        0.00       11.92
+     11.625 |          1        0.00       11.92
+   11.64706 |          1        0.00       11.92
+   11.66667 |          1        0.00       11.93
+   11.71429 |         28        0.05       11.97
+      11.75 |          2        0.00       11.98
+   11.85714 |         16        0.03       12.00
+         12 |     23,073       38.64       50.64
+   12.09524 |          1        0.00       50.64
+   12.11539 |          1        0.00       50.64
+   12.11765 |          1        0.00       50.64
+     12.125 |          3        0.01       50.65
+   12.14286 |         15        0.03       50.67
+   12.16667 |          1        0.00       50.68
+   12.19048 |          1        0.00       50.68
+       12.2 |          2        0.00       50.68
+   12.23077 |          1        0.00       50.68
+   12.23529 |          1        0.00       50.68
+      12.25 |          7        0.01       50.70
+   12.26667 |          1        0.00       50.70
+   12.28571 |         33        0.06       50.75
+       12.3 |          1        0.00       50.75
+   12.30769 |          2        0.00       50.76
+   12.33333 |          2        0.00       50.76
+   12.34615 |          2        0.00       50.76
+     12.375 |          4        0.01       50.77
+   12.38461 |          1        0.00       50.77
+       12.4 |          5        0.01       50.78
+   12.42857 |         22        0.04       50.82
+   12.44444 |          1        0.00       50.82
+   12.46154 |          2        0.00       50.82
+       12.5 |         14        0.02       50.85
+   12.53333 |          1        0.00       50.85
+   12.57143 |         32        0.05       50.90
+   12.57692 |          1        0.00       50.90
+       12.6 |          3        0.01       50.91
+     12.625 |          5        0.01       50.92
+   12.66667 |          7        0.01       50.93
+      12.68 |          1        0.00       50.93
+   12.69231 |          1        0.00       50.93
+   12.71429 |         22        0.04       50.97
+      12.72 |          1        0.00       50.97
+      12.75 |          6        0.01       50.98
+   12.76923 |          1        0.00       50.98
+       12.8 |          2        0.00       50.99
+   12.80769 |          1        0.00       50.99
+   12.82353 |          1        0.00       50.99
+   12.83333 |          1        0.00       50.99
+   12.85714 |         32        0.05       51.04
+     12.875 |          1        0.00       51.05
+   12.92308 |          1        0.00       51.05
+         13 |      4,924        8.25       59.29
+   13.03846 |          1        0.00       59.29
+   13.07143 |          1        0.00       59.30
+   13.07692 |          1        0.00       59.30
+     13.125 |          2        0.00       59.30
+   13.14286 |         22        0.04       59.34
+   13.15385 |          1        0.00       59.34
+       13.2 |          2        0.00       59.34
+   13.22222 |          1        0.00       59.34
+   13.23077 |          1        0.00       59.35
+      13.25 |          5        0.01       59.35
+   13.27778 |          1        0.00       59.36
+   13.28571 |         14        0.02       59.38
+   13.33333 |         11        0.02       59.40
+     13.375 |          3        0.01       59.40
+   13.38461 |          4        0.01       59.41
+       13.4 |          2        0.00       59.41
+   13.41177 |          1        0.00       59.41
+   13.42857 |         16        0.03       59.44
+   13.44444 |          1        0.00       59.44
+       13.5 |         11        0.02       59.46
+   13.53846 |          2        0.00       59.47
+   13.55556 |          1        0.00       59.47
+   13.57143 |         12        0.02       59.49
+       13.6 |          5        0.01       59.50
+     13.625 |          3        0.01       59.50
+   13.64706 |          1        0.00       59.50
+   13.66667 |         11        0.02       59.52
+   13.69231 |          4        0.01       59.53
+   13.71429 |         39        0.07       59.59
+      13.75 |          5        0.01       59.60
+   13.76923 |          1        0.00       59.60
+   13.77778 |          1        0.00       59.60
+       13.8 |          6        0.01       59.61
+   13.85714 |         20        0.03       59.65
+   13.86667 |          1        0.00       59.65
+     13.875 |          2        0.00       59.65
+         14 |      7,171       12.01       71.66
+   14.04762 |          1        0.00       71.66
+   14.11765 |          1        0.00       71.66
+     14.125 |          2        0.00       71.67
+   14.14286 |          8        0.01       71.68
+   14.15385 |          2        0.00       71.68
+   14.17647 |          2        0.00       71.69
+       14.2 |          5        0.01       71.70
+   14.23077 |          1        0.00       71.70
+      14.25 |          6        0.01       71.71
+   14.28571 |         19        0.03       71.74
+   14.33333 |         12        0.02       71.76
+     14.375 |          2        0.00       71.76
+   14.38461 |          2        0.00       71.77
+       14.4 |          1        0.00       71.77
+   14.42857 |          9        0.02       71.78
+   14.46154 |          1        0.00       71.78
+   14.46667 |          1        0.00       71.79
+       14.5 |         18        0.03       71.82
+   14.53846 |          1        0.00       71.82
+   14.55556 |          1        0.00       71.82
+   14.57143 |         22        0.04       71.86
+   14.57692 |          1        0.00       71.86
+   14.58823 |          1        0.00       71.86
+       14.6 |          3        0.01       71.86
+   14.61539 |          1        0.00       71.87
+     14.625 |          1        0.00       71.87
+   14.64706 |          1        0.00       71.87
+   14.66667 |         11        0.02       71.89
+   14.69231 |          3        0.01       71.89
+   14.71429 |         11        0.02       71.91
+   14.73333 |          1        0.00       71.91
+      14.75 |          2        0.00       71.92
+   14.76923 |          2        0.00       71.92
+   14.78571 |          1        0.00       71.92
+       14.8 |          6        0.01       71.93
+   14.83333 |          1        0.00       71.93
+   14.85714 |         23        0.04       71.97
+   14.86667 |          1        0.00       71.97
+     14.875 |          4        0.01       71.98
+   14.93333 |          1        0.00       71.98
+         15 |      2,667        4.47       76.45
+   15.05882 |          1        0.00       76.45
+   15.07692 |          1        0.00       76.45
+   15.11111 |          1        0.00       76.45
+   15.14286 |         17        0.03       76.48
+   15.15385 |          1        0.00       76.48
+       15.2 |          5        0.01       76.49
+   15.22222 |          1        0.00       76.49
+      15.25 |          6        0.01       76.50
+   15.28571 |         11        0.02       76.52
+   15.33333 |          7        0.01       76.53
+   15.38461 |          2        0.00       76.54
+       15.4 |          5        0.01       76.55
+   15.42857 |         23        0.04       76.58
+   15.46154 |          3        0.01       76.59
+   15.46667 |          1        0.00       76.59
+       15.5 |          9        0.02       76.61
+   15.52941 |          1        0.00       76.61
+   15.54545 |          1        0.00       76.61
+   15.57143 |         11        0.02       76.63
+   15.58333 |          1        0.00       76.63
+   15.58823 |          1        0.00       76.63
+       15.6 |          5        0.01       76.64
+     15.625 |          1        0.00       76.64
+   15.66667 |          3        0.01       76.65
+   15.71429 |         24        0.04       76.69
+      15.75 |          1        0.00       76.69
+   15.76923 |          3        0.01       76.69
+       15.8 |          2        0.00       76.70
+   15.83333 |          1        0.00       76.70
+   15.85714 |         11        0.02       76.72
+         16 |     10,391       17.40       94.12
+   16.04167 |          1        0.00       94.12
+   16.04762 |          1        0.00       94.12
+   16.05882 |          1        0.00       94.12
+   16.07692 |          2        0.00       94.12
+   16.08333 |          1        0.00       94.13
+   16.09524 |          1        0.00       94.13
+     16.125 |          1        0.00       94.13
+   16.14286 |         16        0.03       94.16
+   16.16667 |          4        0.01       94.16
+   16.17647 |          1        0.00       94.16
+   16.19048 |          2        0.00       94.17
+       16.2 |          5        0.01       94.18
+   16.23077 |          2        0.00       94.18
+   16.23529 |          1        0.00       94.18
+      16.25 |          5        0.01       94.19
+   16.28572 |         17        0.03       94.22
+   16.29412 |          1        0.00       94.22
+   16.33333 |          2        0.00       94.22
+     16.375 |          1        0.00       94.22
+   16.38461 |          3        0.01       94.23
+       16.4 |          1        0.00       94.23
+   16.41176 |          1        0.00       94.23
+   16.42857 |         15        0.03       94.26
+       16.5 |          7        0.01       94.27
+   16.53846 |          2        0.00       94.27
+   16.57143 |         21        0.04       94.31
+       16.6 |          4        0.01       94.32
+     16.625 |          1        0.00       94.32
+   16.66667 |          5        0.01       94.33
+   16.69231 |          1        0.00       94.33
+   16.71428 |         20        0.03       94.36
+      16.75 |          2        0.00       94.36
+   16.83333 |          1        0.00       94.37
+   16.85714 |         23        0.04       94.40
+     16.875 |          1        0.00       94.41
+         17 |      3,341        5.59      100.00
+------------+-----------------------------------
+      Total |     59,719      100.00
+
+. 
+. * sample size for full-time workers
+. tab birthyr if inrange(age,25,34) & !mi(logwage) & inrange(wage,2,100) & empF
+> T==1
+
+    birthyr |      Freq.     Percent        Cum.
+------------+-----------------------------------
+       1930 |          5        0.01        0.01
+       1932 |          7        0.01        0.02
+       1933 |         11        0.02        0.04
+       1934 |         69        0.12        0.15
+       1935 |        140        0.23        0.39
+       1936 |        224        0.38        0.76
+       1937 |        260        0.44        1.20
+       1938 |        344        0.58        1.77
+       1939 |        391        0.65        2.43
+       1940 |        434        0.73        3.16
+       1941 |        581        0.97        4.13
+       1942 |        591        0.99        5.12
+       1943 |        660        1.11        6.22
+       1944 |        856        1.43        7.66
+       1945 |        876        1.47        9.12
+       1946 |        747        1.25       10.38
+       1947 |      1,304        2.18       12.56
+       1948 |      1,473        2.47       15.03
+       1949 |      1,678        2.81       17.84
+       1950 |      1,552        2.60       20.43
+       1951 |      1,662        2.78       23.22
+       1952 |      1,839        3.08       26.30
+       1953 |      2,154        3.61       29.90
+       1954 |      2,228        3.73       33.63
+       1955 |      2,153        3.61       37.24
+       1956 |      2,281        3.82       41.06
+       1957 |      1,889        3.16       44.22
+       1958 |      2,286        3.83       48.05
+       1959 |      1,904        3.19       51.24
+       1960 |      1,913        3.20       54.44
+       1961 |      1,950        3.27       57.71
+       1962 |      1,866        3.12       60.83
+       1963 |      1,603        2.68       63.52
+       1964 |      1,407        2.36       65.87
+       1965 |      1,282        2.15       68.02
+       1966 |      1,122        1.88       69.90
+       1967 |        978        1.64       71.54
+       1968 |        779        1.30       72.84
+       1969 |        830        1.39       74.23
+       1970 |        895        1.50       75.73
+       1971 |        787        1.32       77.05
+       1972 |        745        1.25       78.29
+       1973 |        708        1.19       79.48
+       1974 |        746        1.25       80.73
+       1975 |        871        1.46       82.19
+       1976 |        803        1.34       83.53
+       1977 |        957        1.60       85.13
+       1978 |      1,000        1.67       86.81
+       1979 |        901        1.51       88.32
+       1980 |      1,129        1.89       90.21
+       1981 |      1,029        1.72       91.93
+       1982 |        974        1.63       93.56
+       1983 |        806        1.35       94.91
+       1984 |        775        1.30       96.21
+       1985 |        600        1.00       97.21
+       1986 |        552        0.92       98.14
+       1987 |        443        0.74       98.88
+       1988 |        342        0.57       99.45
+       1989 |        173        0.29       99.74
+       1990 |        137        0.23       99.97
+       1991 |         17        0.03      100.00
+------------+-----------------------------------
+      Total |     59,719      100.00
+
+. 
+. * keep only necessary variables
+. keep id wave xsqnr hgc age svywgt sex wage head wife relHD hhid emp?? female 
+> male white black other birthyr gradHS grad4yr gradGrad mightMoveHD movedSince
+> Spring
+
+. compress
+  variable age was int now byte
+  variable hhid was float now int
+  variable head was float now byte
+  variable wife was float now byte
+  variable empPT was float now byte
+  variable empFT was float now byte
+  variable female was float now byte
+  variable male was float now byte
+  variable white was float now byte
+  variable black was float now byte
+  variable other was float now byte
+  variable birthyr was float now int
+  variable gradHS was float now byte
+  variable grad4yr was float now byte
+  variable gradGrad was float now byte
+  variable id was double now long
+  (16,619,175 bytes saved)
+
+. 
+. cd ..
+/home/data/ransom/NLSYvCPS/Data/PSID
+
+. save psid_master, replace
+file psid_master.dta saved
+
+. 
+. log close
+      name:  <unnamed>
+       log:  /home/data/ransom/NLSYvCPS/Data/PSID/create_master.log
+  log type:  text
+ closed on:  12 Feb 2019, 09:24:33
+-------------------------------------------------------------------------------

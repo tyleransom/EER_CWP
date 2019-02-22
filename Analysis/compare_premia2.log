@@ -1,0 +1,232 @@
+
+. 
+. * Compare the wage premia of the different datasets/birth cohorts
+. local DATALIST ACS CPS NLSY PSID SIPP
+
+. 
+. gen dataset=""
+
+. foreach DATA in `DATALIST' {
+  2.     disp "`DATA'"
+  3.     local data = lower("`DATA'")
+  4.     append using `DATA'/`data'_regs2.dta, gen(`DATA')
+  5.     replace dataset="`DATA'" if `DATA'==1
+  6. }
+ACS
+variable dataset was str1 now str3
+(418 real changes made)
+CPS
+(448 real changes made)
+NLSY
+variable dataset was str3 now str4
+(136 real changes made)
+PSID
+(458 real changes made)
+SIPP
+(396 real changes made)
+
+. recode `DATALIST' (.=0)
+(ACS: 1438 changes made)
+(CPS: 990 changes made)
+(NLSY: 854 changes made)
+(PSID: 396 changes made)
+(SIPP: 0 changes made)
+
+. order  `DATALIST' dataset, last
+
+. 
+. local minyear 1950
+
+. local maxyear 1988
+
+. local obscut  400
+
+. 
+. * drop if dataset=="PSID" | dataset=="NLSY"
+. * drop if dataset=="PSID"
+. replace GWP = . if dataset=="PSID"
+(458 real changes made, 458 to missing)
+
+. 
+. drop if dataset=="SIPP" & birthyr>=1983
+(26 observations deleted)
+
+. drop if birthyr<`minyear'
+(172 observations deleted)
+
+. 
+. gen GWPhi = GWP+1.96*GWPse
+(398 missing values generated)
+
+. gen GWPlo = GWP-1.96*GWPse
+(398 missing values generated)
+
+. gen CWPhi = CWP+1.96*CWPse
+
+. gen CWPlo = CWP-1.96*CWPse
+
+. gen HSWPhi = HSWP+1.96*HSWPse
+
+. gen HSWPlo = HSWP-1.96*HSWPse
+
+. 
+. foreach X in CWP HSWP GWP {
+  2.     if "`X'"=="GWP"  local ymax .3
+  3.     if "`X'"=="GWP"  local ymin -.1
+  4.     if "`X'"=="CWP"  local ymax .6
+  5.     if "`X'"=="CWP"  local ymin  0
+  6.     if "`X'"=="HSWP" local ymax .4
+  7.     if "`X'"=="HSWP" local ymin -.1
+  8.     foreach FEM in 0 1 {
+  9.                 if `FEM'==1 local PRE="fe"
+ 10.                 else local PRE=""
+ 11.                 foreach Y in RawGradExact {
+ 12.                         foreach A in 18 25 26 30 35 45 {
+ 13.                                 preserve
+ 14.                                 if `A'==18 drop if ~inlist(birthyr,1958,1959,1968,1969,1978,1979) & ~inrange(birthyr,1980,1988) & dataset=="ACS" // keep 21-22 year olds
+ 15.                                 if `A'==25 drop if ~inlist(birthyr,1950,1951,1960,1961,1970,1971) & ~inrange(birthyr,1972,1988) & dataset=="ACS" // keep 29-30 year olds
+ 16.                                 if `A'==26 drop if ~inlist(birthyr,1952,     1962,     1972     ) & ~inrange(birthyr,1973,1988) & dataset=="ACS" // keep 28    year olds
+ 17.                                 if `A'==30 drop if ~inlist(birthyr,1945,1946,1955,1956,1965,1966) & ~inrange(birthyr,1967,1988) & dataset=="ACS" // keep 34-35 year olds
+ 18.                 if `A'==35 drop if ~inlist(birthyr,1940,1941,1950,1951,1960,1961) & ~inrange(birthyr,1962,1988) & dataset=="ACS" // keep 39-40 year olds
+ 19.                 if `A'==45 drop if ~inlist(birthyr,1935,1936,1945,1946,1955,1956) & ~inrange(birthyr,1957,1988) & dataset=="ACS" // keep 44-45 year olds
+ 20.                                 if `A'==18 local A2 28
+ 21.                                 if `A'==25 local A2 34
+ 22.                                 if `A'==26 local A2 30
+ 23.                                 if `A'==30 local A2 39
+ 24.                                 if `A'==35 local A2 44
+ 25.                                 if `A'==45 local A2 54
+ 26.                                 twoway ( rarea `X'hi `X'lo birthyr if female==`FEM' & empFT & age1==`A' & N>=`obscut' & controls=="`Y'" & dataset=="NLSY" & birthyr<=1964 , color(gs14)) ///
+>                                            ( rarea `X'hi `X'lo birthyr if female==`FEM' & empFT & age1==`A' & N>=`obscut' & controls=="`Y'" & dataset=="NLSY" & birthyr>=1980 , color(gs14)) ///
+>                                            ( line  `X'         birthyr if female==`FEM' & empFT & age1==`A' & N>=`obscut' & controls=="`Y'" & dataset=="NLSY" & birthyr<=1964 , lwidth(medthick) lcolor(black) lpattern(solid)) ///
+>                                            ( line  `X'         birthyr if female==`FEM' & empFT & age1==`A' & N>=`obscut' & controls=="`Y'" & dataset=="CPS"                  , lwidth(medthick) lcolor(black) lpattern(dash)) ///
+>                                            ( line  `X'         birthyr if female==`FEM' & empFT & age1==`A' & N>=`obscut' & controls=="`Y'" & dataset=="ACS"                  , lwidth(medthick) lcolor(black) lpattern(dot)) ///
+>                                            ( line  `X'         birthyr if female==`FEM' & empFT & age1==`A' & N>=`obscut' & controls=="`Y'" & dataset=="PSID" & birthyr<=1966 , lwidth(medthick) lcolor(black) lpattern(shortdash_dot)) ///
+>                                            ( line  `X'         birthyr if female==`FEM' & empFT & age1==`A' & N>=`obscut' & controls=="`Y'" & dataset=="SIPP" & birthyr<=1984 , lwidth(medthick) lcolor(black) lpattern(longdash_dot)) ///
+>                                            ( line  `X'         birthyr if female==`FEM' & empFT & age1==`A' & N>=`obscut' & controls=="`Y'" & dataset=="NLSY" & birthyr>=1980 , lwidth(medthick) lcolor(black) lpattern(solid)) ///
+>                                            ( line  `X'         birthyr if female==`FEM' & empFT & age1==`A' & N>=`obscut' & controls=="`Y'" & dataset=="PSID" & birthyr>=1978 , lwidth(medthick) lcolor(black) lpattern(shortdash_dot)) ///
+>                                 , legend(order(3 4 5 6 7) label(3 "NLSY") label(4 "CPS") label(5 "ACS") label(6 "PSID") label(7 "SIPP") cols(2) symxsize(10) keygap(1) ) ///
+>                                 xscale(range(`minyear' `maxyear')) xlabel(`minyear'(4)`maxyear') yscale(range(`=`ymin'-.05' `=`ymax'+.05')) ylabel(`ymin'(.2)`ymax') xtitle(Birth Year) ytitle(Wage Premium) graphregion(color(white))
+ 27.                                 *xscale(range(`minyear' `maxyear')) xlabel(`minyear'(4)`maxyear') yscale(range(-.2 .8)) ylabel(-.2(.2).6) xtitle(Birth Year) ytitle(Wage Premium) graphregion(color(white))
+.                                 graph export PDFs/line_`PRE'male_FT_`A'`A2'_`X'_`=subinstr("`Y'"," ","",.)'.pdf, replace
+ 28.                                 graph export  PSs/line_`PRE'male_FT_`A'`A2'_`X'_`=subinstr("`Y'"," ","",.)'.eps, replace
+ 29.                                 restore
+ 30.                         }
+ 31.                 }
+ 32.     }
+ 33. }
+(260 observations deleted)
+(file PDFs/line_male_FT_1828_CWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_male_FT_1828_CWP_RawGradExact.eps written in EPS format)
+(172 observations deleted)
+(file PDFs/line_male_FT_2534_CWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_male_FT_2534_CWP_RawGradExact.eps written in EPS format)
+(216 observations deleted)
+(file PDFs/line_male_FT_2630_CWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_male_FT_2630_CWP_RawGradExact.eps written in EPS format)
+(146 observations deleted)
+(file PDFs/line_male_FT_3039_CWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_male_FT_3039_CWP_RawGradExact.eps written in EPS format)
+(86 observations deleted)
+(file PDFs/line_male_FT_3544_CWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_male_FT_3544_CWP_RawGradExact.eps written in EPS format)
+(56 observations deleted)
+(file PDFs/line_male_FT_4554_CWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_male_FT_4554_CWP_RawGradExact.eps written in EPS format)
+(260 observations deleted)
+(file PDFs/line_female_FT_1828_CWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_female_FT_1828_CWP_RawGradExact.eps written in EPS format)
+(172 observations deleted)
+(file PDFs/line_female_FT_2534_CWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_female_FT_2534_CWP_RawGradExact.eps written in EPS format)
+(216 observations deleted)
+(file PDFs/line_female_FT_2630_CWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_female_FT_2630_CWP_RawGradExact.eps written in EPS format)
+(146 observations deleted)
+(file PDFs/line_female_FT_3039_CWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_female_FT_3039_CWP_RawGradExact.eps written in EPS format)
+(86 observations deleted)
+(file PDFs/line_female_FT_3544_CWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_female_FT_3544_CWP_RawGradExact.eps written in EPS format)
+(56 observations deleted)
+(file PDFs/line_female_FT_4554_CWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_female_FT_4554_CWP_RawGradExact.eps written in EPS format)
+(260 observations deleted)
+(file PDFs/line_male_FT_1828_HSWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_male_FT_1828_HSWP_RawGradExact.eps written in EPS format)
+(172 observations deleted)
+(file PDFs/line_male_FT_2534_HSWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_male_FT_2534_HSWP_RawGradExact.eps written in EPS format)
+(216 observations deleted)
+(file PDFs/line_male_FT_2630_HSWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_male_FT_2630_HSWP_RawGradExact.eps written in EPS format)
+(146 observations deleted)
+(file PDFs/line_male_FT_3039_HSWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_male_FT_3039_HSWP_RawGradExact.eps written in EPS format)
+(86 observations deleted)
+(file PDFs/line_male_FT_3544_HSWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_male_FT_3544_HSWP_RawGradExact.eps written in EPS format)
+(56 observations deleted)
+(file PDFs/line_male_FT_4554_HSWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_male_FT_4554_HSWP_RawGradExact.eps written in EPS format)
+(260 observations deleted)
+(file PDFs/line_female_FT_1828_HSWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_female_FT_1828_HSWP_RawGradExact.eps written in EPS format)
+(172 observations deleted)
+(file PDFs/line_female_FT_2534_HSWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_female_FT_2534_HSWP_RawGradExact.eps written in EPS format)
+(216 observations deleted)
+(file PDFs/line_female_FT_2630_HSWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_female_FT_2630_HSWP_RawGradExact.eps written in EPS format)
+(146 observations deleted)
+(file PDFs/line_female_FT_3039_HSWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_female_FT_3039_HSWP_RawGradExact.eps written in EPS format)
+(86 observations deleted)
+(file PDFs/line_female_FT_3544_HSWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_female_FT_3544_HSWP_RawGradExact.eps written in EPS format)
+(56 observations deleted)
+(file PDFs/line_female_FT_4554_HSWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_female_FT_4554_HSWP_RawGradExact.eps written in EPS format)
+(260 observations deleted)
+(file PDFs/line_male_FT_1828_GWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_male_FT_1828_GWP_RawGradExact.eps written in EPS format)
+(172 observations deleted)
+(file PDFs/line_male_FT_2534_GWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_male_FT_2534_GWP_RawGradExact.eps written in EPS format)
+(216 observations deleted)
+(file PDFs/line_male_FT_2630_GWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_male_FT_2630_GWP_RawGradExact.eps written in EPS format)
+(146 observations deleted)
+(file PDFs/line_male_FT_3039_GWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_male_FT_3039_GWP_RawGradExact.eps written in EPS format)
+(86 observations deleted)
+(file PDFs/line_male_FT_3544_GWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_male_FT_3544_GWP_RawGradExact.eps written in EPS format)
+(56 observations deleted)
+(file PDFs/line_male_FT_4554_GWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_male_FT_4554_GWP_RawGradExact.eps written in EPS format)
+(260 observations deleted)
+(file PDFs/line_female_FT_1828_GWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_female_FT_1828_GWP_RawGradExact.eps written in EPS format)
+(172 observations deleted)
+(file PDFs/line_female_FT_2534_GWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_female_FT_2534_GWP_RawGradExact.eps written in EPS format)
+(216 observations deleted)
+(file PDFs/line_female_FT_2630_GWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_female_FT_2630_GWP_RawGradExact.eps written in EPS format)
+(146 observations deleted)
+(file PDFs/line_female_FT_3039_GWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_female_FT_3039_GWP_RawGradExact.eps written in EPS format)
+(86 observations deleted)
+(file PDFs/line_female_FT_3544_GWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_female_FT_3544_GWP_RawGradExact.eps written in EPS format)
+(56 observations deleted)
+(file PDFs/line_female_FT_4554_GWP_RawGradExact.pdf written in PDF format)
+(file PSs/line_female_FT_4554_GWP_RawGradExact.eps written in EPS format)
+
+. 
+. log close
+      name:  <unnamed>
+       log:  /home/data/ransom/NLSYvCPS/Analysis/compare_premia2.log
+  log type:  text
+ closed on:  13 Feb 2019, 13:03:19
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

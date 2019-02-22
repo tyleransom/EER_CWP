@@ -1,0 +1,1450 @@
+-------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /home/data/ransom/NLSYvCPS/Analysis/ACS/acs_means.log
+  log type:  text
+ opened on:  11 Feb 2019, 15:21:18
+
+. 
+. local NUMPIECES 30
+
+. forvalues X = 1/`NUMPIECES' {
+  2.         local EY = int(10000*uniform()) // NO seed; needs to be random
+  3.         !gunzip -fc   ../../Data/ACS/finaldata/Census_1980_1990_2000_2010_
+> pt`X'.dta.gz > tmp`EY'.dta
+  4.         append using tmp`EY'.dta
+  5.         !rm          tmp`EY'.dta
+  6. }
+
+
+
+(label year_lbl already defined)
+(label age_lbl already defined)
+(label wkswork1_lbl already defined)
+(label wkswork2_lbl already defined)
+(label uhrswork_lbl already defined)
+(label incwage_lbl already defined)
+(label vlrace already defined)
+
+
+(label vlrace already defined)
+(label incwage_lbl already defined)
+(label uhrswork_lbl already defined)
+(label wkswork2_lbl already defined)
+(label wkswork1_lbl already defined)
+(label age_lbl already defined)
+(label year_lbl already defined)
+
+
+(label year_lbl already defined)
+(label age_lbl already defined)
+(label wkswork1_lbl already defined)
+(label wkswork2_lbl already defined)
+(label uhrswork_lbl already defined)
+(label incwage_lbl already defined)
+(label vlrace already defined)
+
+
+(label vlrace already defined)
+(label incwage_lbl already defined)
+(label uhrswork_lbl already defined)
+(label wkswork2_lbl already defined)
+(label wkswork1_lbl already defined)
+(label age_lbl already defined)
+(label year_lbl already defined)
+
+
+(label year_lbl already defined)
+(label age_lbl already defined)
+(label wkswork1_lbl already defined)
+(label wkswork2_lbl already defined)
+(label uhrswork_lbl already defined)
+(label incwage_lbl already defined)
+(label vlrace already defined)
+
+
+(label vlrace already defined)
+(label incwage_lbl already defined)
+(label uhrswork_lbl already defined)
+(label wkswork2_lbl already defined)
+(label wkswork1_lbl already defined)
+(label age_lbl already defined)
+(label year_lbl already defined)
+
+
+(label year_lbl already defined)
+(label age_lbl already defined)
+(label wkswork1_lbl already defined)
+(label wkswork2_lbl already defined)
+(label uhrswork_lbl already defined)
+(label incwage_lbl already defined)
+(label vlrace already defined)
+
+
+(label vlrace already defined)
+(label incwage_lbl already defined)
+(label uhrswork_lbl already defined)
+(label wkswork2_lbl already defined)
+(label wkswork1_lbl already defined)
+(label age_lbl already defined)
+(label year_lbl already defined)
+
+
+(label year_lbl already defined)
+(label age_lbl already defined)
+(label wkswork1_lbl already defined)
+(label wkswork2_lbl already defined)
+(label uhrswork_lbl already defined)
+(label incwage_lbl already defined)
+(label vlrace already defined)
+
+
+(label vlrace already defined)
+(label incwage_lbl already defined)
+(label uhrswork_lbl already defined)
+(label wkswork2_lbl already defined)
+(label wkswork1_lbl already defined)
+(label age_lbl already defined)
+(label year_lbl already defined)
+
+
+(label year_lbl already defined)
+(label age_lbl already defined)
+(label wkswork1_lbl already defined)
+(label wkswork2_lbl already defined)
+(label uhrswork_lbl already defined)
+(label incwage_lbl already defined)
+(label vlrace already defined)
+
+
+(label vlrace already defined)
+(label incwage_lbl already defined)
+(label uhrswork_lbl already defined)
+(label wkswork2_lbl already defined)
+(label wkswork1_lbl already defined)
+(label age_lbl already defined)
+(label year_lbl already defined)
+
+
+(label year_lbl already defined)
+(label age_lbl already defined)
+(label wkswork1_lbl already defined)
+(label wkswork2_lbl already defined)
+(label uhrswork_lbl already defined)
+(label incwage_lbl already defined)
+(label vlrace already defined)
+
+
+(label vlrace already defined)
+(label incwage_lbl already defined)
+(label uhrswork_lbl already defined)
+(label wkswork2_lbl already defined)
+(label wkswork1_lbl already defined)
+(label age_lbl already defined)
+(label year_lbl already defined)
+
+
+(label year_lbl already defined)
+(label age_lbl already defined)
+(label wkswork1_lbl already defined)
+(label wkswork2_lbl already defined)
+(label uhrswork_lbl already defined)
+(label incwage_lbl already defined)
+(label vlrace already defined)
+
+
+(label vlrace already defined)
+(label incwage_lbl already defined)
+(label uhrswork_lbl already defined)
+(label wkswork2_lbl already defined)
+(label wkswork1_lbl already defined)
+(label age_lbl already defined)
+(label year_lbl already defined)
+
+
+(label year_lbl already defined)
+(label age_lbl already defined)
+(label wkswork1_lbl already defined)
+(label wkswork2_lbl already defined)
+(label uhrswork_lbl already defined)
+(label incwage_lbl already defined)
+(label vlrace already defined)
+
+
+(label vlrace already defined)
+(label incwage_lbl already defined)
+(label uhrswork_lbl already defined)
+(label wkswork2_lbl already defined)
+(label wkswork1_lbl already defined)
+(label age_lbl already defined)
+(label year_lbl already defined)
+
+
+(label year_lbl already defined)
+(label age_lbl already defined)
+(label wkswork1_lbl already defined)
+(label wkswork2_lbl already defined)
+(label uhrswork_lbl already defined)
+(label incwage_lbl already defined)
+(label vlrace already defined)
+
+
+(label vlrace already defined)
+(label incwage_lbl already defined)
+(label uhrswork_lbl already defined)
+(label wkswork2_lbl already defined)
+(label wkswork1_lbl already defined)
+(label age_lbl already defined)
+(label year_lbl already defined)
+
+
+(label year_lbl already defined)
+(label age_lbl already defined)
+(label wkswork1_lbl already defined)
+(label wkswork2_lbl already defined)
+(label uhrswork_lbl already defined)
+(label incwage_lbl already defined)
+(label vlrace already defined)
+
+
+(label vlrace already defined)
+(label incwage_lbl already defined)
+(label uhrswork_lbl already defined)
+(label wkswork2_lbl already defined)
+(label wkswork1_lbl already defined)
+(label age_lbl already defined)
+(label year_lbl already defined)
+
+
+(label year_lbl already defined)
+(label age_lbl already defined)
+(label wkswork1_lbl already defined)
+(label wkswork2_lbl already defined)
+(label uhrswork_lbl already defined)
+(label incwage_lbl already defined)
+(label vlrace already defined)
+
+
+(label vlrace already defined)
+(label incwage_lbl already defined)
+(label uhrswork_lbl already defined)
+(label wkswork2_lbl already defined)
+(label wkswork1_lbl already defined)
+(label age_lbl already defined)
+(label year_lbl already defined)
+
+
+(label year_lbl already defined)
+(label age_lbl already defined)
+(label wkswork1_lbl already defined)
+(label wkswork2_lbl already defined)
+(label uhrswork_lbl already defined)
+(label incwage_lbl already defined)
+(label vlrace already defined)
+
+
+(label vlrace already defined)
+(label incwage_lbl already defined)
+(label uhrswork_lbl already defined)
+(label wkswork2_lbl already defined)
+(label wkswork1_lbl already defined)
+(label age_lbl already defined)
+(label year_lbl already defined)
+
+
+(label year_lbl already defined)
+(label age_lbl already defined)
+(label wkswork1_lbl already defined)
+(label wkswork2_lbl already defined)
+(label uhrswork_lbl already defined)
+(label incwage_lbl already defined)
+(label vlrace already defined)
+
+
+(label vlrace already defined)
+(label incwage_lbl already defined)
+(label uhrswork_lbl already defined)
+(label wkswork2_lbl already defined)
+(label wkswork1_lbl already defined)
+(label age_lbl already defined)
+(label year_lbl already defined)
+
+
+(label year_lbl already defined)
+(label age_lbl already defined)
+(label wkswork1_lbl already defined)
+(label wkswork2_lbl already defined)
+(label uhrswork_lbl already defined)
+(label incwage_lbl already defined)
+(label vlrace already defined)
+
+
+. * keep if empPT | empFT
+. 
+. *****************************************************************************
+. * Calculate mean values of variables for various subpopulations (or not)
+. * 
+. * Variables
+. *   hgc
+. *   female (on all gender)
+. *   race
+. *   grad4yr/HS
+. *   empFT (on all Emp)
+. *****************************************************************************
+. *---------------------------------------------
+. * Generate variables
+. *---------------------------------------------
+. 
+. * race is good (as are dummies)
+. * gradHS, grad4yr are good
+. * empFT  is good
+. * hgc is good
+. * gen potExp
+. gen potExp = age-hgc-6
+
+. gen gradGrad = hgc>=18
+
+. 
+. * female is indicator for female
+. * birthyr is good
+. 
+. postfile tester birthyr female age1 age2 empFT str20(controls) mean semean N 
+> R2a using acs_means, replace
+
+. forvalues BYR = 1945/1986 {
+  2.     disp "`BYR'"
+  3.         foreach FEM in 0 1 {
+  4.                 foreach AGES in 1828 2534 2630 3039 3544 4554 {
+  5.                         local AGE1 = floor(`AGES'/100)
+  6.                         local AGE2 = `AGES' - `AGE1'*100
+  7.                         foreach FT in 0 1 {
+  8.                 qui count if birthyr==`BYR' & female==`FEM' & inrange(age,
+> `AGE1',`AGE2') & empFT==`FT'
+  9.                 local counter = `r(N)'
+ 10.                 di "Count=`counter' BirthYear=`BYR' Female=`FEM' AgeLo=`AG
+> E1' AgeHi=`AGE2' EmpFT=`FT'"
+ 11.                 if `=1*`counter''>0 {
+ 12.                                         qui  reg hgc      [aw=perwt]  if b
+> irthyr==`BYR' & female==`FEM' & inrange(age,`AGE1',`AGE2') & empFT==`FT'
+ 13.                                         post tester (`BYR') (`FEM') (`AGE1
+> ') (`AGE2') (`FT') ("HGC") (_b[_cons]) (_se[_cons]) (e(N)) (e(r2_a))
+ 14. 
+.                                         qui  reg white    [aw=perwt]  if birt
+> hyr==`BYR' & female==`FEM' & inrange(age,`AGE1',`AGE2') & empFT==`FT'
+ 15.                                         post tester (`BYR') (`FEM') (`AGE1
+> ') (`AGE2') (`FT') ("White") (_b[_cons]) (_se[_cons]) (e(N)) (e(r2_a))
+ 16. 
+.                                         qui  reg hispanic [aw=perwt]  if birt
+> hyr==`BYR' & female==`FEM' & inrange(age,`AGE1',`AGE2') & empFT==`FT'
+ 17.                                         post tester (`BYR') (`FEM') (`AGE1
+> ') (`AGE2') (`FT') ("Hispanic") (_b[_cons]) (_se[_cons]) (e(N)) (e(r2_a))
+ 18. 
+.                                         qui  reg black    [aw=perwt]  if birt
+> hyr==`BYR' & female==`FEM' & inrange(age,`AGE1',`AGE2') & empFT==`FT'
+ 19.                                         post tester (`BYR') (`FEM') (`AGE1
+> ') (`AGE2') (`FT') ("Black") (_b[_cons]) (_se[_cons]) (e(N)) (e(r2_a))
+ 20. 
+.                                         qui  reg gradHS   [aw=perwt]  if birt
+> hyr==`BYR' & female==`FEM' & inrange(age,`AGE1',`AGE2') & empFT==`FT'
+ 21.                                         post tester (`BYR') (`FEM') (`AGE1
+> ') (`AGE2') (`FT') ("GradHS") (_b[_cons]) (_se[_cons]) (e(N)) (e(r2_a))
+ 22. 
+.                                         qui  reg grad4yr  [aw=perwt]  if birt
+> hyr==`BYR' & female==`FEM' & inrange(age,`AGE1',`AGE2') & empFT==`FT'
+ 23.                                         post tester (`BYR') (`FEM') (`AGE1
+> ') (`AGE2') (`FT') ("Grad4yr") (_b[_cons]) (_se[_cons]) (e(N)) (e(r2_a))
+ 24.                                         
+.                                         qui  reg grad4yr  [aw=perwt]  if birt
+> hyr==`BYR' & female==`FEM' & inrange(age,`AGE1',`AGE2')
+ 25.                                         post tester (`BYR') (`FEM') (`AGE1
+> ') (`AGE2') (99) ("Grad4yr") (_b[_cons]) (_se[_cons]) (e(N)) (e(r2_a))
+ 26.                                         
+.                                         qui  reg gradGrad [aw=perwt]  if birt
+> hyr==`BYR' & female==`FEM' & inrange(age,`AGE1',`AGE2') & empFT==`FT'
+ 27.                                         post tester (`BYR') (`FEM') (`AGE1
+> ') (`AGE2') (`FT') ("GradGrad") (_b[_cons]) (_se[_cons]) (e(N)) (e(r2_a))
+ 28.                                         
+.                                         qui  reg gradGrad [aw=perwt]  if birt
+> hyr==`BYR' & female==`FEM' & inrange(age,`AGE1',`AGE2')
+ 29.                                         post tester (`BYR') (`FEM') (`AGE1
+> ') (`AGE2') (99) ("GradGrad") (_b[_cons]) (_se[_cons]) (e(N)) (e(r2_a))
+ 30.                                         
+.                                         qui  reg empFT    [aw=perwt]  if birt
+> hyr==`BYR' & female==`FEM' & inrange(age,`AGE1',`AGE2')
+ 31.                                         post tester (`BYR') (`FEM') (`AGE1
+> ') (`AGE2') (99) ("FTvAll") (_b[_cons]) (_se[_cons]) (e(N)) (e(r2_a))
+ 32. 
+.                                         qui  reg empFT    [aw=perwt]  if birt
+> hyr==`BYR' & female==`FEM' & inrange(age,`AGE1',`AGE2') & (empFT==1 | empPT==
+> 1)
+ 33.                                         post tester (`BYR') (`FEM') (`AGE1
+> ') (`AGE2') (99) ("FTvFTPT") (_b[_cons]) (_se[_cons]) (e(N)) (e(r2_a))
+ 34. 
+.                                         qui  reg female   [aw=perwt]  if birt
+> hyr==`BYR' &                 inrange(age,`AGE1',`AGE2') & empFT==`FT'
+ 35.                                         post tester (`BYR') (99) (`AGE1') 
+> (`AGE2') (`FT') ("Female") (_b[_cons]) (_se[_cons]) (e(N)) (e(r2_a))
+ 36.                                 }
+ 37.                         }
+ 38.                 }
+ 39.         }
+ 40. }
+1945
+Count=0 BirthYear=1945 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=0 BirthYear=1945 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=0 BirthYear=1945 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=0 BirthYear=1945 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1945 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1945 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=12215 BirthYear=1945 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=58862 BirthYear=1945 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=12215 BirthYear=1945 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=58862 BirthYear=1945 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=14711 BirthYear=1945 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=59316 BirthYear=1945 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=0 BirthYear=1945 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=0 BirthYear=1945 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=0 BirthYear=1945 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=0 BirthYear=1945 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1945 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1945 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=46202 BirthYear=1945 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=27357 BirthYear=1945 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=46202 BirthYear=1945 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=27357 BirthYear=1945 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=38197 BirthYear=1945 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=39005 BirthYear=1945 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1946
+Count=0 BirthYear=1946 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=0 BirthYear=1946 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=12610 BirthYear=1946 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=58249 BirthYear=1946 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1946 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1946 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=12610 BirthYear=1946 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=58249 BirthYear=1946 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=13052 BirthYear=1946 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=55192 BirthYear=1946 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=19015 BirthYear=1946 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=51200 BirthYear=1946 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=0 BirthYear=1946 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=0 BirthYear=1946 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=46113 BirthYear=1946 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=26874 BirthYear=1946 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1946 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1946 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=46113 BirthYear=1946 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=26874 BirthYear=1946 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=34812 BirthYear=1946 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=36762 BirthYear=1946 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=37242 BirthYear=1946 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=36679 BirthYear=1946 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1947
+Count=0 BirthYear=1947 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=0 BirthYear=1947 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=16007 BirthYear=1947 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=74945 BirthYear=1947 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1947 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1947 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=16007 BirthYear=1947 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=74945 BirthYear=1947 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=16831 BirthYear=1947 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=75722 BirthYear=1947 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=24759 BirthYear=1947 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=74125 BirthYear=1947 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=0 BirthYear=1947 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=0 BirthYear=1947 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=58667 BirthYear=1947 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=34419 BirthYear=1947 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1947 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1947 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=58667 BirthYear=1947 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=34419 BirthYear=1947 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=45583 BirthYear=1947 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=49281 BirthYear=1947 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=49905 BirthYear=1947 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=54212 BirthYear=1947 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1948
+Count=0 BirthYear=1948 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=0 BirthYear=1948 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=16894 BirthYear=1948 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=75114 BirthYear=1948 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1948 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1948 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=16894 BirthYear=1948 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=75114 BirthYear=1948 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=17609 BirthYear=1948 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=76382 BirthYear=1948 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=25985 BirthYear=1948 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=81217 BirthYear=1948 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=0 BirthYear=1948 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=0 BirthYear=1948 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=59517 BirthYear=1948 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=35670 BirthYear=1948 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1948 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1948 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=59517 BirthYear=1948 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=35670 BirthYear=1948 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=46893 BirthYear=1948 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=49750 BirthYear=1948 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=53076 BirthYear=1948 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=59841 BirthYear=1948 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1949
+Count=0 BirthYear=1949 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=0 BirthYear=1949 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=17490 BirthYear=1949 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=72028 BirthYear=1949 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1949 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1949 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=17490 BirthYear=1949 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=72028 BirthYear=1949 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=15927 BirthYear=1949 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=68200 BirthYear=1949 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=27197 BirthYear=1949 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=85969 BirthYear=1949 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=0 BirthYear=1949 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=0 BirthYear=1949 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=56581 BirthYear=1949 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=35551 BirthYear=1949 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1949 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1949 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=56581 BirthYear=1949 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=35551 BirthYear=1949 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=43320 BirthYear=1949 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=45573 BirthYear=1949 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=54890 BirthYear=1949 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=64827 BirthYear=1949 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1950
+Count=0 BirthYear=1950 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=0 BirthYear=1950 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=19018 BirthYear=1950 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=72628 BirthYear=1950 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=19018 BirthYear=1950 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=72628 BirthYear=1950 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=19018 BirthYear=1950 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=72628 BirthYear=1950 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=18409 BirthYear=1950 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=76482 BirthYear=1950 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=29728 BirthYear=1950 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=94856 BirthYear=1950 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=0 BirthYear=1950 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=0 BirthYear=1950 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=57050 BirthYear=1950 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=37009 BirthYear=1950 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=57050 BirthYear=1950 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=37009 BirthYear=1950 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=57050 BirthYear=1950 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=37009 BirthYear=1950 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=48881 BirthYear=1950 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=50386 BirthYear=1950 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=59415 BirthYear=1950 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=71804 BirthYear=1950 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1951
+Count=0 BirthYear=1951 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=0 BirthYear=1951 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=20845 BirthYear=1951 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=71928 BirthYear=1951 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=20845 BirthYear=1951 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=71928 BirthYear=1951 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=18196 BirthYear=1951 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=75729 BirthYear=1951 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=18196 BirthYear=1951 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=75729 BirthYear=1951 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=34260 BirthYear=1951 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=111202 BirthYear=1951 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=0 BirthYear=1951 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=0 BirthYear=1951 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=56428 BirthYear=1951 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=38074 BirthYear=1951 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=56428 BirthYear=1951 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=38074 BirthYear=1951 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=48602 BirthYear=1951 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=48417 BirthYear=1951 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=48602 BirthYear=1951 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=48417 BirthYear=1951 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=69183 BirthYear=1951 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=84145 BirthYear=1951 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1952
+Count=21754 BirthYear=1952 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=70406 BirthYear=1952 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=21754 BirthYear=1952 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=70406 BirthYear=1952 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=21754 BirthYear=1952 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=70406 BirthYear=1952 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=18119 BirthYear=1952 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=74311 BirthYear=1952 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=18119 BirthYear=1952 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=74311 BirthYear=1952 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=39541 BirthYear=1952 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=131285 BirthYear=1952 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=55233 BirthYear=1952 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=39110 BirthYear=1952 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=55233 BirthYear=1952 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=39110 BirthYear=1952 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=55233 BirthYear=1952 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=39110 BirthYear=1952 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=49210 BirthYear=1952 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=47172 BirthYear=1952 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=49210 BirthYear=1952 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=47172 BirthYear=1952 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=80285 BirthYear=1952 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=99263 BirthYear=1952 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1953
+Count=24560 BirthYear=1953 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=72627 BirthYear=1953 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=24560 BirthYear=1953 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=72627 BirthYear=1953 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=24560 BirthYear=1953 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=72627 BirthYear=1953 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=18852 BirthYear=1953 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=78749 BirthYear=1953 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=18852 BirthYear=1953 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=78749 BirthYear=1953 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=45838 BirthYear=1953 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=150892 BirthYear=1953 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=56436 BirthYear=1953 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=42257 BirthYear=1953 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=56436 BirthYear=1953 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=42257 BirthYear=1953 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=56436 BirthYear=1953 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=42257 BirthYear=1953 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=51690 BirthYear=1953 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=49178 BirthYear=1953 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=51690 BirthYear=1953 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=49178 BirthYear=1953 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=93664 BirthYear=1953 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=114406 BirthYear=1953 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1954
+Count=26959 BirthYear=1954 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=70540 BirthYear=1954 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=26959 BirthYear=1954 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=70540 BirthYear=1954 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=26959 BirthYear=1954 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=70540 BirthYear=1954 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=19602 BirthYear=1954 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=78700 BirthYear=1954 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=19602 BirthYear=1954 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=78700 BirthYear=1954 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=50952 BirthYear=1954 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=168959 BirthYear=1954 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=56029 BirthYear=1954 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=44479 BirthYear=1954 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=56029 BirthYear=1954 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=44479 BirthYear=1954 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=56029 BirthYear=1954 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=44479 BirthYear=1954 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=53425 BirthYear=1954 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=49149 BirthYear=1954 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=53425 BirthYear=1954 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=49149 BirthYear=1954 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=104565 BirthYear=1954 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=128943 BirthYear=1954 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1955
+Count=30372 BirthYear=1955 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=70869 BirthYear=1955 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=30372 BirthYear=1955 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=70869 BirthYear=1955 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1955 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1955 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=21087 BirthYear=1955 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=83661 BirthYear=1955 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=21087 BirthYear=1955 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=83661 BirthYear=1955 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=58616 BirthYear=1955 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=193035 BirthYear=1955 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=56746 BirthYear=1955 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=46251 BirthYear=1955 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=56746 BirthYear=1955 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=46251 BirthYear=1955 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1955 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1955 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=56157 BirthYear=1955 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=51186 BirthYear=1955 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=56157 BirthYear=1955 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=51186 BirthYear=1955 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=118051 BirthYear=1955 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=146388 BirthYear=1955 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1956
+Count=35045 BirthYear=1956 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=67687 BirthYear=1956 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=20891 BirthYear=1956 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=81025 BirthYear=1956 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1956 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1956 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=20891 BirthYear=1956 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=81025 BirthYear=1956 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=22588 BirthYear=1956 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=83195 BirthYear=1956 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=42208 BirthYear=1956 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=126865 BirthYear=1956 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=57341 BirthYear=1956 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=46720 BirthYear=1956 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=56220 BirthYear=1956 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=49939 BirthYear=1956 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1956 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1956 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=56220 BirthYear=1956 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=49939 BirthYear=1956 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=49225 BirthYear=1956 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=60936 BirthYear=1956 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=81101 BirthYear=1956 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=100565 BirthYear=1956 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1957
+Count=41145 BirthYear=1957 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=61844 BirthYear=1957 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=21714 BirthYear=1957 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=83390 BirthYear=1957 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1957 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1957 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=21714 BirthYear=1957 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=83390 BirthYear=1957 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=24380 BirthYear=1957 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=92899 BirthYear=1957 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=48006 BirthYear=1957 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=138250 BirthYear=1957 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=60705 BirthYear=1957 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=44350 BirthYear=1957 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=57221 BirthYear=1957 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=50987 BirthYear=1957 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1957 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1957 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=57221 BirthYear=1957 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=50987 BirthYear=1957 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=55053 BirthYear=1957 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=66583 BirthYear=1957 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=89680 BirthYear=1957 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=109907 BirthYear=1957 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1958
+Count=49289 BirthYear=1958 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=56027 BirthYear=1958 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=22816 BirthYear=1958 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=84129 BirthYear=1958 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1958 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1958 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=22816 BirthYear=1958 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=84129 BirthYear=1958 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=26816 BirthYear=1958 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=102472 BirthYear=1958 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=52989 BirthYear=1958 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=148340 BirthYear=1958 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=66650 BirthYear=1958 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=39711 BirthYear=1958 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=58516 BirthYear=1958 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=52010 BirthYear=1958 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1958 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1958 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=58516 BirthYear=1958 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=52010 BirthYear=1958 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=61143 BirthYear=1958 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=72303 BirthYear=1958 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=97728 BirthYear=1958 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=117332 BirthYear=1958 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1959
+Count=54617 BirthYear=1959 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=50339 BirthYear=1959 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=21359 BirthYear=1959 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=78586 BirthYear=1959 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1959 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1959 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=21359 BirthYear=1959 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=78586 BirthYear=1959 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=27886 BirthYear=1959 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=108234 BirthYear=1959 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=56753 BirthYear=1959 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=156328 BirthYear=1959 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=70971 BirthYear=1959 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=35775 BirthYear=1959 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=54628 BirthYear=1959 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=49685 BirthYear=1959 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1959 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1959 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=54628 BirthYear=1959 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=49685 BirthYear=1959 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=65096 BirthYear=1959 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=76005 BirthYear=1959 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=102750 BirthYear=1959 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=123922 BirthYear=1959 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1960
+Count=63542 BirthYear=1960 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=44435 BirthYear=1960 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=24897 BirthYear=1960 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=85471 BirthYear=1960 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=24897 BirthYear=1960 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=85471 BirthYear=1960 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=24897 BirthYear=1960 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=85471 BirthYear=1960 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=30946 BirthYear=1960 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=119661 BirthYear=1960 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=61626 BirthYear=1960 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=165986 BirthYear=1960 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=77556 BirthYear=1960 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=30598 BirthYear=1960 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=58529 BirthYear=1960 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=54818 BirthYear=1960 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=58529 BirthYear=1960 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=54818 BirthYear=1960 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=58529 BirthYear=1960 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=54818 BirthYear=1960 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=72273 BirthYear=1960 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=83375 BirthYear=1960 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=110589 BirthYear=1960 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=131155 BirthYear=1960 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1961
+Count=80618 BirthYear=1961 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=29418 BirthYear=1961 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=24673 BirthYear=1961 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=80767 BirthYear=1961 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=24673 BirthYear=1961 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=80767 BirthYear=1961 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=23416 BirthYear=1961 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=89154 BirthYear=1961 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=34558 BirthYear=1961 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=135663 BirthYear=1961 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=63269 BirthYear=1961 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=167595 BirthYear=1961 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=89709 BirthYear=1961 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=19763 BirthYear=1961 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=55401 BirthYear=1961 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=53577 BirthYear=1961 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=55401 BirthYear=1961 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=53577 BirthYear=1961 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=54775 BirthYear=1961 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=60841 BirthYear=1961 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=83850 BirthYear=1961 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=94234 BirthYear=1961 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=110634 BirthYear=1961 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=131861 BirthYear=1961 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1962
+Count=117833 BirthYear=1962 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=87964 BirthYear=1962 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=24250 BirthYear=1962 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=75186 BirthYear=1962 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=24250 BirthYear=1962 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=75186 BirthYear=1962 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=24668 BirthYear=1962 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=95792 BirthYear=1962 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=39016 BirthYear=1962 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=151100 BirthYear=1962 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=62713 BirthYear=1962 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=163386 BirthYear=1962 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=148440 BirthYear=1962 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=58220 BirthYear=1962 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=51095 BirthYear=1962 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=50936 BirthYear=1962 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=51095 BirthYear=1962 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=50936 BirthYear=1962 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=59277 BirthYear=1962 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=64845 BirthYear=1962 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=93999 BirthYear=1962 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=104530 BirthYear=1962 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=109236 BirthYear=1962 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=129122 BirthYear=1962 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1963
+Count=26099 BirthYear=1963 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=73879 BirthYear=1963 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=26099 BirthYear=1963 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=73879 BirthYear=1963 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=26099 BirthYear=1963 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=73879 BirthYear=1963 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=25764 BirthYear=1963 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=100639 BirthYear=1963 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=43105 BirthYear=1963 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=166207 BirthYear=1963 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=55862 BirthYear=1963 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=146289 BirthYear=1963 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=50725 BirthYear=1963 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=51495 BirthYear=1963 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=50725 BirthYear=1963 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=51495 BirthYear=1963 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=50725 BirthYear=1963 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=51495 BirthYear=1963 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=63403 BirthYear=1963 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=68188 BirthYear=1963 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=104649 BirthYear=1963 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=115098 BirthYear=1963 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=96228 BirthYear=1963 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=115591 BirthYear=1963 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1964
+Count=27432 BirthYear=1964 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=70082 BirthYear=1964 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=27432 BirthYear=1964 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=70082 BirthYear=1964 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=27432 BirthYear=1964 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=70082 BirthYear=1964 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=27441 BirthYear=1964 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=107200 BirthYear=1964 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=47326 BirthYear=1964 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=182570 BirthYear=1964 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=49880 BirthYear=1964 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=127683 BirthYear=1964 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=48870 BirthYear=1964 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=51253 BirthYear=1964 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=48870 BirthYear=1964 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=51253 BirthYear=1964 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=48870 BirthYear=1964 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=51253 BirthYear=1964 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=67382 BirthYear=1964 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=72537 BirthYear=1964 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=113789 BirthYear=1964 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=126620 BirthYear=1964 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=84944 BirthYear=1964 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=100855 BirthYear=1964 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1965
+Count=30237 BirthYear=1965 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=66228 BirthYear=1965 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=30237 BirthYear=1965 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=66228 BirthYear=1965 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1965 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1965 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=29159 BirthYear=1965 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=111889 BirthYear=1965 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=51699 BirthYear=1965 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=192924 BirthYear=1965 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=41881 BirthYear=1965 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=107845 BirthYear=1965 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=47964 BirthYear=1965 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=49524 BirthYear=1965 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=47964 BirthYear=1965 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=49524 BirthYear=1965 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1965 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1965 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=71046 BirthYear=1965 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=75213 BirthYear=1965 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=122219 BirthYear=1965 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=133949 BirthYear=1965 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=71385 BirthYear=1965 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=85371 BirthYear=1965 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1966
+Count=32480 BirthYear=1966 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=55545 BirthYear=1966 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=21579 BirthYear=1966 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=79525 BirthYear=1966 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1966 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1966 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=30840 BirthYear=1966 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=119884 BirthYear=1966 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=32511 BirthYear=1966 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=117049 BirthYear=1966 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=33775 BirthYear=1966 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=87880 BirthYear=1966 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=46123 BirthYear=1966 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=43011 BirthYear=1966 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=50659 BirthYear=1966 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=53127 BirthYear=1966 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1966 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1966 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=76985 BirthYear=1966 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=80119 BirthYear=1966 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=74625 BirthYear=1966 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=82619 BirthYear=1966 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=57264 BirthYear=1966 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=68800 BirthYear=1966 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1967
+Count=38019 BirthYear=1967 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=48567 BirthYear=1967 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=22029 BirthYear=1967 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=82983 BirthYear=1967 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1967 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1967 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=33872 BirthYear=1967 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=130883 BirthYear=1967 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=35755 BirthYear=1967 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=121404 BirthYear=1967 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=25603 BirthYear=1967 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=71862 BirthYear=1967 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=49279 BirthYear=1967 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=37038 BirthYear=1967 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=51749 BirthYear=1967 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=54953 BirthYear=1967 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1967 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1967 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=83308 BirthYear=1967 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=87353 BirthYear=1967 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=78780 BirthYear=1967 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=86118 BirthYear=1967 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=45718 BirthYear=1967 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=55367 BirthYear=1967 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1968
+Count=43368 BirthYear=1968 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=41064 BirthYear=1968 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=23126 BirthYear=1968 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=86117 BirthYear=1968 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1968 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1968 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=37447 BirthYear=1968 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=142765 BirthYear=1968 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=38813 BirthYear=1968 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=128104 BirthYear=1968 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=19627 BirthYear=1968 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=57333 BirthYear=1968 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=53525 BirthYear=1968 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=29647 BirthYear=1968 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=54048 BirthYear=1968 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=57510 BirthYear=1968 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1968 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1968 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=90912 BirthYear=1968 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=95846 BirthYear=1968 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=83293 BirthYear=1968 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=90862 BirthYear=1968 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=35784 BirthYear=1968 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=43884 BirthYear=1968 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1969
+Count=51248 BirthYear=1969 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=37302 BirthYear=1969 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=25147 BirthYear=1969 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=92202 BirthYear=1969 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1969 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1969 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=41819 BirthYear=1969 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=159120 BirthYear=1969 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=42577 BirthYear=1969 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=138161 BirthYear=1969 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=14732 BirthYear=1969 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=43585 BirthYear=1969 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=60304 BirthYear=1969 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=26081 BirthYear=1969 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=57971 BirthYear=1969 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=62763 BirthYear=1969 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=0 BirthYear=1969 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=0 BirthYear=1969 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=100652 BirthYear=1969 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=107533 BirthYear=1969 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=90124 BirthYear=1969 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=97719 BirthYear=1969 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=26891 BirthYear=1969 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=33699 BirthYear=1969 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1970
+Count=61676 BirthYear=1970 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=31800 BirthYear=1970 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=29154 BirthYear=1970 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=102198 BirthYear=1970 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=23492 BirthYear=1970 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=77847 BirthYear=1970 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=49721 BirthYear=1970 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=179137 BirthYear=1970 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=47668 BirthYear=1970 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=150288 BirthYear=1970 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=9746 BirthYear=1970 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=31146 BirthYear=1970 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=69017 BirthYear=1970 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=21628 BirthYear=1970 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=62798 BirthYear=1970 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=69847 BirthYear=1970 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=47169 BirthYear=1970 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=53265 BirthYear=1970 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=112210 BirthYear=1970 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=122627 BirthYear=1970 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=97903 BirthYear=1970 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=107043 BirthYear=1970 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=18309 BirthYear=1970 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=23225 BirthYear=1970 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1971
+Count=79903 BirthYear=1971 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=18554 BirthYear=1971 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=33087 BirthYear=1971 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=114717 BirthYear=1971 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=25122 BirthYear=1971 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=82343 BirthYear=1971 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=31679 BirthYear=1971 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=115599 BirthYear=1971 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=48226 BirthYear=1971 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=150500 BirthYear=1971 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=5022 BirthYear=1971 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=15625 BirthYear=1971 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=81513 BirthYear=1971 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=12850 BirthYear=1971 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=72575 BirthYear=1971 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=81349 BirthYear=1971 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=50810 BirthYear=1971 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=58770 BirthYear=1971 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=74941 BirthYear=1971 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=81025 BirthYear=1971 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=97272 BirthYear=1971 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=109002 BirthYear=1971 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=9121 BirthYear=1971 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=11985 BirthYear=1971 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1972
+Count=109012 BirthYear=1972 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=76793 BirthYear=1972 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=36732 BirthYear=1972 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=119350 BirthYear=1972 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=26595 BirthYear=1972 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=80775 BirthYear=1972 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=33690 BirthYear=1972 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=112925 BirthYear=1972 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=45358 BirthYear=1972 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=139031 BirthYear=1972 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1972 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1972 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=127189 BirthYear=1972 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=54708 BirthYear=1972 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=76724 BirthYear=1972 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=85033 BirthYear=1972 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=50439 BirthYear=1972 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=58271 BirthYear=1972 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=75492 BirthYear=1972 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=80183 BirthYear=1972 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=90597 BirthYear=1972 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=102034 BirthYear=1972 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1972 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1972 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1973
+Count=25852 BirthYear=1973 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=69896 BirthYear=1973 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=40830 BirthYear=1973 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=124457 BirthYear=1973 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=28613 BirthYear=1973 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=79907 BirthYear=1973 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=36019 BirthYear=1973 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=115310 BirthYear=1973 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=40053 BirthYear=1973 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=119226 BirthYear=1973 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1973 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1973 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=46164 BirthYear=1973 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=52064 BirthYear=1973 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=82732 BirthYear=1973 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=89882 BirthYear=1973 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=52609 BirthYear=1973 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=59440 BirthYear=1973 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=77335 BirthYear=1973 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=81194 BirthYear=1973 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=77265 BirthYear=1973 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=86927 BirthYear=1973 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1973 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1973 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1974
+Count=27979 BirthYear=1974 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=68465 BirthYear=1974 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=44985 BirthYear=1974 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=129500 BirthYear=1974 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=30911 BirthYear=1974 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=78681 BirthYear=1974 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=38632 BirthYear=1974 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=119048 BirthYear=1974 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=35787 BirthYear=1974 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=102928 BirthYear=1974 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1974 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1974 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=46398 BirthYear=1974 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=51198 BirthYear=1974 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=85359 BirthYear=1974 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=93608 BirthYear=1974 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=52845 BirthYear=1974 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=58473 BirthYear=1974 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=78398 BirthYear=1974 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=83966 BirthYear=1974 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=67173 BirthYear=1974 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=74612 BirthYear=1974 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1974 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1974 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1975
+Count=32214 BirthYear=1975 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=72455 BirthYear=1975 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=52724 BirthYear=1975 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=141597 BirthYear=1975 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=9658 BirthYear=1975 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=31501 BirthYear=1975 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=42493 BirthYear=1975 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=127423 BirthYear=1975 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=32154 BirthYear=1975 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=90418 BirthYear=1975 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1975 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1975 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=50726 BirthYear=1975 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=55009 BirthYear=1975 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=94733 BirthYear=1975 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=102814 BirthYear=1975 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=20868 BirthYear=1975 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=22967 BirthYear=1975 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=83550 BirthYear=1975 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=90415 BirthYear=1975 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=59181 BirthYear=1975 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=65740 BirthYear=1975 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1975 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1975 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1976
+Count=39620 BirthYear=1976 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=69852 BirthYear=1976 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=31096 BirthYear=1976 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=91410 BirthYear=1976 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=12385 BirthYear=1976 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=37541 BirthYear=1976 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=44401 BirthYear=1976 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=124880 BirthYear=1976 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=27644 BirthYear=1976 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=76447 BirthYear=1976 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1976 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1976 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=57030 BirthYear=1976 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=53752 BirthYear=1976 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=61005 BirthYear=1976 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=67537 BirthYear=1976 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=25430 BirthYear=1976 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=27752 BirthYear=1976 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=82848 BirthYear=1976 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=90331 BirthYear=1976 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=50283 BirthYear=1976 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=55701 BirthYear=1976 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1976 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1976 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1977
+Count=50795 BirthYear=1977 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=75357 BirthYear=1977 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=36586 BirthYear=1977 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=97889 BirthYear=1977 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=15930 BirthYear=1977 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=45138 BirthYear=1977 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=46014 BirthYear=1977 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=127071 BirthYear=1977 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=22727 BirthYear=1977 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=65279 BirthYear=1977 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1977 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1977 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=70547 BirthYear=1977 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=56832 BirthYear=1977 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=67493 BirthYear=1977 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=73317 BirthYear=1977 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=30904 BirthYear=1977 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=33435 BirthYear=1977 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=84295 BirthYear=1977 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=92995 BirthYear=1977 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=42113 BirthYear=1977 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=47369 BirthYear=1977 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1977 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1977 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1978
+Count=64072 BirthYear=1978 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=80367 BirthYear=1978 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=41940 BirthYear=1978 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=104516 BirthYear=1978 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=18890 BirthYear=1978 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=52031 BirthYear=1978 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=43462 BirthYear=1978 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=113665 BirthYear=1978 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=18526 BirthYear=1978 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=52395 BirthYear=1978 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1978 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1978 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=85861 BirthYear=1978 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=59616 BirthYear=1978 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=73163 BirthYear=1978 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=79868 BirthYear=1978 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=35222 BirthYear=1978 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=39846 BirthYear=1978 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=76945 BirthYear=1978 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=84477 BirthYear=1978 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=34300 BirthYear=1978 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=38316 BirthYear=1978 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1978 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1978 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1979
+Count=77646 BirthYear=1979 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=85283 BirthYear=1979 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=47077 BirthYear=1979 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=111409 BirthYear=1979 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=23326 BirthYear=1979 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=58654 BirthYear=1979 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=41120 BirthYear=1979 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=101423 BirthYear=1979 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=14129 BirthYear=1979 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=40283 BirthYear=1979 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1979 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1979 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=101298 BirthYear=1979 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=62614 BirthYear=1979 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=78738 BirthYear=1979 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=85010 BirthYear=1979 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=40116 BirthYear=1979 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=45501 BirthYear=1979 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=69478 BirthYear=1979 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=75237 BirthYear=1979 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=25622 BirthYear=1979 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=29365 BirthYear=1979 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1979 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1979 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1980
+Count=97174 BirthYear=1980 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=91401 BirthYear=1980 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=54302 BirthYear=1980 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=121159 BirthYear=1980 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=26581 BirthYear=1980 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=60127 BirthYear=1980 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=38611 BirthYear=1980 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=91418 BirthYear=1980 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=9879 BirthYear=1980 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=28240 BirthYear=1980 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1980 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1980 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=121479 BirthYear=1980 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=67988 BirthYear=1980 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=86627 BirthYear=1980 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=93725 BirthYear=1980 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=42350 BirthYear=1980 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=47852 BirthYear=1980 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=62827 BirthYear=1980 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=68027 BirthYear=1980 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=17608 BirthYear=1980 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=20531 BirthYear=1980 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1980 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1980 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1981
+Count=123718 BirthYear=1981 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=86184 BirthYear=1981 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=56716 BirthYear=1981 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=122748 BirthYear=1981 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=28709 BirthYear=1981 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=59266 BirthYear=1981 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=33414 BirthYear=1981 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=79176 BirthYear=1981 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=4979 BirthYear=1981 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=14332 BirthYear=1981 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1981 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1981 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=143305 BirthYear=1981 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=66309 BirthYear=1981 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=86362 BirthYear=1981 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=94847 BirthYear=1981 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=42087 BirthYear=1981 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=47527 BirthYear=1981 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=54045 BirthYear=1981 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=58746 BirthYear=1981 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=8759 BirthYear=1981 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=10637 BirthYear=1981 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1981 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1981 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1982
+Count=149370 BirthYear=1982 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=79877 BirthYear=1982 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=57408 BirthYear=1982 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=122651 BirthYear=1982 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=30591 BirthYear=1982 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=58274 BirthYear=1982 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=27015 BirthYear=1982 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=65749 BirthYear=1982 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=0 BirthYear=1982 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=0 BirthYear=1982 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1982 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1982 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=163687 BirthYear=1982 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=63773 BirthYear=1982 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=86003 BirthYear=1982 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=95919 BirthYear=1982 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=42450 BirthYear=1982 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=47566 BirthYear=1982 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=44078 BirthYear=1982 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=49222 BirthYear=1982 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=0 BirthYear=1982 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=0 BirthYear=1982 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1982 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1982 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1983
+Count=70009 BirthYear=1983 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=75128 BirthYear=1983 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=53827 BirthYear=1983 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=108738 BirthYear=1983 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=32315 BirthYear=1983 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=57451 BirthYear=1983 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=21876 BirthYear=1983 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=52975 BirthYear=1983 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=0 BirthYear=1983 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=0 BirthYear=1983 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1983 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1983 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=84823 BirthYear=1983 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=60811 BirthYear=1983 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=77761 BirthYear=1983 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=86042 BirthYear=1983 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=43873 BirthYear=1983 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=46872 BirthYear=1983 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=35280 BirthYear=1983 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=39744 BirthYear=1983 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=0 BirthYear=1983 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=0 BirthYear=1983 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1983 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1983 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1984
+Count=77162 BirthYear=1984 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=75707 BirthYear=1984 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=49114 BirthYear=1984 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=93667 BirthYear=1984 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=32096 BirthYear=1984 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=56730 BirthYear=1984 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=16017 BirthYear=1984 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=39936 BirthYear=1984 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=0 BirthYear=1984 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=0 BirthYear=1984 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1984 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1984 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=91717 BirthYear=1984 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=60997 BirthYear=1984 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=68821 BirthYear=1984 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=74472 BirthYear=1984 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=43470 BirthYear=1984 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=45905 BirthYear=1984 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=25831 BirthYear=1984 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=29861 BirthYear=1984 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=0 BirthYear=1984 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=0 BirthYear=1984 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1984 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1984 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1985
+Count=89755 BirthYear=1985 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=80163 BirthYear=1985 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=45472 BirthYear=1985 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=82007 BirthYear=1985 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=32427 BirthYear=1985 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=58718 BirthYear=1985 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=10869 BirthYear=1985 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=27068 BirthYear=1985 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=0 BirthYear=1985 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=0 BirthYear=1985 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1985 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1985 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=103277 BirthYear=1985 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=63466 BirthYear=1985 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=60851 BirthYear=1985 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=65836 BirthYear=1985 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=43352 BirthYear=1985 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=46951 BirthYear=1985 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=16951 BirthYear=1985 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=20806 BirthYear=1985 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=0 BirthYear=1985 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=0 BirthYear=1985 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1985 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1985 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+1986
+Count=102388 BirthYear=1986 Female=0 AgeLo=18 AgeHi=28 EmpFT=0
+Count=82198 BirthYear=1986 Female=0 AgeLo=18 AgeHi=28 EmpFT=1
+Count=40311 BirthYear=1986 Female=0 AgeLo=25 AgeHi=34 EmpFT=0
+Count=70303 BirthYear=1986 Female=0 AgeLo=25 AgeHi=34 EmpFT=1
+Count=31772 BirthYear=1986 Female=0 AgeLo=26 AgeHi=30 EmpFT=0
+Count=60635 BirthYear=1986 Female=0 AgeLo=26 AgeHi=30 EmpFT=1
+Count=5633 BirthYear=1986 Female=0 AgeLo=30 AgeHi=39 EmpFT=0
+Count=13801 BirthYear=1986 Female=0 AgeLo=30 AgeHi=39 EmpFT=1
+Count=0 BirthYear=1986 Female=0 AgeLo=35 AgeHi=44 EmpFT=0
+Count=0 BirthYear=1986 Female=0 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1986 Female=0 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1986 Female=0 AgeLo=45 AgeHi=54 EmpFT=1
+Count=114157 BirthYear=1986 Female=1 AgeLo=18 AgeHi=28 EmpFT=0
+Count=63971 BirthYear=1986 Female=1 AgeLo=18 AgeHi=28 EmpFT=1
+Count=52750 BirthYear=1986 Female=1 AgeLo=25 AgeHi=34 EmpFT=0
+Count=55928 BirthYear=1986 Female=1 AgeLo=25 AgeHi=34 EmpFT=1
+Count=43122 BirthYear=1986 Female=1 AgeLo=26 AgeHi=30 EmpFT=0
+Count=47659 BirthYear=1986 Female=1 AgeLo=26 AgeHi=30 EmpFT=1
+Count=8692 BirthYear=1986 Female=1 AgeLo=30 AgeHi=39 EmpFT=0
+Count=10500 BirthYear=1986 Female=1 AgeLo=30 AgeHi=39 EmpFT=1
+Count=0 BirthYear=1986 Female=1 AgeLo=35 AgeHi=44 EmpFT=0
+Count=0 BirthYear=1986 Female=1 AgeLo=35 AgeHi=44 EmpFT=1
+Count=0 BirthYear=1986 Female=1 AgeLo=45 AgeHi=54 EmpFT=0
+Count=0 BirthYear=1986 Female=1 AgeLo=45 AgeHi=54 EmpFT=1
+
+. postclose tester
+
+. 
+. log close
+      name:  <unnamed>
+       log:  /home/data/ransom/NLSYvCPS/Analysis/ACS/acs_means.log
+  log type:  text
+ closed on:  12 Feb 2019, 13:11:09
+-------------------------------------------------------------------------------

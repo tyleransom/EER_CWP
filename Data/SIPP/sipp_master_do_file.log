@@ -1,0 +1,19 @@
+-------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /home/jared/NLSYvCPS/Data/SIPP/sipp_master_do_file.log
+  log type:  text
+ opened on:   1 Jun 2018, 17:25:20
+
+. 
+. do sipp_84to93_master_readin
+
+. /* This is the SIPP, 1984 to 1993 waves */
+. 
+. version 14.1
+
+. clear all
+
+. set maxvar 32000
+
+
+. capture log close

@@ -1,0 +1,1014 @@
+-------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /home/jared/NLSYvCPS/Data/SIPP/sipp_combining_master.log
+  log type:  text
+ opened on:   6 Jul 2018, 20:29:21
+
+. 
+. local EY = int(10000*uniform()) // NO seed; needs to be random
+
+. !gunzip -fc Temp/sipp84to93_ready.dta.gz > Temp/tmp`EY'.dta
+
+
+. use Temp/tmp`EY'.dta
+
+. !rm Temp/tmp`EY'.dta
+
+
+. 
+. tab hgc, mi
+
+        hgc |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         10 |    123,159       13.00       13.00
+         12 |    524,756       55.40       68.40
+         14 |     36,497        3.85       72.26
+         16 |     69,478        7.34       79.59
+         18 |     22,518        2.38       81.97
+         19 |      5,894        0.62       82.59
+         20 |      3,404        0.36       82.95
+          . |    161,482       17.05      100.00
+------------+-----------------------------------
+      Total |    947,188      100.00
+
+. 
+. local EY = int(10000*uniform()) // NO seed; needs to be random
+
+. !gunzip -fc Temp/sipp96to08_ready.dta.gz > Temp/tmp`EY'.dta
+
+
+. append using Temp/tmp`EY'.dta
+(note: variable hgc was byte, now float to accommodate using data's values)
+(note: variable survey was int, now float to accommodate using data's values)
+(label erscor90_lbl already defined)
+
+. !rm Temp/tmp`EY'.dta
+
+
+. 
+. tab hgc, mi
+
+        hgc |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |      5,210        0.24        0.24
+        2.5 |     11,470        0.53        0.76
+        5.5 |     21,320        0.98        1.74
+        7.5 |     43,791        2.01        3.75
+          9 |     43,316        1.98        5.73
+         10 |    175,109        8.02       13.76
+         11 |     50,920        2.33       16.09
+       11.5 |     19,667        0.90       16.99
+         12 |    863,502       39.56       56.55
+         13 |    197,625        9.06       65.61
+       13.5 |     93,575        4.29       69.90
+         14 |    121,495        5.57       75.46
+         16 |    248,483       11.39       86.85
+         18 |     89,591        4.10       90.95
+         19 |     21,137        0.97       91.92
+         20 |     14,619        0.67       92.59
+          . |    161,662        7.41      100.00
+------------+-----------------------------------
+      Total |  2,182,492      100.00
+
+. 
+. replace lnearnings = ln(earnings_annual)
+(0 real changes made)
+
+. replace lnpay = ln(hrlypay)
+(0 real changes made)
+
+. 
+. sum earnings_annual if earnings_annual > 500 & potexp >= 1 & potexp <= 13
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+earnings_a~l |     90,165    22834.53    16200.91   500.4812   262770.8
+
+. 
+. tab hgc
+
+        hgc |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |      5,210        0.26        0.26
+        2.5 |     11,470        0.57        0.83
+        5.5 |     21,320        1.06        1.88
+        7.5 |     43,791        2.17        4.05
+          9 |     43,316        2.14        6.19
+         10 |    175,109        8.67       14.86
+         11 |     50,920        2.52       17.38
+       11.5 |     19,667        0.97       18.35
+         12 |    863,502       42.73       61.08
+         13 |    197,625        9.78       70.86
+       13.5 |     93,575        4.63       75.49
+         14 |    121,495        6.01       81.50
+         16 |    248,483       12.30       93.80
+         18 |     89,591        4.43       98.23
+         19 |     21,137        1.05       99.28
+         20 |     14,619        0.72      100.00
+------------+-----------------------------------
+      Total |  2,020,830      100.00
+
+. tab hgc if age >= 22 & age<= 35
+
+        hgc |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |        381        0.10        0.10
+        2.5 |      1,010        0.26        0.36
+        5.5 |      2,911        0.75        1.11
+        7.5 |      3,104        0.80        1.91
+          9 |      3,777        0.98        2.89
+         10 |     25,833        6.68        9.57
+         11 |      5,921        1.53       11.10
+       11.5 |      3,020        0.78       11.88
+         12 |    169,177       43.73       55.61
+         13 |     43,875       11.34       66.95
+       13.5 |     12,292        3.18       70.13
+         14 |     30,374        7.85       77.98
+         16 |     67,137       17.35       95.33
+         18 |     13,393        3.46       98.80
+         19 |      3,313        0.86       99.65
+         20 |      1,348        0.35      100.00
+------------+-----------------------------------
+      Total |    386,866      100.00
+
+. 
+. /* Region */
+. capture drop ba_west ba_northeast ba_midwest
+
+. foreach x in west northeast south midwest {
+  2. gen ba_`x' = 0
+  3. }
+
+. 
+. replace ba_west = 1 if ba_pacific == 1 | ba_mountain == 1
+(418,880 real changes made)
+
+. replace ba_northeast = 1 if ba_newengland == 1 | ba_midatlantic == 1
+(383,779 real changes made)
+
+. replace ba_south = 1 if ba_southatlantic == 1 | ba_eastsouthcentral == 1 | ba
+> _westsouthcentral == 1
+(701,541 real changes made)
+
+. replace ba_midwest = 1 if ba_eastnorthcentral == 1 | ba_westnorthcentral == 1
+(496,558 real changes made)
+
+. 
+. /* STILL NEED TO COMBINE MAJOR FIELDS */
+. gen sipp_major = .
+(2,182,492 missing values generated)
+
+. replace sipp_major = major_field_96to08 if panel >= 1996
+(272,536 real changes made)
+
+. 
+. replace sipp_major = 1 if major_field_84to93 == 1
+(1,820 real changes made)
+
+. replace sipp_major = 13 if major_field_84to93 == 2
+(2,466 real changes made)
+
+. replace sipp_major = 3 if major_field_84to93 == 3
+(26,597 real changes made)
+
+. replace sipp_major = 3 if major_field_84to93 == 4
+(2,291 real changes made)
+
+. replace sipp_major = 6 if major_field_84to93 == 5
+(19,717 real changes made)
+
+. replace sipp_major = 7 if major_field_84to93 == 6
+(11,385 real changes made)
+
+. replace sipp_major = 8 if major_field_84to93 == 7
+(4,015 real changes made)
+
+. replace sipp_major = 18 if major_field_84to93 == 8
+(1,261 real changes made)
+
+. replace sipp_major = 15 if major_field_84to93 == 9
+(3,260 real changes made)
+
+. replace sipp_major = 11 if major_field_84to93 == 10
+(11,483 real changes made)
+
+. replace sipp_major = 12 if major_field_84to93 == 11
+(2,390 real changes made)
+
+. replace sipp_major = 15 if major_field_84to93 == 12
+(3,469 real changes made)
+
+. replace sipp_major = 10 if major_field_84to93 == 13
+(12,231 real changes made)
+
+. replace sipp_major = 13 if major_field_84to93 == 14
+(3,116 real changes made)
+
+. replace sipp_major = 17 if major_field_84to93 == 15
+(1,541 real changes made)
+
+. replace sipp_major = 16 if major_field_84to93 == 16
+(3,547 real changes made)
+
+. replace sipp_major = 14 if major_field_84to93 == 17
+(1,710 real changes made)
+
+. replace sipp_major = 17 if major_field_84to93 == 18
+(6,998 real changes made)
+
+. replace sipp_major = 18 if major_field_84to93 == 19
+(8,184 real changes made)
+
+. replace sipp_major = 18 if major_field_84to93 == 20
+(10,310 real changes made)
+
+. 
+. sort year
+
+. * merge m:1 year using Crosswalks/unemployment_rates_national.dta
+. * drop if _merge != 3
+. * drop _merge
+. 
+. * rename urate_natl urate_natl_cur
+. 
+. * rename urate_grad urate_natl_grad
+. * JA: This file is un-needed
+. * compress
+. * save Temp/sipp_full_ready.dta, replace
+. * !gzip -f Temp/sipp_full_ready.dta
+. 
+. /* Estimating majorbeta */
+. quietly tab major_field_84to93, gen(earlymajdum)
+
+. quietly tab major_field_96to08, gen(latemajdum)
+
+. 
+. /* Early majorbeta */
+. 
+. /* List of early majors:
+>           Agriculture or Forestry |        718        1.49        1.49
+>                           Biology |      1,403        2.92        4.41
+>            Business or Management |     10,663       22.18       26.59
+>                         Economics |      1,196        2.49       29.08
+>                         Education |      6,601       13.73       42.81
+>  Engineering (including computers |      4,629        9.63       52.44
+>             English or Journalism |      2,068        4.30       56.74
+>                    Home Economics |        501        1.04       57.78
+>                               Law |        218        0.45       58.23
+>        Liberal Arts or Humanities |      4,561        9.49       67.72
+>         Mathematics or Statistics |        961        2.00       69.72
+>             Medicine or Dentistry |        235        0.49       70.21
+>      Nursing, Pharmacy, or Health |      2,975        6.19       76.39
+>        Physical or Earth Sciences |      1,195        2.49       78.88
+> Police Science or Law Enforcement |        664        1.38       80.26
+>                        Psychology |      1,729        3.60       83.86
+>              Religion or Theology |        318        0.66       84.52
+>         Social Sciences (history, |      3,528        7.34       91.86
+>    Vocational - Technical Studies |        381        0.79       92.65
+>                             Other |      3,534        7.35      100.00
+> */
+. reg lnearnings i.year male black hispanic west northeast midwest potexp potex
+> p2 earlymajdum2-earlymajdum20 if fulltime > 0.75 & employed > 0.75 & enrolled
+>  < 0.25 & potexp > 13 & age <= 60 & panel < 1996
+
+      Source |       SS           df       MS      Number of obs   =    22,957
+-------------+----------------------------------   F(36, 22920)    =    154.73
+       Model |  1373.45277        36  38.1514659   Prob > F        =    0.0000
+    Residual |  5651.49209    22,920  .246574699   R-squared       =    0.1955
+-------------+----------------------------------   Adj R-squared   =    0.1942
+       Total |  7024.94486    22,956  .306017811   Root MSE        =    .49656
+
+------------------------------------------------------------------------------
+  lnearnings |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        year |
+       1987  |    .011502    .022301     0.52   0.606    -.0322094    .0552135
+       1988  |   .0247866   .0219296     1.13   0.258    -.0181969      .06777
+       1989  |   .0073276   .0244115     0.30   0.764    -.0405206    .0551759
+       1990  |  -.0031469   .0217942    -0.14   0.885     -.045865    .0395711
+       1991  |  -.0112999   .0204142    -0.55   0.580     -.051313    .0287133
+       1992  |   -.015939   .0204801    -0.78   0.436    -.0560815    .0242034
+       1993  |  -.0340948   .0201475    -1.69   0.091    -.0735853    .0053957
+       1994  |  -.0474426   .0200822    -2.36   0.018     -.086805   -.0080801
+       1995  |  -.0597979    .021469    -2.79   0.005    -.1018785   -.0177172
+             |
+        male |   .2825978   .0077578    36.43   0.000     .2673921    .2978035
+       black |   -.109056   .0147981    -7.37   0.000    -.1380613   -.0800508
+    hispanic |  -.1405968   .0201947    -6.96   0.000    -.1801797   -.1010139
+        west |   .0504142   .0095594     5.27   0.000     .0316771    .0691514
+   northeast |   .0867913   .0087671     9.90   0.000     .0696071    .1039755
+     midwest |  -.0168769   .0087125    -1.94   0.053     -.033954    .0002002
+      potexp |   .0375472   .0038711     9.70   0.000     .0299595    .0451349
+     potexp2 |  -.0006611   .0000792    -8.35   0.000    -.0008164   -.0005059
+earlymajdum2 |   .0335191   .0343704     0.98   0.329    -.0338492    .1008873
+earlymajdum3 |   .1420145   .0283443     5.01   0.000     .0864578    .1975713
+earlymajdum4 |   .1865667   .0356342     5.24   0.000     .1167213    .2564122
+earlymajdum5 |  -.0364414   .0285662    -1.28   0.202    -.0924331    .0195503
+earlymajdum6 |   .2940484    .029332    10.02   0.000     .2365557    .3515412
+earlymajdum7 |  -.0027904   .0326646    -0.09   0.932    -.0668153    .0612344
+earlymajdum8 |   .0018844   .0460321     0.04   0.967    -.0883416    .0921105
+earlymajdum9 |   .4830639   .0346718    13.93   0.000     .4151048     .551023
+earlymajd~10 |   -.045504   .0304006    -1.50   0.134    -.1050913    .0140832
+earlymajd~11 |   .2568491   .0342331     7.50   0.000       .18975    .3239483
+earlymajd~12 |     .49967   .0351818    14.20   0.000     .4307114    .5686287
+earlymajd~13 |   .0972475   .0316861     3.07   0.002     .0351405    .1593544
+earlymajd~14 |   .1937001   .0335697     5.77   0.000     .1279012     .259499
+earlymajd~15 |   .0350641   .0463359     0.76   0.449    -.0557574    .1258855
+earlymajd~16 |    .028959   .0335017     0.86   0.387    -.0367066    .0946247
+earlymajd~17 |  -.3878748   .0371423   -10.44   0.000    -.4606762   -.3150734
+earlymajd~18 |    .002844   .0302827     0.09   0.925    -.0565122    .0622001
+earlymajd~19 |   -.021308   .0569039    -0.37   0.708    -.1328434    .0902274
+earlymajd~20 |   .1011339   .0302176     3.35   0.001     .0419055    .1603624
+       _cons |   9.515393   .0555037   171.44   0.000     9.406602    9.624184
+------------------------------------------------------------------------------
+
+. gen earlymajorbeta=0 if earlymajdum1==1
+(2,180,672 missing values generated)
+
+. for num 2/20: replace earlymajorbeta = _b[earlymajdumX] if earlymajdumX==1
+
+->  replace earlymajorbeta = _b[earlymajdum2] if earlymajdum2==1
+(2,466 real changes made)
+
+->  replace earlymajorbeta = _b[earlymajdum3] if earlymajdum3==1
+(26,597 real changes made)
+
+->  replace earlymajorbeta = _b[earlymajdum4] if earlymajdum4==1
+(2,291 real changes made)
+
+->  replace earlymajorbeta = _b[earlymajdum5] if earlymajdum5==1
+(19,717 real changes made)
+
+->  replace earlymajorbeta = _b[earlymajdum6] if earlymajdum6==1
+(11,385 real changes made)
+
+->  replace earlymajorbeta = _b[earlymajdum7] if earlymajdum7==1
+(4,015 real changes made)
+
+->  replace earlymajorbeta = _b[earlymajdum8] if earlymajdum8==1
+(1,261 real changes made)
+
+->  replace earlymajorbeta = _b[earlymajdum9] if earlymajdum9==1
+(3,260 real changes made)
+
+->  replace earlymajorbeta = _b[earlymajdum10] if earlymajdum10==1
+(11,483 real changes made)
+
+->  replace earlymajorbeta = _b[earlymajdum11] if earlymajdum11==1
+(2,390 real changes made)
+
+->  replace earlymajorbeta = _b[earlymajdum12] if earlymajdum12==1
+(3,469 real changes made)
+
+->  replace earlymajorbeta = _b[earlymajdum13] if earlymajdum13==1
+(12,231 real changes made)
+
+->  replace earlymajorbeta = _b[earlymajdum14] if earlymajdum14==1
+(3,116 real changes made)
+
+->  replace earlymajorbeta = _b[earlymajdum15] if earlymajdum15==1
+(1,541 real changes made)
+
+->  replace earlymajorbeta = _b[earlymajdum16] if earlymajdum16==1
+(3,547 real changes made)
+
+->  replace earlymajorbeta = _b[earlymajdum17] if earlymajdum17==1
+(1,710 real changes made)
+
+->  replace earlymajorbeta = _b[earlymajdum18] if earlymajdum18==1
+(6,998 real changes made)
+
+->  replace earlymajorbeta = _b[earlymajdum19] if earlymajdum19==1
+(8,184 real changes made)
+
+->  replace earlymajorbeta = _b[earlymajdum20] if earlymajdum20==1
+(10,310 real changes made)
+
+. 
+. /* Late majorbeta */
+. /* List of late majors
+>       Agriculture/Forestry |      2,216        1.18        1.18
+>               Art/Architecture |      5,216        2.79        3.97
+>            Business/Management |     35,725       19.10       23.07
+>                 Communications |      5,507        2.94       26.01
+>       Computer and Information |      6,184        3.31       29.32
+>                      Education |     23,377       12.50       41.82
+>                    Engineering |     13,438        7.18       49.00
+>             English/Literature |      5,277        2.82       51.82
+>              Foreign Languages |      1,440        0.77       52.59
+>                Health Sciences |     10,319        5.52       58.11
+>        Liberal Arts/Humanities |     10,338        5.53       63.63
+>                Math/Statistics |      3,465        1.85       65.48
+> Nature Sciences(Biological and |     11,534        6.17       71.65
+>   Philosophy/Religion/Theology |      2,013        1.08       72.73
+>               Pre-Professional |      1,720        0.92       73.64
+>                     Psychology |      8,511        4.55       78.19
+>        Social Sciences/History |      9,505        5.08       83.28
+>                          Other |     31,287       16.72      100.00
+> */
+. 
+. reg lnearnings i.year male black hispanic west northeast midwest potexp potex
+> p2 latemajdum2-latemajdum18 if fulltime > 0.75 & employed > 0.75 & enrolled <
+>  0.25 & potexp > 13 & age <= 60 & panel >= 1996
+
+      Source |       SS           df       MS      Number of obs   =    62,060
+-------------+----------------------------------   F(41, 62018)    =    197.19
+       Model |  3070.02451        41  74.8786465   Prob > F        =    0.0000
+    Residual |  23549.9197    62,018  .379727172   R-squared       =    0.1153
+-------------+----------------------------------   Adj R-squared   =    0.1147
+       Total |  26619.9443    62,059  .428945749   Root MSE        =    .61622
+
+------------------------------------------------------------------------------
+  lnearnings |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        year |
+       1997  |  -.0271538   .0144581    -1.88   0.060    -.0554918    .0011841
+       1998  |   .0039982   .0147247     0.27   0.786    -.0248623    .0328587
+       1999  |   .0105207   .0147796     0.71   0.477    -.0184473    .0394888
+       2001  |   .0064723   .0146983     0.44   0.660    -.0223364    .0352811
+       2002  |   .0119109   .0149772     0.80   0.426    -.0174443    .0412662
+       2003  |   .0045791   .0149649     0.31   0.760    -.0247521    .0339104
+       2004  |    .090079   .0135388     6.65   0.000     .0635428    .1166152
+       2005  |   .0613011    .013756     4.46   0.000     .0343394    .0882628
+       2006  |   .0414991   .0138236     3.00   0.003     .0144049    .0685933
+       2007  |   .0251777   .0174303     1.44   0.149    -.0089856     .059341
+       2008  |   .0696568   .0134561     5.18   0.000     .0432828    .0960309
+       2009  |   .0651463    .013929     4.68   0.000     .0378453    .0924472
+       2010  |   .0480628   .0142171     3.38   0.001     .0201972    .0759283
+       2011  |   .0315999   .0143815     2.20   0.028      .003412    .0597877
+       2012  |   .0163512   .0145261     1.13   0.260      -.01212    .0448223
+       2013  |  -.0007968   .0160232    -0.05   0.960    -.0322023    .0306086
+             |
+        male |   .2854026    .005434    52.52   0.000     .2747519    .2960533
+       black |  -.1260187    .010067   -12.52   0.000    -.1457501   -.1062873
+    hispanic |  -.2821696   .0142017   -19.87   0.000    -.3100049   -.2543343
+        west |    .103259   .0072675    14.21   0.000     .0890147    .1175033
+   northeast |   .1105602   .0066516    16.62   0.000     .0975231    .1235973
+     midwest |   .0021174   .0065211     0.32   0.745    -.0106639    .0148988
+      potexp |   .0175398   .0027836     6.30   0.000     .0120839    .0229956
+     potexp2 |  -.0003141   .0000548    -5.73   0.000    -.0004215   -.0002067
+ latemajdum2 |   .0708774   .0269011     2.63   0.008     .0181512    .1236036
+ latemajdum3 |   .2298468   .0220687    10.42   0.000     .1865921    .2731015
+ latemajdum4 |    .130243   .0266028     4.90   0.000     .0781015    .1823844
+ latemajdum5 |   .3506062   .0255615    13.72   0.000     .3005055    .4007069
+ latemajdum6 |   .0467311   .0224373     2.08   0.037     .0027539    .0907082
+ latemajdum7 |   .4001673   .0228231    17.53   0.000     .3554339    .4449006
+ latemajdum8 |   .1388555   .0259913     5.34   0.000     .0879125    .1897984
+ latemajdum9 |   .1972078   .0356502     5.53   0.000     .1273333    .2670823
+latemajdum10 |   .2578889   .0244203    10.56   0.000      .210025    .3057528
+latemajdum11 |   .1851425   .0239867     7.72   0.000     .1381285    .2321564
+latemajdum12 |   .2929998   .0264685    11.07   0.000     .2411215    .3448782
+latemajdum13 |   .3077975   .0234043    13.15   0.000     .2619251    .3536699
+latemajdum14 |   .1054175   .0321507     3.28   0.001      .042402     .168433
+latemajdum15 |   .5784908   .0352119    16.43   0.000     .5094754    .6475061
+latemajdum16 |   .1402805   .0248967     5.63   0.000      .091483     .189078
+latemajdum17 |   .1366439   .0240589     5.68   0.000     .0894883    .1837995
+latemajdum18 |   .2222482   .0222092    10.01   0.000     .1787181    .2657783
+       _cons |   9.647343   .0412669   233.78   0.000     9.566459    9.728226
+------------------------------------------------------------------------------
+
+. gen latemajorbeta=0 if latemajdum1==1
+(2,179,008 missing values generated)
+
+. for num 2/18: replace latemajorbeta = _b[latemajdumX] if latemajdumX==1
+
+->  replace latemajorbeta = _b[latemajdum2] if latemajdum2==1
+(7,343 real changes made)
+
+->  replace latemajorbeta = _b[latemajdum3] if latemajdum3==1
+(49,090 real changes made)
+
+->  replace latemajorbeta = _b[latemajdum4] if latemajdum4==1
+(6,861 real changes made)
+
+->  replace latemajorbeta = _b[latemajdum5] if latemajdum5==1
+(7,576 real changes made)
+
+->  replace latemajorbeta = _b[latemajdum6] if latemajdum6==1
+(38,806 real changes made)
+
+->  replace latemajorbeta = _b[latemajdum7] if latemajdum7==1
+(21,054 real changes made)
+
+->  replace latemajorbeta = _b[latemajdum8] if latemajdum8==1
+(8,560 real changes made)
+
+->  replace latemajorbeta = _b[latemajdum9] if latemajdum9==1
+(2,255 real changes made)
+
+->  replace latemajorbeta = _b[latemajdum10] if latemajdum10==1
+(14,223 real changes made)
+
+->  replace latemajorbeta = _b[latemajdum11] if latemajdum11==1
+(15,522 real changes made)
+
+->  replace latemajorbeta = _b[latemajdum12] if latemajdum12==1
+(5,582 real changes made)
+
+->  replace latemajorbeta = _b[latemajdum13] if latemajdum13==1
+(16,858 real changes made)
+
+->  replace latemajorbeta = _b[latemajdum14] if latemajdum14==1
+(3,204 real changes made)
+
+->  replace latemajorbeta = _b[latemajdum15] if latemajdum15==1
+(2,655 real changes made)
+
+->  replace latemajorbeta = _b[latemajdum16] if latemajdum16==1
+(11,602 real changes made)
+
+->  replace latemajorbeta = _b[latemajdum17] if latemajdum17==1
+(13,780 real changes made)
+
+->  replace latemajorbeta = _b[latemajdum18] if latemajdum18==1
+(44,081 real changes made)
+
+. 
+. 
+. capture drop sipp_major
+
+. 
+. gen sipp_major = .
+(2,182,492 missing values generated)
+
+. replace sipp_major = major_field_96to08 if panel >= 1996
+(272,536 real changes made)
+
+. 
+. replace sipp_major = 1 if major_field_84to93 == 1
+(1,820 real changes made)
+
+. replace sipp_major = 13 if major_field_84to93 == 2
+(2,466 real changes made)
+
+. replace sipp_major = 3 if major_field_84to93 == 3
+(26,597 real changes made)
+
+. replace sipp_major = 3 if major_field_84to93 == 4
+(2,291 real changes made)
+
+. replace sipp_major = 6 if major_field_84to93 == 5
+(19,717 real changes made)
+
+. replace sipp_major = 7 if major_field_84to93 == 6
+(11,385 real changes made)
+
+. replace sipp_major = 8 if major_field_84to93 == 7
+(4,015 real changes made)
+
+. replace sipp_major = 18 if major_field_84to93 == 8
+(1,261 real changes made)
+
+. replace sipp_major = 15 if major_field_84to93 == 9
+(3,260 real changes made)
+
+. replace sipp_major = 11 if major_field_84to93 == 10
+(11,483 real changes made)
+
+. replace sipp_major = 12 if major_field_84to93 == 11
+(2,390 real changes made)
+
+. replace sipp_major = 15 if major_field_84to93 == 12
+(3,469 real changes made)
+
+. replace sipp_major = 10 if major_field_84to93 == 13
+(12,231 real changes made)
+
+. replace sipp_major = 13 if major_field_84to93 == 14
+(3,116 real changes made)
+
+. replace sipp_major = 17 if major_field_84to93 == 15
+(1,541 real changes made)
+
+. replace sipp_major = 16 if major_field_84to93 == 16
+(3,547 real changes made)
+
+. replace sipp_major = 14 if major_field_84to93 == 17
+(1,710 real changes made)
+
+. replace sipp_major = 17 if major_field_84to93 == 18
+(6,998 real changes made)
+
+. replace sipp_major = 18 if major_field_84to93 == 19
+(8,184 real changes made)
+
+. replace sipp_major = 18 if major_field_84to93 == 20
+(10,310 real changes made)
+
+. 
+. tab sipp_major
+
+ sipp_major |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |      5,304        1.29        1.29
+          2 |      7,343        1.79        3.08
+          3 |     77,978       19.00       22.09
+          4 |      6,861        1.67       23.76
+          5 |      7,576        1.85       25.60
+          6 |     58,523       14.26       39.87
+          7 |     32,439        7.91       47.77
+          8 |     12,575        3.06       50.84
+          9 |      2,255        0.55       51.39
+         10 |     26,454        6.45       57.83
+         11 |     27,005        6.58       64.42
+         12 |      7,972        1.94       66.36
+         13 |     22,440        5.47       71.83
+         14 |      4,914        1.20       73.02
+         15 |      9,384        2.29       75.31
+         16 |     15,149        3.69       79.00
+         17 |     22,319        5.44       84.44
+         18 |     63,836       15.56      100.00
+------------+-----------------------------------
+      Total |    410,327      100.00
+
+. 
+. /* Combined majorbeta */
+. quietly tab sipp_major, gen(totalmajdum)
+
+. 
+. reg lnearnings i.year male black hispanic west northeast midwest potexp potex
+> p2 totalmajdum2-totalmajdum18 if fulltime > 0.75 & employed > 0.75 & enrolled
+>  < 0.25 & potexp > 13 & age <= 60 & panel >= 1996
+
+      Source |       SS           df       MS      Number of obs   =    62,060
+-------------+----------------------------------   F(41, 62018)    =    197.19
+       Model |  3070.02451        41  74.8786465   Prob > F        =    0.0000
+    Residual |  23549.9197    62,018  .379727172   R-squared       =    0.1153
+-------------+----------------------------------   Adj R-squared   =    0.1147
+       Total |  26619.9443    62,059  .428945749   Root MSE        =    .61622
+
+------------------------------------------------------------------------------
+  lnearnings |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        year |
+       1997  |  -.0271538   .0144581    -1.88   0.060    -.0554918    .0011841
+       1998  |   .0039982   .0147247     0.27   0.786    -.0248623    .0328587
+       1999  |   .0105207   .0147796     0.71   0.477    -.0184473    .0394888
+       2001  |   .0064723   .0146983     0.44   0.660    -.0223364    .0352811
+       2002  |   .0119109   .0149772     0.80   0.426    -.0174443    .0412662
+       2003  |   .0045791   .0149649     0.31   0.760    -.0247521    .0339104
+       2004  |    .090079   .0135388     6.65   0.000     .0635428    .1166152
+       2005  |   .0613011    .013756     4.46   0.000     .0343394    .0882628
+       2006  |   .0414991   .0138236     3.00   0.003     .0144049    .0685933
+       2007  |   .0251777   .0174303     1.44   0.149    -.0089856     .059341
+       2008  |   .0696568   .0134561     5.18   0.000     .0432828    .0960309
+       2009  |   .0651463    .013929     4.68   0.000     .0378453    .0924472
+       2010  |   .0480628   .0142171     3.38   0.001     .0201972    .0759283
+       2011  |   .0315999   .0143815     2.20   0.028      .003412    .0597877
+       2012  |   .0163512   .0145261     1.13   0.260      -.01212    .0448223
+       2013  |  -.0007968   .0160232    -0.05   0.960    -.0322023    .0306086
+             |
+        male |   .2854026    .005434    52.52   0.000     .2747519    .2960533
+       black |  -.1260187    .010067   -12.52   0.000    -.1457501   -.1062873
+    hispanic |  -.2821696   .0142017   -19.87   0.000    -.3100049   -.2543343
+        west |    .103259   .0072675    14.21   0.000     .0890147    .1175033
+   northeast |   .1105602   .0066516    16.62   0.000     .0975231    .1235973
+     midwest |   .0021174   .0065211     0.32   0.745    -.0106639    .0148988
+      potexp |   .0175398   .0027836     6.30   0.000     .0120839    .0229956
+     potexp2 |  -.0003141   .0000548    -5.73   0.000    -.0004215   -.0002067
+totalmajdum2 |   .0708774   .0269011     2.63   0.008     .0181512    .1236036
+totalmajdum3 |   .2298468   .0220687    10.42   0.000     .1865921    .2731015
+totalmajdum4 |    .130243   .0266028     4.90   0.000     .0781015    .1823844
+totalmajdum5 |   .3506062   .0255615    13.72   0.000     .3005055    .4007069
+totalmajdum6 |   .0467311   .0224373     2.08   0.037     .0027539    .0907082
+totalmajdum7 |   .4001673   .0228231    17.53   0.000     .3554339    .4449006
+totalmajdum8 |   .1388555   .0259913     5.34   0.000     .0879125    .1897984
+totalmajdum9 |   .1972078   .0356502     5.53   0.000     .1273333    .2670823
+totalmajd~10 |   .2578889   .0244203    10.56   0.000      .210025    .3057528
+totalmajd~11 |   .1851425   .0239867     7.72   0.000     .1381285    .2321564
+totalmajd~12 |   .2929998   .0264685    11.07   0.000     .2411215    .3448782
+totalmajd~13 |   .3077975   .0234043    13.15   0.000     .2619251    .3536699
+totalmajd~14 |   .1054175   .0321507     3.28   0.001      .042402     .168433
+totalmajd~15 |   .5784908   .0352119    16.43   0.000     .5094754    .6475061
+totalmajd~16 |   .1402805   .0248967     5.63   0.000      .091483     .189078
+totalmajd~17 |   .1366439   .0240589     5.68   0.000     .0894883    .1837995
+totalmajd~18 |   .2222482   .0222092    10.01   0.000     .1787181    .2657783
+       _cons |   9.647343   .0412669   233.78   0.000     9.566459    9.728226
+------------------------------------------------------------------------------
+
+. gen totalmajorbeta=0 if totalmajdum1==1
+(2,177,188 missing values generated)
+
+. for num 2/18: replace totalmajorbeta = _b[totalmajdumX] if totalmajdumX==1
+
+->  replace totalmajorbeta = _b[totalmajdum2] if totalmajdum2==1
+(7,343 real changes made)
+
+->  replace totalmajorbeta = _b[totalmajdum3] if totalmajdum3==1
+(77,978 real changes made)
+
+->  replace totalmajorbeta = _b[totalmajdum4] if totalmajdum4==1
+(6,861 real changes made)
+
+->  replace totalmajorbeta = _b[totalmajdum5] if totalmajdum5==1
+(7,576 real changes made)
+
+->  replace totalmajorbeta = _b[totalmajdum6] if totalmajdum6==1
+(58,523 real changes made)
+
+->  replace totalmajorbeta = _b[totalmajdum7] if totalmajdum7==1
+(32,439 real changes made)
+
+->  replace totalmajorbeta = _b[totalmajdum8] if totalmajdum8==1
+(12,575 real changes made)
+
+->  replace totalmajorbeta = _b[totalmajdum9] if totalmajdum9==1
+(2,255 real changes made)
+
+->  replace totalmajorbeta = _b[totalmajdum10] if totalmajdum10==1
+(26,454 real changes made)
+
+->  replace totalmajorbeta = _b[totalmajdum11] if totalmajdum11==1
+(27,005 real changes made)
+
+->  replace totalmajorbeta = _b[totalmajdum12] if totalmajdum12==1
+(7,972 real changes made)
+
+->  replace totalmajorbeta = _b[totalmajdum13] if totalmajdum13==1
+(22,440 real changes made)
+
+->  replace totalmajorbeta = _b[totalmajdum14] if totalmajdum14==1
+(4,914 real changes made)
+
+->  replace totalmajorbeta = _b[totalmajdum15] if totalmajdum15==1
+(9,384 real changes made)
+
+->  replace totalmajorbeta = _b[totalmajdum16] if totalmajdum16==1
+(15,149 real changes made)
+
+->  replace totalmajorbeta = _b[totalmajdum17] if totalmajdum17==1
+(22,319 real changes made)
+
+->  replace totalmajorbeta = _b[totalmajdum18] if totalmajdum18==1
+(63,836 real changes made)
+
+. 
+. gen late = (panel >= 1996)
+
+. replace earlymajorbeta = . if late == 1
+(0 real changes made)
+
+. replace latemajorbeta = . if late != 1 
+(0 real changes made)
+
+. 
+. /* Now we test the majorbeta */
+. /* Standardizing majorbeta */
+. 
+. /* Need to standardize for the age-restricted sample only */
+. replace earlymajorbeta = . if age > 35 | age < 22
+(89,139 real changes made, 89,139 to missing)
+
+. replace latemajorbeta = . if age > 35 | age < 22
+(222,179 real changes made, 222,179 to missing)
+
+. 
+. drop totalmajorbeta
+
+. gen majorbeta = .
+(2,182,492 missing values generated)
+
+. replace majorbeta = earlymajorbeta if late == 0
+(48,652 real changes made)
+
+. replace majorbeta = latemajorbeta if late == 1
+(50,357 real changes made)
+
+. 
+. * gen majorbeta_x_urate_natl_grad = majorbeta*urate_natl_grad
+. capture drop majorbeta_x_potexp
+
+. gen majorbeta_x_potexp = majorbeta*potexp
+(2,095,572 missing values generated)
+
+. * gen urate_natl_grad_x_pe = urate_natl_grad * potexp
+. * gen urate_natl_grad_x_pe2 = urate_natl_grad * potexp2
+. 
+. egen clustvar = group(sipp_major gradyear)
+(1804826 missing values generated)
+
+. 
+. * capture drop urate_natl_cur
+. * sort year
+. * merge m:1 year using Crosswalks/nat_unemp.dta
+. * drop if _merge != 3
+. * drop _merge
+. 
+. * rename unemp urate_natl_cur
+. 
+. 
+. /* Q: How are earnings constructed ? 
+> Take avg monthly earnings in months you weren't enrolled. Then multiply that 
+> by 12 (this is unnecessary, I know)
+> 
+> Q: How is hourly pay constructed?
+> For workers who work hourly, take their hourly pay, averaged over months they
+>  weren't enrolled AND had a positive wage
+> For other workers, we take their earnings measure and divide by hours, for no
+> n-enrolled months
+> 
+> Q: What is the enrollment restriction? 
+> Enrolled is defined as the % of months in the year you were enrolled. Enrolle
+> d < 0.25 would keep everyone enrolled 2 or fewer months in the year 
+> 
+> Q: How did I construct occbeta?
+> Average occbeta of all months you have a valid occupation
+> 
+> Q: What are the employment and FT measures?
+> % of months you are employed/FT (35+ hrs/week) among months you are not enrol
+> led in school. they vary from 0 to 1.
+> 
+> */
+. 
+. drop early* latemajorbeta latemajdum* 
+
+. replace lnpay = lnpay2
+(641,044 real changes made, 24,491 to missing)
+
+. drop lnpay1 lnpay2
+
+. 
+. capture drop time time2
+
+. drop clustvar late *majdum* 
+
+. 
+. drop survey
+
+. 
+. gen survey = .
+(2,182,492 missing values generated)
+
+. replace survey = 8493 if panel >= 1984 & panel <= 1993
+(947,080 real changes made)
+
+. replace survey = 9608 if panel >= 1996 & panel <= 2008
+(1,235,124 real changes made)
+
+. 
+. 
+. * Create variables that will be useful for our project
+. gen gradHS = hgc>=12
+
+. gen grad4yr = hgc>=16
+
+. gen birthYr = year-age
+(307,833 missing values generated)
+
+. gen empFT = inrange(fulltime,0.75,1)
+
+. gen empPT = inrange(employed,0.25,1) & inrange(fulltime,0.25,0.75) & ~empFT
+
+. tab hgc, mi
+
+        hgc |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |      5,210        0.24        0.24
+        2.5 |     11,470        0.53        0.76
+        5.5 |     21,320        0.98        1.74
+        7.5 |     43,791        2.01        3.75
+          9 |     43,316        1.98        5.73
+         10 |    175,109        8.02       13.76
+         11 |     50,920        2.33       16.09
+       11.5 |     19,667        0.90       16.99
+         12 |    863,502       39.56       56.55
+         13 |    197,625        9.06       65.61
+       13.5 |     93,575        4.29       69.90
+         14 |    121,495        5.57       75.46
+         16 |    248,483       11.39       86.85
+         18 |     89,591        4.10       90.95
+         19 |     21,137        0.97       91.92
+         20 |     14,619        0.67       92.59
+          . |    161,662        7.41      100.00
+------------+-----------------------------------
+      Total |  2,182,492      100.00
+
+. sum gradHS grad4yr
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+      gradHS |  2,182,492    .8301011     .375544          0          1
+     grad4yr |  2,182,492    .2453581    .4302994          0          1
+
+. tab empFT
+
+      empFT |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |  1,457,876       66.80       66.80
+          1 |    724,616       33.20      100.00
+------------+-----------------------------------
+      Total |  2,182,492      100.00
+
+. tab empPT
+
+      empPT |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |  2,060,601       94.42       94.42
+          1 |    121,891        5.58      100.00
+------------+-----------------------------------
+      Total |  2,182,492      100.00
+
+. tab hgc, sum(empFT) mi
+
+            |          Summary of empFT
+        hgc |        Mean   Std. Dev.       Freq.
+------------+------------------------------------
+          0 |   .14894434   .35606777       5,210
+        2.5 |   .20183086   .40138412      11,470
+        5.5 |   .25642589    .4366699      21,320
+        7.5 |   .14064534    .3476593      43,791
+          9 |   .15880968   .36550273      43,316
+         10 |   .20525501     .403889     175,109
+         11 |   .22305577   .41629953      50,920
+       11.5 |   .28026644   .44914076      19,667
+         12 |   .30745615   .46144026     863,502
+         13 |   .40111322   .49012511     197,625
+       13.5 |   .37584825   .48434373      93,575
+         14 |   .48752624   .49984644     121,495
+         16 |   .50490376   .49997696     248,483
+         18 |    .5245393   .49940025      89,591
+         19 |   .41505417   .49274303      21,137
+         20 |   .51768247   .49970432      14,619
+          . |   .13764521   .34452829     161,662
+------------+------------------------------------
+      Total |   .33201313   .47093578   2,182,492
+
+. tab hgc, sum(empPT) mi
+
+            |          Summary of empPT
+        hgc |        Mean   Std. Dev.       Freq.
+------------+------------------------------------
+          0 |   .04913628   .21617325       5,210
+        2.5 |   .04995641   .21786442      11,470
+        5.5 |   .05318949   .22441643      21,320
+        7.5 |   .03690256   .18852473      43,791
+          9 |   .04113953   .19861516      43,316
+         10 |   .07230354   .25899058     175,109
+         11 |   .05803221   .23380664      50,920
+       11.5 |   .05760919   .23300887      19,667
+         12 |   .05987131    .2372484     863,502
+         13 |   .05183049   .22168522     197,625
+       13.5 |   .04755544   .21282481      93,575
+         14 |   .05972262   .23697319     121,495
+         16 |   .05505407   .22808623     248,483
+         18 |   .04984876   .21763361      89,591
+         19 |    .0491082   .21609904      21,137
+         20 |   .04754087   .21279999      14,619
+          . |   .03868565   .19284528     161,662
+------------+------------------------------------
+      Total |   .05584946   .22963084   2,182,492
+
+. 
+. compress
+  variable ba_west was float now byte
+  variable ba_northeast was float now byte
+  variable ba_south was float now byte
+  variable ba_midwest was float now byte
+  variable sipp_major was float now byte
+  variable survey was float now int
+  variable gradHS was float now byte
+  variable grad4yr was float now byte
+  variable birthYr was float now int
+  variable empFT was float now byte
+  variable empPT was float now byte
+  (67,657,252 bytes saved)
+
+. * save Cleaned/sipp_full_master.dta, replace
+. * !gzip -f Cleaned/sipp_full_master.dta
+. 
+. preserve
+
+. keep if _n<=_N/2
+(1,091,246 observations deleted)
+
+. save Cleaned/sipp_full_master_pt1.dta, replace
+(note: file Cleaned/sipp_full_master_pt1.dta not found)
+file Cleaned/sipp_full_master_pt1.dta saved
+
+. !gzip -f Cleaned/sipp_full_master_pt1.dta
+
+
+. restore
+
+. 
+. preserve
+
+. keep if _n>_N/2
+(1,091,246 observations deleted)
+
+. save Cleaned/sipp_full_master_pt2.dta, replace
+(note: file Cleaned/sipp_full_master_pt2.dta not found)
+file Cleaned/sipp_full_master_pt2.dta saved
+
+. !gzip -f Cleaned/sipp_full_master_pt2.dta
+
+
+. restore
+
+. 
+. log close
+      name:  <unnamed>
+       log:  /home/jared/NLSYvCPS/Data/SIPP/sipp_combining_master.log
+  log type:  text
+ closed on:   6 Jul 2018, 20:31:47
+-------------------------------------------------------------------------------

@@ -1,0 +1,541 @@
+-------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /home/jared/NLSYvCPS/Analysis/compare_means.log
+  log type:  text
+ opened on:  12 Feb 2019, 14:38:07
+
+. 
+. * Compare the wage premia of the different datasets/birth cohorts
+. local DATALIST ACS CPS NLSY PSID SIPP
+
+. 
+. gen dataset=""
+
+. foreach DATA in `DATALIST' {
+  2.     disp "`DATA'"
+  3.     local data = lower("`DATA'")
+  4.     append using `DATA'/`data'_means.dta, gen(`DATA')
+  5.     replace dataset="`DATA'" if `DATA'==1
+  6. }
+ACS
+variable dataset was str1 now str3
+(10,032 real changes made)
+CPS
+(10,752 real changes made)
+NLSY
+variable dataset was str3 now str4
+(3,264 real changes made)
+PSID
+(10,980 real changes made)
+SIPP
+(9,504 real changes made)
+
+. recode `DATALIST' (.=0)
+(ACS: 34500 changes made)
+(CPS: 23748 changes made)
+(NLSY: 20484 changes made)
+(PSID: 9504 changes made)
+(SIPP: 0 changes made)
+
+. order  `DATALIST' dataset, last
+
+. 
+. local minyear 1950
+
+. local maxyear 1988
+
+. local obscut  400
+
+. 
+. drop if dataset=="SIPP" & birthyr>=1983
+(624 observations deleted)
+
+. drop if birthyr<`minyear'
+(4,128 observations deleted)
+
+. 
+. foreach X in HGC Black Hispanic Grad4yr GradHS GradGrad {
+  2.     foreach FEM in 0 1 {
+  3.         if `FEM'==1 local PRE="fe"
+  4.         else local PRE=""
+  5.         foreach A in 18 25 26 30 35 45 {
+  6.             preserve
+  7.             if `A'==18 drop if ~inlist(birthyr,1958,1959,1968,1969,1978,19
+> 79) & ~inrange(birthyr,1980,1988) & dataset=="ACS" // keep 21-22 year olds
+  8.             if `A'==25 drop if ~inlist(birthyr,1950,1951,1960,1961,1970,19
+> 71) & ~inrange(birthyr,1972,1988) & dataset=="ACS" // keep 29-30 year olds
+  9.             if `A'==26 drop if !inlist(birthyr,1952,     1962,     1972   
+>   ) & !inrange(birthyr,1973,1988) & dataset=="ACS" // keep 28    year olds
+ 10.             if `A'==30 drop if ~inlist(birthyr,1945,1946,1955,1956,1965,19
+> 66) & ~inrange(birthyr,1967,1988) & dataset=="ACS" // keep 34-35 year olds
+ 11.             if `A'==35 drop if ~inlist(birthyr,1940,1941,1950,1951,1960,19
+> 61) & ~inrange(birthyr,1962,1988) & dataset=="ACS" // keep 39-40 year olds
+ 12.             if `A'==45 drop if ~inlist(birthyr,1935,1936,1945,1946,1955,19
+> 56) & ~inrange(birthyr,1957,1988) & dataset=="ACS" // keep 44-45 year olds
+ 13.             if `A'==18 local A2 28
+ 14.             if `A'==25 local A2 34
+ 15.             if `A'==26 local A2 30
+ 16.             if `A'==30 local A2 39
+ 17.             if `A'==35 local A2 44
+ 18.             if `A'==45 local A2 54
+ 19.             twoway ( line mean birthyr if female==`FEM' & empFT==1 & age1=
+> =`A' & N>=`obscut' & controls=="`X'" & dataset=="NLSY" & birthyr<=1964 , lwid
+> th(medthick) lcolor(black) lpattern(solid)) ///
+>                    ( line mean birthyr if female==`FEM' & empFT==1 & age1==`A
+> ' & N>=`obscut' & controls=="`X'" & dataset=="CPS"                  , lwidth(
+> medthick) lcolor(black) lpattern(dash)) ///
+>                    ( line mean birthyr if female==`FEM' & empFT==1 & age1==`A
+> ' & N>=`obscut' & controls=="`X'" & dataset=="ACS"                  , lwidth(
+> medthick) lcolor(black) lpattern(dot)) ///
+>                    ( line mean birthyr if female==`FEM' & empFT==1 & age1==`A
+> ' & N>=`obscut' & controls=="`X'" & dataset=="PSID" & birthyr<=1966 , lwidth(
+> medthick) lcolor(black) lpattern(shortdash_dot)) ///
+>                    ( line mean birthyr if female==`FEM' & empFT==1 & age1==`A
+> ' & N>=`obscut' & controls=="`X'" & dataset=="SIPP" & birthyr<=1988 , lwidth(
+> medthick) lcolor(black) lpattern(longdash_dot)) ///
+>                    ( line mean birthyr if female==`FEM' & empFT==1 & age1==`A
+> ' & N>=`obscut' & controls=="`X'" & dataset=="NLSY" & birthyr>=1980 , lwidth(
+> medthick) lcolor(black) lpattern(solid)) ///
+>                    ( line mean birthyr if female==`FEM' & empFT==1 & age1==`A
+> ' & N>=`obscut' & controls=="`X'" & dataset=="PSID" & birthyr>=1978 , lwidth(
+> medthick) lcolor(black) lpattern(shortdash_dot)) ///
+>             , legend(order(1 2 3 4 5) label(1 "NLSY") label(2 "CPS") label(3 
+> "ACS") label(4 "PSID") label(5 "SIPP") cols(2) symxsize(10) keygap(1) ) ///
+>             xscale(range(`minyear' `maxyear')) xlabel(`minyear'(4)`maxyear') 
+> xtitle(Birth Year) ytitle(Mean `X') graphregion(color(white))
+ 20.             graph export PDFs/line_`PRE'male_FT_`A'`A2'_mean_`X'.pdf, repl
+> ace
+ 21.             graph export PSs/line_`PRE'male_FT_`A'`A2'_mean_`X'.eps, repla
+> ce
+ 22.             restore
+ 23.         }
+ 24.     }
+ 25. }
+(6,240 observations deleted)
+(file PDFs/line_male_FT_1828_mean_HGC.pdf written in PDF format)
+(file PSs/line_male_FT_1828_mean_HGC.eps written in EPS format)
+(4,128 observations deleted)
+(file PDFs/line_male_FT_2534_mean_HGC.pdf written in PDF format)
+(file PSs/line_male_FT_2534_mean_HGC.eps written in EPS format)
+(5,184 observations deleted)
+(file PDFs/line_male_FT_2630_mean_HGC.pdf written in PDF format)
+(file PSs/line_male_FT_2630_mean_HGC.eps written in EPS format)
+(3,504 observations deleted)
+(file PDFs/line_male_FT_3039_mean_HGC.pdf written in PDF format)
+(file PSs/line_male_FT_3039_mean_HGC.eps written in EPS format)
+(2,064 observations deleted)
+(file PDFs/line_male_FT_3544_mean_HGC.pdf written in PDF format)
+(file PSs/line_male_FT_3544_mean_HGC.eps written in EPS format)
+(1,344 observations deleted)
+(file PDFs/line_male_FT_4554_mean_HGC.pdf written in PDF format)
+(file PSs/line_male_FT_4554_mean_HGC.eps written in EPS format)
+(6,240 observations deleted)
+(file PDFs/line_female_FT_1828_mean_HGC.pdf written in PDF format)
+(file PSs/line_female_FT_1828_mean_HGC.eps written in EPS format)
+(4,128 observations deleted)
+(file PDFs/line_female_FT_2534_mean_HGC.pdf written in PDF format)
+(file PSs/line_female_FT_2534_mean_HGC.eps written in EPS format)
+(5,184 observations deleted)
+(file PDFs/line_female_FT_2630_mean_HGC.pdf written in PDF format)
+(file PSs/line_female_FT_2630_mean_HGC.eps written in EPS format)
+(3,504 observations deleted)
+(file PDFs/line_female_FT_3039_mean_HGC.pdf written in PDF format)
+(file PSs/line_female_FT_3039_mean_HGC.eps written in EPS format)
+(2,064 observations deleted)
+(file PDFs/line_female_FT_3544_mean_HGC.pdf written in PDF format)
+(file PSs/line_female_FT_3544_mean_HGC.eps written in EPS format)
+(1,344 observations deleted)
+(file PDFs/line_female_FT_4554_mean_HGC.pdf written in PDF format)
+(file PSs/line_female_FT_4554_mean_HGC.eps written in EPS format)
+(6,240 observations deleted)
+(file PDFs/line_male_FT_1828_mean_Black.pdf written in PDF format)
+(file PSs/line_male_FT_1828_mean_Black.eps written in EPS format)
+(4,128 observations deleted)
+(file PDFs/line_male_FT_2534_mean_Black.pdf written in PDF format)
+(file PSs/line_male_FT_2534_mean_Black.eps written in EPS format)
+(5,184 observations deleted)
+(file PDFs/line_male_FT_2630_mean_Black.pdf written in PDF format)
+(file PSs/line_male_FT_2630_mean_Black.eps written in EPS format)
+(3,504 observations deleted)
+(file PDFs/line_male_FT_3039_mean_Black.pdf written in PDF format)
+(file PSs/line_male_FT_3039_mean_Black.eps written in EPS format)
+(2,064 observations deleted)
+(file PDFs/line_male_FT_3544_mean_Black.pdf written in PDF format)
+(file PSs/line_male_FT_3544_mean_Black.eps written in EPS format)
+(1,344 observations deleted)
+(file PDFs/line_male_FT_4554_mean_Black.pdf written in PDF format)
+(file PSs/line_male_FT_4554_mean_Black.eps written in EPS format)
+(6,240 observations deleted)
+(file PDFs/line_female_FT_1828_mean_Black.pdf written in PDF format)
+(file PSs/line_female_FT_1828_mean_Black.eps written in EPS format)
+(4,128 observations deleted)
+(file PDFs/line_female_FT_2534_mean_Black.pdf written in PDF format)
+(file PSs/line_female_FT_2534_mean_Black.eps written in EPS format)
+(5,184 observations deleted)
+(file PDFs/line_female_FT_2630_mean_Black.pdf written in PDF format)
+(file PSs/line_female_FT_2630_mean_Black.eps written in EPS format)
+(3,504 observations deleted)
+(file PDFs/line_female_FT_3039_mean_Black.pdf written in PDF format)
+(file PSs/line_female_FT_3039_mean_Black.eps written in EPS format)
+(2,064 observations deleted)
+(file PDFs/line_female_FT_3544_mean_Black.pdf written in PDF format)
+(file PSs/line_female_FT_3544_mean_Black.eps written in EPS format)
+(1,344 observations deleted)
+(file PDFs/line_female_FT_4554_mean_Black.pdf written in PDF format)
+(file PSs/line_female_FT_4554_mean_Black.eps written in EPS format)
+(6,240 observations deleted)
+(file PDFs/line_male_FT_1828_mean_Hispanic.pdf written in PDF format)
+(file PSs/line_male_FT_1828_mean_Hispanic.eps written in EPS format)
+(4,128 observations deleted)
+(file PDFs/line_male_FT_2534_mean_Hispanic.pdf written in PDF format)
+(file PSs/line_male_FT_2534_mean_Hispanic.eps written in EPS format)
+(5,184 observations deleted)
+(file PDFs/line_male_FT_2630_mean_Hispanic.pdf written in PDF format)
+(file PSs/line_male_FT_2630_mean_Hispanic.eps written in EPS format)
+(3,504 observations deleted)
+(file PDFs/line_male_FT_3039_mean_Hispanic.pdf written in PDF format)
+(file PSs/line_male_FT_3039_mean_Hispanic.eps written in EPS format)
+(2,064 observations deleted)
+(file PDFs/line_male_FT_3544_mean_Hispanic.pdf written in PDF format)
+(file PSs/line_male_FT_3544_mean_Hispanic.eps written in EPS format)
+(1,344 observations deleted)
+(file PDFs/line_male_FT_4554_mean_Hispanic.pdf written in PDF format)
+(file PSs/line_male_FT_4554_mean_Hispanic.eps written in EPS format)
+(6,240 observations deleted)
+(file PDFs/line_female_FT_1828_mean_Hispanic.pdf written in PDF format)
+(file PSs/line_female_FT_1828_mean_Hispanic.eps written in EPS format)
+(4,128 observations deleted)
+(file PDFs/line_female_FT_2534_mean_Hispanic.pdf written in PDF format)
+(file PSs/line_female_FT_2534_mean_Hispanic.eps written in EPS format)
+(5,184 observations deleted)
+(file PDFs/line_female_FT_2630_mean_Hispanic.pdf written in PDF format)
+(file PSs/line_female_FT_2630_mean_Hispanic.eps written in EPS format)
+(3,504 observations deleted)
+(file PDFs/line_female_FT_3039_mean_Hispanic.pdf written in PDF format)
+(file PSs/line_female_FT_3039_mean_Hispanic.eps written in EPS format)
+(2,064 observations deleted)
+(file PDFs/line_female_FT_3544_mean_Hispanic.pdf written in PDF format)
+(file PSs/line_female_FT_3544_mean_Hispanic.eps written in EPS format)
+(1,344 observations deleted)
+(file PDFs/line_female_FT_4554_mean_Hispanic.pdf written in PDF format)
+(file PSs/line_female_FT_4554_mean_Hispanic.eps written in EPS format)
+(6,240 observations deleted)
+(file PDFs/line_male_FT_1828_mean_Grad4yr.pdf written in PDF format)
+(file PSs/line_male_FT_1828_mean_Grad4yr.eps written in EPS format)
+(4,128 observations deleted)
+(file PDFs/line_male_FT_2534_mean_Grad4yr.pdf written in PDF format)
+(file PSs/line_male_FT_2534_mean_Grad4yr.eps written in EPS format)
+(5,184 observations deleted)
+(file PDFs/line_male_FT_2630_mean_Grad4yr.pdf written in PDF format)
+(file PSs/line_male_FT_2630_mean_Grad4yr.eps written in EPS format)
+(3,504 observations deleted)
+(file PDFs/line_male_FT_3039_mean_Grad4yr.pdf written in PDF format)
+(file PSs/line_male_FT_3039_mean_Grad4yr.eps written in EPS format)
+(2,064 observations deleted)
+(file PDFs/line_male_FT_3544_mean_Grad4yr.pdf written in PDF format)
+(file PSs/line_male_FT_3544_mean_Grad4yr.eps written in EPS format)
+(1,344 observations deleted)
+(file PDFs/line_male_FT_4554_mean_Grad4yr.pdf written in PDF format)
+(file PSs/line_male_FT_4554_mean_Grad4yr.eps written in EPS format)
+(6,240 observations deleted)
+(file PDFs/line_female_FT_1828_mean_Grad4yr.pdf written in PDF format)
+(file PSs/line_female_FT_1828_mean_Grad4yr.eps written in EPS format)
+(4,128 observations deleted)
+(file PDFs/line_female_FT_2534_mean_Grad4yr.pdf written in PDF format)
+(file PSs/line_female_FT_2534_mean_Grad4yr.eps written in EPS format)
+(5,184 observations deleted)
+(file PDFs/line_female_FT_2630_mean_Grad4yr.pdf written in PDF format)
+(file PSs/line_female_FT_2630_mean_Grad4yr.eps written in EPS format)
+(3,504 observations deleted)
+(file PDFs/line_female_FT_3039_mean_Grad4yr.pdf written in PDF format)
+(file PSs/line_female_FT_3039_mean_Grad4yr.eps written in EPS format)
+(2,064 observations deleted)
+(file PDFs/line_female_FT_3544_mean_Grad4yr.pdf written in PDF format)
+(file PSs/line_female_FT_3544_mean_Grad4yr.eps written in EPS format)
+(1,344 observations deleted)
+(file PDFs/line_female_FT_4554_mean_Grad4yr.pdf written in PDF format)
+(file PSs/line_female_FT_4554_mean_Grad4yr.eps written in EPS format)
+(6,240 observations deleted)
+(file PDFs/line_male_FT_1828_mean_GradHS.pdf written in PDF format)
+(file PSs/line_male_FT_1828_mean_GradHS.eps written in EPS format)
+(4,128 observations deleted)
+(file PDFs/line_male_FT_2534_mean_GradHS.pdf written in PDF format)
+(file PSs/line_male_FT_2534_mean_GradHS.eps written in EPS format)
+(5,184 observations deleted)
+(file PDFs/line_male_FT_2630_mean_GradHS.pdf written in PDF format)
+(file PSs/line_male_FT_2630_mean_GradHS.eps written in EPS format)
+(3,504 observations deleted)
+(file PDFs/line_male_FT_3039_mean_GradHS.pdf written in PDF format)
+(file PSs/line_male_FT_3039_mean_GradHS.eps written in EPS format)
+(2,064 observations deleted)
+(file PDFs/line_male_FT_3544_mean_GradHS.pdf written in PDF format)
+(file PSs/line_male_FT_3544_mean_GradHS.eps written in EPS format)
+(1,344 observations deleted)
+(file PDFs/line_male_FT_4554_mean_GradHS.pdf written in PDF format)
+(file PSs/line_male_FT_4554_mean_GradHS.eps written in EPS format)
+(6,240 observations deleted)
+(file PDFs/line_female_FT_1828_mean_GradHS.pdf written in PDF format)
+(file PSs/line_female_FT_1828_mean_GradHS.eps written in EPS format)
+(4,128 observations deleted)
+(file PDFs/line_female_FT_2534_mean_GradHS.pdf written in PDF format)
+(file PSs/line_female_FT_2534_mean_GradHS.eps written in EPS format)
+(5,184 observations deleted)
+(file PDFs/line_female_FT_2630_mean_GradHS.pdf written in PDF format)
+(file PSs/line_female_FT_2630_mean_GradHS.eps written in EPS format)
+(3,504 observations deleted)
+(file PDFs/line_female_FT_3039_mean_GradHS.pdf written in PDF format)
+(file PSs/line_female_FT_3039_mean_GradHS.eps written in EPS format)
+(2,064 observations deleted)
+(file PDFs/line_female_FT_3544_mean_GradHS.pdf written in PDF format)
+(file PSs/line_female_FT_3544_mean_GradHS.eps written in EPS format)
+(1,344 observations deleted)
+(file PDFs/line_female_FT_4554_mean_GradHS.pdf written in PDF format)
+(file PSs/line_female_FT_4554_mean_GradHS.eps written in EPS format)
+(6,240 observations deleted)
+(file PDFs/line_male_FT_1828_mean_GradGrad.pdf written in PDF format)
+(file PSs/line_male_FT_1828_mean_GradGrad.eps written in EPS format)
+(4,128 observations deleted)
+(file PDFs/line_male_FT_2534_mean_GradGrad.pdf written in PDF format)
+(file PSs/line_male_FT_2534_mean_GradGrad.eps written in EPS format)
+(5,184 observations deleted)
+(file PDFs/line_male_FT_2630_mean_GradGrad.pdf written in PDF format)
+(file PSs/line_male_FT_2630_mean_GradGrad.eps written in EPS format)
+(3,504 observations deleted)
+(file PDFs/line_male_FT_3039_mean_GradGrad.pdf written in PDF format)
+(file PSs/line_male_FT_3039_mean_GradGrad.eps written in EPS format)
+(2,064 observations deleted)
+(file PDFs/line_male_FT_3544_mean_GradGrad.pdf written in PDF format)
+(file PSs/line_male_FT_3544_mean_GradGrad.eps written in EPS format)
+(1,344 observations deleted)
+(file PDFs/line_male_FT_4554_mean_GradGrad.pdf written in PDF format)
+(file PSs/line_male_FT_4554_mean_GradGrad.eps written in EPS format)
+(6,240 observations deleted)
+(file PDFs/line_female_FT_1828_mean_GradGrad.pdf written in PDF format)
+(file PSs/line_female_FT_1828_mean_GradGrad.eps written in EPS format)
+(4,128 observations deleted)
+(file PDFs/line_female_FT_2534_mean_GradGrad.pdf written in PDF format)
+(file PSs/line_female_FT_2534_mean_GradGrad.eps written in EPS format)
+(5,184 observations deleted)
+(file PDFs/line_female_FT_2630_mean_GradGrad.pdf written in PDF format)
+(file PSs/line_female_FT_2630_mean_GradGrad.eps written in EPS format)
+(3,504 observations deleted)
+(file PDFs/line_female_FT_3039_mean_GradGrad.pdf written in PDF format)
+(file PSs/line_female_FT_3039_mean_GradGrad.eps written in EPS format)
+(2,064 observations deleted)
+(file PDFs/line_female_FT_3544_mean_GradGrad.pdf written in PDF format)
+(file PSs/line_female_FT_3544_mean_GradGrad.eps written in EPS format)
+(1,344 observations deleted)
+(file PDFs/line_female_FT_4554_mean_GradGrad.pdf written in PDF format)
+(file PSs/line_female_FT_4554_mean_GradGrad.eps written in EPS format)
+
+. 
+. foreach X in FTvAll FTvFTPT {
+  2.         if "`X'"=="FTvAll"  local TITLE FT Employment Rate
+  3.         if "`X'"=="FTvFTPT" local TITLE FT Employed v All Employed
+  4.     foreach FEM in 0 1 {
+  5.         if `FEM'==1 local PRE="fe"
+  6.         else local PRE=""
+  7.         foreach A in 18 25 26 30 35 45 {
+  8.             preserve
+  9.             if `A'==18 drop if ~inlist(birthyr,1958,1959,1968,1969,1978,19
+> 79) & ~inrange(birthyr,1980,1988) & dataset=="ACS" // keep 21-22 year olds
+ 10.             if `A'==25 drop if ~inlist(birthyr,1950,1951,1960,1961,1970,19
+> 71) & ~inrange(birthyr,1972,1988) & dataset=="ACS" // keep 29-30 year olds
+ 11.             if `A'==26 drop if !inlist(birthyr,1952,     1962,     1972   
+>   ) & !inrange(birthyr,1973,1988) & dataset=="ACS" // keep 28    year olds
+ 12.             if `A'==30 drop if ~inlist(birthyr,1945,1946,1955,1956,1965,19
+> 66) & ~inrange(birthyr,1967,1988) & dataset=="ACS" // keep 34-35 year olds
+ 13.             if `A'==35 drop if ~inlist(birthyr,1940,1941,1950,1951,1960,19
+> 61) & ~inrange(birthyr,1962,1988) & dataset=="ACS" // keep 39-40 year olds
+ 14.             if `A'==45 drop if ~inlist(birthyr,1935,1936,1945,1946,1955,19
+> 56) & ~inrange(birthyr,1957,1988) & dataset=="ACS" // keep 44-45 year olds
+ 15.             if `A'==18 local A2 28
+ 16.             if `A'==25 local A2 34
+ 17.             if `A'==26 local A2 30
+ 18.             if `A'==30 local A2 39
+ 19.             if `A'==35 local A2 44
+ 20.             if `A'==45 local A2 54
+ 21.             twoway ( line mean birthyr if female==`FEM' & empFT==99 & age1
+> ==`A' & N>=`obscut' & controls=="`X'" & dataset=="NLSY" & birthyr<=1964 , lwi
+> dth(medthick) lcolor(black) lpattern(solid)) ///
+>                    ( line mean birthyr if female==`FEM' & empFT==99 & age1==`
+> A' & N>=`obscut' & controls=="`X'" & dataset=="CPS"                  , lwidth
+> (medthick) lcolor(black) lpattern(dash)) ///
+>                    ( line mean birthyr if female==`FEM' & empFT==99 & age1==`
+> A' & N>=`obscut' & controls=="`X'" & dataset=="ACS"                  , lwidth
+> (medthick) lcolor(black) lpattern(dot)) ///
+>                    ( line mean birthyr if female==`FEM' & empFT==99 & age1==`
+> A' & N>=`obscut' & controls=="`X'" & dataset=="PSID" & birthyr<=1966 , lwidth
+> (medthick) lcolor(black) lpattern(shortdash_dot)) ///
+>                    ( line mean birthyr if female==`FEM' & empFT==99 & age1==`
+> A' & N>=`obscut' & controls=="`X'" & dataset=="SIPP" & birthyr<=1988 , lwidth
+> (medthick) lcolor(black) lpattern(longdash_dot)) ///
+>                    ( line mean birthyr if female==`FEM' & empFT==99 & age1==`
+> A' & N>=`obscut' & controls=="`X'" & dataset=="NLSY" & birthyr>=1980 , lwidth
+> (medthick) lcolor(black) lpattern(solid)) ///
+>                    ( line mean birthyr if female==`FEM' & empFT==99 & age1==`
+> A' & N>=`obscut' & controls=="`X'" & dataset=="PSID" & birthyr>=1978 , lwidth
+> (medthick) lcolor(black) lpattern(shortdash_dot)) ///
+>             , legend(order(1 2 3 4 5) label(1 "NLSY") label(2 "CPS") label(3 
+> "ACS") label(4 "PSID") label(5 "SIPP") cols(2) symxsize(10) keygap(1) ) ///
+>             xscale(range(`minyear' `maxyear')) xlabel(`minyear'(4)`maxyear') 
+> xtitle(Birth Year) ytitle(Mean "`TITLE'") graphregion(color(white))
+ 22.             graph export PDFs/line_`PRE'male_FT_`A'`A2'_mean_`X'.pdf, repl
+> ace
+ 23.             graph export PSs/line_`PRE'male_FT_`A'`A2'_mean_`X'.eps, repla
+> ce
+ 24.             restore
+ 25.         }
+ 26.     }
+ 27. }
+(6,240 observations deleted)
+(file PDFs/line_male_FT_1828_mean_FTvAll.pdf written in PDF format)
+(file PSs/line_male_FT_1828_mean_FTvAll.eps written in EPS format)
+(4,128 observations deleted)
+(file PDFs/line_male_FT_2534_mean_FTvAll.pdf written in PDF format)
+(file PSs/line_male_FT_2534_mean_FTvAll.eps written in EPS format)
+(5,184 observations deleted)
+(file PDFs/line_male_FT_2630_mean_FTvAll.pdf written in PDF format)
+(file PSs/line_male_FT_2630_mean_FTvAll.eps written in EPS format)
+(3,504 observations deleted)
+(file PDFs/line_male_FT_3039_mean_FTvAll.pdf written in PDF format)
+(file PSs/line_male_FT_3039_mean_FTvAll.eps written in EPS format)
+(2,064 observations deleted)
+(file PDFs/line_male_FT_3544_mean_FTvAll.pdf written in PDF format)
+(file PSs/line_male_FT_3544_mean_FTvAll.eps written in EPS format)
+(1,344 observations deleted)
+(file PDFs/line_male_FT_4554_mean_FTvAll.pdf written in PDF format)
+(file PSs/line_male_FT_4554_mean_FTvAll.eps written in EPS format)
+(6,240 observations deleted)
+(file PDFs/line_female_FT_1828_mean_FTvAll.pdf written in PDF format)
+(file PSs/line_female_FT_1828_mean_FTvAll.eps written in EPS format)
+(4,128 observations deleted)
+(file PDFs/line_female_FT_2534_mean_FTvAll.pdf written in PDF format)
+(file PSs/line_female_FT_2534_mean_FTvAll.eps written in EPS format)
+(5,184 observations deleted)
+(file PDFs/line_female_FT_2630_mean_FTvAll.pdf written in PDF format)
+(file PSs/line_female_FT_2630_mean_FTvAll.eps written in EPS format)
+(3,504 observations deleted)
+(file PDFs/line_female_FT_3039_mean_FTvAll.pdf written in PDF format)
+(file PSs/line_female_FT_3039_mean_FTvAll.eps written in EPS format)
+(2,064 observations deleted)
+(file PDFs/line_female_FT_3544_mean_FTvAll.pdf written in PDF format)
+(file PSs/line_female_FT_3544_mean_FTvAll.eps written in EPS format)
+(1,344 observations deleted)
+(file PDFs/line_female_FT_4554_mean_FTvAll.pdf written in PDF format)
+(file PSs/line_female_FT_4554_mean_FTvAll.eps written in EPS format)
+(6,240 observations deleted)
+(file PDFs/line_male_FT_1828_mean_FTvFTPT.pdf written in PDF format)
+(file PSs/line_male_FT_1828_mean_FTvFTPT.eps written in EPS format)
+(4,128 observations deleted)
+(file PDFs/line_male_FT_2534_mean_FTvFTPT.pdf written in PDF format)
+(file PSs/line_male_FT_2534_mean_FTvFTPT.eps written in EPS format)
+(5,184 observations deleted)
+(file PDFs/line_male_FT_2630_mean_FTvFTPT.pdf written in PDF format)
+(file PSs/line_male_FT_2630_mean_FTvFTPT.eps written in EPS format)
+(3,504 observations deleted)
+(file PDFs/line_male_FT_3039_mean_FTvFTPT.pdf written in PDF format)
+(file PSs/line_male_FT_3039_mean_FTvFTPT.eps written in EPS format)
+(2,064 observations deleted)
+(file PDFs/line_male_FT_3544_mean_FTvFTPT.pdf written in PDF format)
+(file PSs/line_male_FT_3544_mean_FTvFTPT.eps written in EPS format)
+(1,344 observations deleted)
+(file PDFs/line_male_FT_4554_mean_FTvFTPT.pdf written in PDF format)
+(file PSs/line_male_FT_4554_mean_FTvFTPT.eps written in EPS format)
+(6,240 observations deleted)
+(file PDFs/line_female_FT_1828_mean_FTvFTPT.pdf written in PDF format)
+(file PSs/line_female_FT_1828_mean_FTvFTPT.eps written in EPS format)
+(4,128 observations deleted)
+(file PDFs/line_female_FT_2534_mean_FTvFTPT.pdf written in PDF format)
+(file PSs/line_female_FT_2534_mean_FTvFTPT.eps written in EPS format)
+(5,184 observations deleted)
+(file PDFs/line_female_FT_2630_mean_FTvFTPT.pdf written in PDF format)
+(file PSs/line_female_FT_2630_mean_FTvFTPT.eps written in EPS format)
+(3,504 observations deleted)
+(file PDFs/line_female_FT_3039_mean_FTvFTPT.pdf written in PDF format)
+(file PSs/line_female_FT_3039_mean_FTvFTPT.eps written in EPS format)
+(2,064 observations deleted)
+(file PDFs/line_female_FT_3544_mean_FTvFTPT.pdf written in PDF format)
+(file PSs/line_female_FT_3544_mean_FTvFTPT.eps written in EPS format)
+(1,344 observations deleted)
+(file PDFs/line_female_FT_4554_mean_FTvFTPT.pdf written in PDF format)
+(file PSs/line_female_FT_4554_mean_FTvFTPT.eps written in EPS format)
+
+. 
+. foreach X in Female {
+  2.     foreach A in 18 25 26 30 35 45 {
+  3.         preserve
+  4.         if `A'==18 drop if ~inlist(birthyr,1958,1959,1968,1969,1978,1979) 
+> & ~inrange(birthyr,1980,1988) & dataset=="ACS" // keep 21-22 year olds
+  5.         if `A'==25 drop if ~inlist(birthyr,1950,1951,1960,1961,1970,1971) 
+> & ~inrange(birthyr,1972,1988) & dataset=="ACS" // keep 29-30 year olds
+  6.         if `A'==26 drop if !inlist(birthyr,1952,     1962,     1972     ) 
+> & !inrange(birthyr,1973,1988) & dataset=="ACS" // keep 28    year olds
+  7.         if `A'==30 drop if ~inlist(birthyr,1945,1946,1955,1956,1965,1966) 
+> & ~inrange(birthyr,1967,1988) & dataset=="ACS" // keep 34-35 year olds
+  8.         if `A'==35 drop if ~inlist(birthyr,1940,1941,1950,1951,1960,1961) 
+> & ~inrange(birthyr,1962,1988) & dataset=="ACS" // keep 39-40 year olds
+  9.         if `A'==45 drop if ~inlist(birthyr,1935,1936,1945,1946,1955,1956) 
+> & ~inrange(birthyr,1957,1988) & dataset=="ACS" // keep 44-45 year olds
+ 10.         if `A'==18 local A2 28
+ 11.         if `A'==25 local A2 34
+ 12.         if `A'==26 local A2 30
+ 13.         if `A'==30 local A2 39
+ 14.         if `A'==35 local A2 44
+ 15.         if `A'==45 local A2 54
+ 16.         twoway ( line mean birthyr if female==99 & empFT==1 & age1==`A' & 
+> N>=`obscut' & controls=="`X'" & dataset=="NLSY" & birthyr<=1964 , lwidth(medt
+> hick) lcolor(black) lpattern(solid)) ///
+>                ( line mean birthyr if female==99 & empFT==1 & age1==`A' & N>=
+> `obscut' & controls=="`X'" & dataset=="CPS"                  , lwidth(medthic
+> k) lcolor(black) lpattern(dash)) ///
+>                ( line mean birthyr if female==99 & empFT==1 & age1==`A' & N>=
+> `obscut' & controls=="`X'" & dataset=="ACS"                  , lwidth(medthic
+> k) lcolor(black) lpattern(dot)) ///
+>                ( line mean birthyr if female==99 & empFT==1 & age1==`A' & N>=
+> `obscut' & controls=="`X'" & dataset=="PSID" & birthyr<=1966 , lwidth(medthic
+> k) lcolor(black) lpattern(shortdash_dot)) ///
+>                ( line mean birthyr if female==99 & empFT==1 & age1==`A' & N>=
+> `obscut' & controls=="`X'" & dataset=="SIPP" & birthyr<=1988 , lwidth(medthic
+> k) lcolor(black) lpattern(longdash_dot)) ///
+>                ( line mean birthyr if female==99 & empFT==1 & age1==`A' & N>=
+> `obscut' & controls=="`X'" & dataset=="NLSY" & birthyr>=1980 , lwidth(medthic
+> k) lcolor(black) lpattern(solid)) ///
+>                ( line mean birthyr if female==99 & empFT==1 & age1==`A' & N>=
+> `obscut' & controls=="`X'" & dataset=="PSID" & birthyr>=1978 , lwidth(medthic
+> k) lcolor(black) lpattern(shortdash_dot)) ///
+>         , legend(order(1 2 3 4 5) label(1 "NLSY") label(2 "CPS") label(3 "ACS
+> ") label(4 "PSID") label(5 "SIPP") cols(2) symxsize(10) keygap(1) ) ///
+>         xscale(range(`minyear' `maxyear')) xlabel(`minyear'(4)`maxyear') xtit
+> le(Birth Year) ytitle(Mean `X') graphregion(color(white))
+ 17.         graph export PDFs/line_both_FT_`A'`A2'_mean_`X'.pdf, replace
+ 18.         graph export PSs/line_both_FT_`A'`A2'_mean_`X'.eps, replace
+ 19.         restore
+ 20.     }
+ 21. }
+(6,240 observations deleted)
+(file PDFs/line_both_FT_1828_mean_Female.pdf written in PDF format)
+(file PSs/line_both_FT_1828_mean_Female.eps written in EPS format)
+(4,128 observations deleted)
+(file PDFs/line_both_FT_2534_mean_Female.pdf written in PDF format)
+(file PSs/line_both_FT_2534_mean_Female.eps written in EPS format)
+(5,184 observations deleted)
+(file PDFs/line_both_FT_2630_mean_Female.pdf written in PDF format)
+(file PSs/line_both_FT_2630_mean_Female.eps written in EPS format)
+(3,504 observations deleted)
+(file PDFs/line_both_FT_3039_mean_Female.pdf written in PDF format)
+(file PSs/line_both_FT_3039_mean_Female.eps written in EPS format)
+(2,064 observations deleted)
+(file PDFs/line_both_FT_3544_mean_Female.pdf written in PDF format)
+(file PSs/line_both_FT_3544_mean_Female.eps written in EPS format)
+(1,344 observations deleted)
+(file PDFs/line_both_FT_4554_mean_Female.pdf written in PDF format)
+(file PSs/line_both_FT_4554_mean_Female.eps written in EPS format)
+
+. 
+. log close
+      name:  <unnamed>
+       log:  /home/jared/NLSYvCPS/Analysis/compare_means.log
+  log type:  text
+ closed on:  12 Feb 2019, 14:40:42
+-------------------------------------------------------------------------------
